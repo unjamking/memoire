@@ -1,0 +1,48 @@
+{
+  "memory_id": "mem_maint_residual",
+  "stability_score": 24,
+  "emotion_signature": "dread",
+  "behavior": "corrupted",
+  "contradiction_flags": [
+    "residual_instance"
+  ],
+  "scene": {
+    "description": "A fragment left in the Bureau's substrate by the instance of you that 'did not stop.' It's down beneath the interpretation layers, where Unit 9 works. The floor is showing through.",
+    "fragments": [
+      {
+        "id": "rs9_message",
+        "label": "A Message to You",
+        "symbol": "Scratched into the substrate, addressed to whoever comes next: 'They recalibrate you when you get close. Vasic knows. The other Keeper is you. Don't trust the quiet cases.'",
+        "reveals": "residual_instance",
+        "drift": 15
+      },
+      {
+        "id": "rs9_map",
+        "label": "A Map of the Loop",
+        "text": "A diagram of the recalibration cycle, drawn from the inside. It shows where the memory wipes happen — and a small circle marked 'gap. stay here. they can't reach you in the null.'",
+        "drift": 13
+      },
+      {
+        "id": "rs9_end",
+        "label": "How It Ended",
+        "text": "The last note trails off mid-word. Unit 9's annotation underneath, flat: 'Instance reached the substrate. Could not be recalibrated. Was instead allowed to decay. This was logged as a success.'",
+        "drift": 14
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "heed",
+      "label": "Heed the warning — start watching for recalibration",
+      "truth": "residual_heeded",
+      "drift": 10
+    },
+    {
+      "id": "dismiss",
+      "label": "Dismiss it — a decayed instance isn't a reliable source",
+      "truth": "residual_dismissed",
+      "drift": 6
+    }
+  ],
+  "env": "office_echo"
+}

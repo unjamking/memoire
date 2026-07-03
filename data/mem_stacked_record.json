@@ -1,0 +1,60 @@
+{
+  "memory_id": "mem_stacked_record",
+  "stability_score": 45,
+  "emotion_signature": "loss",
+  "behavior": "unstable",
+  "contradiction_flags": [
+    "stacked_iterations"
+  ],
+  "scene": {
+    "description": "Case S-205. Two of your past iterations dove this same memory and recorded it differently. The Archive stacked both readings under one ID and called it whole. Here, the seam between them is wide open.",
+    "fragments": [
+      {
+        "id": "sr_warm",
+        "label": "Reading One — Warm",
+        "text": "The first iteration remembered this room as a kindness: a window, afternoon light, someone laughing in the next room. Filed under hope.",
+        "drift": 8
+      },
+      {
+        "id": "sr_cold",
+        "label": "Reading Two — Cold",
+        "text": "The second iteration remembered the identical room as a waiting room before bad news. Same window, same light, no laughter. Filed under dread.",
+        "reveals": "stacked_iterations",
+        "drift": 11
+      },
+      {
+        "id": "sr_subject",
+        "label": "What the Subject Got",
+        "text": "The subject was given the average of both — a flat, unmemorable afternoon. Neither true reading survived. The compromise erased them both.",
+        "drift": 12
+      },
+      {
+        "id": "sr_which",
+        "label": "Which One Were You",
+        "symbol": "You try to feel which iteration you were. Both memories fit. You laughed in that room and you waited for bad news in it, and you cannot rank them.",
+        "drift": 14
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "keep_warm",
+      "label": "Restore the warm reading as true",
+      "truth": "stacked_warm",
+      "drift": 9
+    },
+    {
+      "id": "keep_cold",
+      "label": "Restore the cold reading as true",
+      "truth": "stacked_cold",
+      "drift": 9
+    },
+    {
+      "id": "keep_both",
+      "label": "Refuse the average — let both readings stand",
+      "truth": "stacked_both",
+      "drift": 15
+    }
+  ],
+  "env": "observatory"
+}

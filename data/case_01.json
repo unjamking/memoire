@@ -1,0 +1,8 @@
+{
+  "case_id": "case_01",
+  "act": 1,
+  "title": "The Misfiled Afternoon",
+  "briefing": "dialogue_maya_intro",
+  "memory": "memory_01",
+  "anomalies": ["timestamp_drift", "duplicate_subject"]
+}

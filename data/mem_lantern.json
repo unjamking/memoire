@@ -1,0 +1,75 @@
+{
+  "memory_id": "mem_lantern",
+  "stability_score": 50,
+  "emotion_signature": "anxiety",
+  "behavior": "unstable",
+  "contradiction_flags": [
+    "three_corridors",
+    "lantern_anchor"
+  ],
+  "scene": {
+    "description": "The space won't settle. Three versions of the same corridor occupy one position — clean, flooded, collapsed — and you only see one at a time, depending where your attention rests. One object stays constant across all three: a lantern, hanging from a beam that may or may not exist. It is the anchor.",
+    "fragments": [
+      {
+        "id": "lt_corridors",
+        "label": "The Three Corridors",
+        "text": "Corridor A is clean and intact. B is flooded and damaged. C is collapsed, half-voided. All occupy the same place. Looking back and forth too fast, the distinction disappears entirely.",
+        "reveals": "three_corridors",
+        "drift": 9
+      },
+      {
+        "id": "lt_lantern",
+        "label": "The Lantern",
+        "text": "Warm, unstable light, its shadows cast a half-second late. Within its small radius the walls stabilize and the contradictions quiet. Outside it, everything still shifts.",
+        "reveals": "lantern_anchor",
+        "drift": 8
+      },
+      {
+        "id": "lt_witness",
+        "label": "The Witness",
+        "text": "He flickers between corridors, present only where you look. 'They think fixing the memory is the same as fixing what happened,' he says, watching the lantern, not you. 'It isn't.'",
+        "drift": 10
+      },
+      {
+        "id": "lt_flash",
+        "label": "The Installed Lantern",
+        "text": "A flash, more coherent than the rest: evacuation, distorted alarms, the lantern swinging, then a hand locking it deliberately into place. Then silence, cut clean.",
+        "drift": 11
+      },
+      {
+        "id": "lt_recognition",
+        "label": "\"It's You Again\"",
+        "symbol": "The witness finally looks at you instead of the lantern. 'Every time you enter, you think it's the first time,' he says, very quiet. 'That's the only reason it works.' A beat. 'Oh. It's you again.'",
+        "reveals": "witness_recognition",
+        "drift": 14
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "containment",
+      "label": "The anchor is a containment device",
+      "truth": "lantern_containment",
+      "drift": 8
+    },
+    {
+      "id": "stabilizer",
+      "label": "The anchor is a memory stabilizer",
+      "truth": "lantern_stabilizer",
+      "drift": 8
+    },
+    {
+      "id": "signal",
+      "label": "The anchor is a signal marker",
+      "truth": "lantern_signal",
+      "drift": 9
+    },
+    {
+      "id": "emotional",
+      "label": "The anchor is an emotional anchor — leave it unresolved",
+      "truth": "lantern_emotional",
+      "drift": 14
+    }
+  ],
+  "env": "shoreline"
+}

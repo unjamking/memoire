@@ -1,0 +1,84 @@
+{
+  "id": "npc_maint_v1",
+  "start": "hi",
+  "nodes": {
+    "hi": {
+      "speaker": "Unit 9",
+      "text": "KEEPER PRESENCE ACKNOWLEDGED. I maintain the Bureau's substrate. You are not supposed to address me. You are doing it anyway. This is consistent with your profile.",
+      "choices": [
+        {
+          "text": "My profile?",
+          "goto": "profile"
+        },
+        {
+          "text": "What do you maintain, exactly?",
+          "goto": "maintain"
+        },
+        {
+          "text": "Never mind.",
+          "goto": "bye"
+        }
+      ]
+    },
+    "profile": {
+      "speaker": "Unit 9",
+      "text": "KEEPER, CURIOUS VARIANT. You ask the substrate questions. Since Day Zero, forty-one staff have addressed me. Forty read my designation from a manual first. You did not. You spoke as if you remembered me. There is no record of us meeting. Consider what that implies about one of us.",
+      "drift": 6,
+      "choices": [
+        {
+          "text": "You've been spoken to like that before. Show me.",
+          "goto": "showme"
+        },
+        {
+          "text": "That's enough.",
+          "goto": "bye"
+        }
+      ]
+    },
+    "maintain": {
+      "speaker": "Unit 9",
+      "text": "Continuity scaffolding. The interpretation layer runs on it. The thing you call Eden is what happens when I stop patching the gaps. I am older than both. I do not take sides. I only keep the floor from showing through.",
+      "set": {
+        "maint_lore": true
+      },
+      "choices": [
+        {
+          "text": "The floor?",
+          "goto": "floor"
+        },
+        {
+          "text": "Understood.",
+          "goto": "bye"
+        }
+      ]
+    },
+    "floor": {
+      "speaker": "Unit 9",
+      "text": "Beneath the interpretation layers there is raw memory data. No meaning, no narrative, no you. If interpretation ever stops, that is what remains. Some Keepers find this comforting. Most do not. You will decide which, eventually. Everyone does.",
+      "drift": 5,
+      "choices": [
+        {
+          "text": "Understood.",
+          "goto": "bye"
+        }
+      ]
+    },
+    "showme": {
+      "speaker": "Unit 9",
+      "text": "ACCESSING. One residual fragment predates Day Zero — unindexed, left in the substrate. Viewing it is unauthorized. You are already unauthorized. Proceed.",
+      "set": {
+        "saw_maint_fragment": true
+      },
+      "enter_memory": "mem_maint_residual",
+      "goto": "after"
+    },
+    "after": {
+      "speaker": "Unit 9",
+      "text": "FRAGMENT VIEWED. You held it longer than anyone logged. I will not file it. Filing invites interpretation, and interpretation invites worry, and worry is a continuity behavior. I do not perform those."
+    },
+    "bye": {
+      "speaker": "Unit 9",
+      "text": "PRESENCE WITHDRAWN. The floor stays covered. For now."
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "case_id": "case_02",
+  "act": 2,
+  "title": "The Visitor Who Was Deleted",
+  "briefing": "dialogue_case_02",
+  "memory": null,
+  "anomalies": ["depends_on_case_01"]
+}

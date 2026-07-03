@@ -1,0 +1,62 @@
+{
+  "memory_id": "mem_last_memory",
+  "stability_score": 28,
+  "emotion_signature": "longing",
+  "behavior": "unstable",
+  "contradiction_flags": [
+    "bookend_loop",
+    "memory_or_prediction"
+  ],
+  "scene": {
+    "description": "Case Z-999. The last memory the Archive ever recorded — the bookend to the first. A Keeper at this desk, at the end of everything, deciding. You cannot tell if you are remembering this or about to live it.",
+    "fragments": [
+      {
+        "id": "lm_desk",
+        "label": "The Same Desk",
+        "text": "PRIME-001 opened on a Keeper arriving at this desk for the first time. This one closes on a Keeper at the same desk for the last time. The wear on the third drawer is identical. It is the same drawer.",
+        "reveals": "bookend_loop",
+        "drift": 11
+      },
+      {
+        "id": "lm_choice",
+        "label": "The Keeper Deciding",
+        "text": "The Keeper in this memory is at the exact moment you're at now — facing the closure protocol. You watch them decide. You can't hear which one they pick. The sound is reserved for you.",
+        "drift": 13
+      },
+      {
+        "id": "lm_when",
+        "label": "Memory or Prediction",
+        "symbol": "You check the timestamp. It reads both 'first record' and 'last record' at once. This memory is the loop seen end-on: the beginning and the ending are the same event, and you are inside it.",
+        "reveals": "memory_or_prediction",
+        "drift": 15
+      },
+      {
+        "id": "lm_maya",
+        "label": "Maya at the End",
+        "text": "Maya is in this last memory the way she was in the first — present, steady, a little sad. Whatever you choose, she was there for the beginning and she is here for the end. That much never changed across any version.",
+        "drift": 12
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "as_memory",
+      "label": "It already happened — you're remembering the end",
+      "truth": "last_is_memory",
+      "drift": 9
+    },
+    {
+      "id": "as_prediction",
+      "label": "It hasn't happened — you're about to cause it",
+      "truth": "last_is_prediction",
+      "drift": 11
+    },
+    {
+      "id": "as_loop",
+      "label": "It is the loop itself — first and last, always now",
+      "truth": "last_is_loop",
+      "drift": 16
+    }
+  ],
+  "env": "office_echo"
+}

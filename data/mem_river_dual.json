@@ -1,0 +1,81 @@
+{
+  "memory_id": "mem_river_dual",
+  "stability_score": 50,
+  "emotion_signature": "panic",
+  "behavior": "unstable",
+  "contradiction_flags": [
+    "dual_reconstruction",
+    "central_cause_absent"
+  ],
+  "scene": {
+    "description": "The same street, twice, at once. Two versions of one night overlap. Examine across both and the reconstruction fights you.",
+    "fragments": [
+      {
+        "id": "rv_a_calm",
+        "label": "Version A — Calm Before",
+        "text": "Version A: people stand, talking. The panic arrives slowly, like weather. There was time.",
+        "drift": 8
+      },
+      {
+        "id": "rv_a_escalate",
+        "label": "Version A — Escalation",
+        "text": "Version A: the calm curdles. Whatever caused it, it built. It had a beginning.",
+        "reveals": "version_a",
+        "drift": 9
+      },
+      {
+        "id": "rv_b_chaos",
+        "label": "Version B — Immediate Chaos",
+        "text": "Version B: chaos from the first frame. No build, no warning. As if the cause was edited out and the effect left running.",
+        "reveals": "version_b",
+        "drift": 11
+      },
+      {
+        "id": "rv_b_nocause",
+        "label": "Version B — No Cause",
+        "text": "Version B: you look for the start and there isn't one. The event begins already happening.",
+        "drift": 12
+      },
+      {
+        "id": "rv_center",
+        "label": "The Missing Cause",
+        "symbol": "Between both versions, where the cause should sit: the same absence as before. Something was removed here, on purpose, twice.",
+        "reveals": "central_cause_absent",
+        "drift": 16
+      },
+      {
+        "id": "rv_witness",
+        "label": "The Witness on Both Sides",
+        "text": "One figure stands in both versions, unmoved by either. In A they're a bystander. In B they're the only one not running. Same person, both nights.",
+        "drift": 11
+      },
+      {
+        "id": "rv_clock",
+        "label": "The Clock",
+        "text": "A clock visible in both versions reads the same time — but the light says A is dusk and B is deep night. The hour was edited; the time was not.",
+        "drift": 12
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "choose_a",
+      "label": "Accept Version A as true (it had a cause)",
+      "truth": "river_version_a",
+      "drift": 6
+    },
+    {
+      "id": "choose_b",
+      "label": "Accept Version B as true (the cause was removed)",
+      "truth": "river_version_b",
+      "drift": 10
+    },
+    {
+      "id": "hold_both",
+      "label": "Refuse to choose — let both stand",
+      "truth": "river_both",
+      "drift": 18
+    }
+  ],
+  "env": "street"
+}

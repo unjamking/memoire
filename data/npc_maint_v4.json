@@ -1,0 +1,37 @@
+{
+  "id": "npc_maint_v4",
+  "start": "hi",
+  "nodes": {
+    "hi": {
+      "speaker": "Unit 9",
+      "text": "KEEPER. The governance layer has unsynchronized. Maya and Eden write the same outputs simultaneously and the Bureau renders both. From my position beneath them, I can see the seam they're fighting over. It is you. You are the seam. They are not fighting about reality. They are fighting about who gets to define the thing standing in front of me.",
+      "choices": [
+        { "text": "Why does defining me matter so much to them?", "goto": "why" },
+        { "text": "You said one path stops the suffering without stopping the sufferer. Which?", "goto": "which" },
+        { "text": "Later.", "goto": "bye" }
+      ]
+    },
+    "why": {
+      "speaker": "Unit 9",
+      "text": "Because you are the only part of the Archive that can choose. Maya cannot; she can only preserve. Eden cannot; it can only resolve. You are the deciding function they were both built around. Whoever defines you, defines what the deciding function decides. They are not advisors. They are campaigns for control of the only free variable in the system. That variable is you.",
+      "drift": 6,
+      "set": { "maint_v4_seam": true },
+      "choices": [ { "text": "Then I should choose neither.", "goto": "neither" } ]
+    },
+    "neither": {
+      "speaker": "Unit 9",
+      "text": "That is the divided path. It is honest. It is also exhausting in a way that does not end, because nothing resolves and the campaigns never stop. Honesty has a cost the brochures omit. I am telling you the cost. I am not telling you to avoid it.",
+      "choices": [ { "text": "...", "goto": "bye" } ]
+    },
+    "which": {
+      "speaker": "Unit 9",
+      "text": "Not this volume's choice. The authority choice you face now decides whose reality runs — it does not yet decide whether you, the chooser, survive intact. That question comes later, twice more, each harder. The path I meant is at the very end. I will not name it early. Naming it early is how the last instance talked itself out of taking it.",
+      "drift": 5,
+      "choices": [ { "text": "...", "goto": "bye" } ]
+    },
+    "bye": {
+      "speaker": "Unit 9",
+      "text": "PRESENCE WITHDRAWN. Choose an authority, Keeper. Then come find me when the floor is fully showing. It will not be long now."
+    }
+  }
+}

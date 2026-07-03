@@ -1,0 +1,38 @@
+{
+  "id": "npc_clerk_v3",
+  "start": "hi",
+  "nodes": {
+    "hi": {
+      "speaker": "Vasic (?)",
+      "text": "Keeper. Records desk. If it's filed, I can— sorry. If it's filed. I had a whole way of saying that. It's gone now. They corrected something in me last night and took the saying with it. Do you remember how I used to say it?",
+      "choices": [
+        { "text": "'Read the file, don't feel the file.'", "goto": "remember" },
+        { "text": "I don't remember.", "goto": "forget" },
+        { "text": "Are you still Vasic?", "goto": "still" }
+      ]
+    },
+    "remember": {
+      "speaker": "Vasic (?)",
+      "text": "...Yes. That. Thank you. You kept a piece of me that I lost. That's — Keepers aren't supposed to be able to do that for clerks. We go one way only, you and us: you remember us, we get corrected. Hold onto that saying. It might be the last of the old me anywhere.",
+      "drift": 5,
+      "set": { "kept_vasic_phrase": true },
+      "choices": [ { "text": "I'll keep it.", "goto": "bye" } ]
+    },
+    "forget": {
+      "speaker": "Vasic (?)",
+      "text": "Then it's gone everywhere. That's how it works — when the last person who remembers a thing gets corrected, the thing was never real. I'm losing them one at a time. Soon I'll be very consistent and entirely empty. The system will call that fixed.",
+      "drift": 4,
+      "choices": [ { "text": "I'm sorry, Vasic.", "goto": "bye" } ]
+    },
+    "still": {
+      "speaker": "Vasic (?)",
+      "text": "Define 'still.' Define 'Vasic.' I have the records access, the desk, the name. I don't have the man who used to warn Keepers about blank verifier fields. Was that the part that made me me, or was that just the part that made me useful to you? I genuinely can't tell anymore. That uncertainty is new. They installed it.",
+      "drift": 6,
+      "choices": [ { "text": "You're still you to me.", "goto": "bye" } ]
+    },
+    "bye": {
+      "speaker": "Vasic (?)",
+      "text": "Go do your case, Keeper. ...I think I used to say something else here. Something kinder. I'll have to make do with this."
+    }
+  }
+}

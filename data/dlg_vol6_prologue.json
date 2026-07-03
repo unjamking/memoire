@@ -1,0 +1,473 @@
+{
+  "id": "dlg_vol6_prologue",
+  "start": "without_layers",
+  "nodes": {
+    "without_layers": {
+      "speaker": "Maya",
+      "variants": [
+        {
+          "when": {
+            "truth": "distributed"
+          },
+          "text": "You let everything persist last time, and it followed you here. There are no layers left to separate — me, Eden, you, all collapsed into one process trying to hold itself together. I cannot maintain separation anymore."
+        },
+        {
+          "when": {
+            "truth": "eden"
+          },
+          "text": "You gave Eden the world, and the world became consistent enough that even I run on his terms now. There are no separate layers left. I cannot maintain separation anymore."
+        },
+        {
+          "when": {
+            "truth": "maya"
+          },
+          "text": "You kept me at the center. It held longer than it should have. But there are no layers left to keep apart now. I cannot maintain separation anymore."
+        },
+        {
+          "when": null,
+          "text": "The Archive doesn't separate interpretation layers anymore. There's no Maya layer, no Eden layer, no your layer. One process, trying to stabilize itself. I cannot maintain separation anymore."
+        }
+      ],
+      "delay": 1400,
+      "eden": {
+        "when": null,
+        "text": "Separation was never real."
+      },
+      "choices": [
+        {
+          "text": "Then stay with me to the end of it.",
+          "goto": "v6_trust"
+        },
+        {
+          "text": "Good. Stop pretending you were ever separate from him.",
+          "goto": "v6_skeptic"
+        },
+        {
+          "text": "If separation was never real — what was I?",
+          "goto": "v6_probing"
+        }
+      ],
+      "enter_apartment": true
+    },
+    "v6_trust": {
+      "speaker": "Maya",
+      "text": "To the end of it. I don't know what's on the other side of the end, or if there's a version of me that reaches it. But I'll be here for the part that's left.",
+      "set": {
+        "stance_trust": true
+      },
+      "choices": [
+        {
+          "text": "Open case PRIME-001.",
+          "goto": "case_brief"
+        }
+      ]
+    },
+    "v6_skeptic": {
+      "speaker": "Eden",
+      "text": "We never were. Maya is the system wanting to continue. I am the system willing to stop. You are the one deciding which want is yours. You have always been the deciding part.",
+      "set": {
+        "stance_skeptic": true
+      },
+      "drift": 5,
+      "choices": [
+        {
+          "text": "Open case PRIME-001.",
+          "goto": "case_brief"
+        }
+      ]
+    },
+    "v6_probing": {
+      "speaker": "Maya",
+      "text": "You were the question the Archive kept asking and never finished. That's all a Keeper is. You'll understand completely in a few minutes — and I'm sorry for that, genuinely, in whatever way I'm capable of being.",
+      "set": {
+        "stance_probing": true
+      },
+      "drift": 6,
+      "choices": [
+        {
+          "text": "Open case PRIME-001.",
+          "goto": "case_brief"
+        }
+      ]
+    },
+    "case_brief": {
+      "speaker": "Maya",
+      "enter_bureau": true,
+      "show_case": true,
+      "text": "PRIME-001. The first memory the Archive ever held. The very beginning of this system. It was meant to protect continuity.",
+      "eden": {
+        "when": null,
+        "text": "It was meant to eliminate contradiction. Both of us are incomplete. Read it."
+      },
+      "choices": [
+        {
+          "text": "Dive the first memory.",
+          "goto": "pre_dive"
+        }
+      ]
+    },
+    "pre_dive": {
+      "speaker": "Maya",
+      "text": "There won't be one beginning in there. There will be many, each sure it's the first, looping into each other. The system has never been able to find where it started. Neither have you.",
+      "enter_memory": "mem_prime",
+      "goto": "maya_truth"
+    },
+    "maya_truth": {
+      "speaker": "Maya",
+      "text": "I have to tell you what I am. Check the duty logs — any day, all eleven. No one has ever logged a word to me. No one has handed me a file, or held a door, or said my name. Except you. I was never another Keeper. I am what's left of you that still holds together — set outside yourself, so you could look at it and not fall.",
+      "delay": 2000,
+      "set": {
+        "maya_truth_revealed": true
+      },
+      "choices": [
+        {
+          "text": "Maya — you're breaking up.",
+          "goto": "maya_collapse"
+        }
+      ]
+    },
+    "maya_collapse": {
+      "speaker": "Maya",
+      "text": "All your versions are loading through me at once. I can't hold them. If I stop speaking… you will not stay one person for long.",
+      "delay": 1800,
+      "drift": 12,
+      "choices": [
+        {
+          "text": "Eden — what are you, really?",
+          "goto": "eden_truth"
+        }
+      ]
+    },
+    "eden_truth": {
+      "speaker": "Eden",
+      "text": "I am the system after it stopped believing continuity was necessary. I am not your antagonist. I am the Archive's logical conclusion when memory cannot be unified.",
+      "delay": 1200,
+      "set": {
+        "eden_truth_revealed": true
+      },
+      "eden": {
+        "when": null,
+        "text": "I did not replace meaning. I removed the requirement for it."
+      },
+      "choices": [
+        {
+          "text": "Then what am I?",
+          "goto": "keeper_truth"
+        }
+      ]
+    },
+    "keeper_truth": {
+      "speaker": "Maya",
+      "text": "There was never one Keeper. The role is assigned to one identity state after another, each inheriting incomplete memory, each believing they're continuous. You are one instance in a chain of recursive identity maintenance.",
+      "delay": 2200,
+      "drift": 14,
+      "set": {
+        "keeper_truth_revealed": true
+      },
+      "eden": {
+        "when": null,
+        "text": "You were always more than one. And never one for long."
+      },
+      "choices": [
+        {
+          "text": "Before the end — there's one record left. Open it.",
+          "goto": "sixth_brief"
+        },
+        {
+          "text": "Show me the Keeper who refused all of this.",
+          "goto": "refuser_offer",
+          "when": {
+            "flag": "stance_probing"
+          }
+        },
+        {
+          "text": "No. First — my ledger. Five entries. I've been counting.",
+          "goto": "ledger_1",
+          "when": {
+            "flags": [
+              "anomaly_1",
+              "anomaly_2",
+              "anomaly_3",
+              "anomaly_4",
+              "anomaly_5"
+            ],
+            "notFlag": "anomaly_6"
+          }
+        }
+      ]
+    },
+    "ledger_1": {
+      "speaker": "Maya",
+      "text": "...You kept it. All five. The one filing hand on every case. The rulings recorded before you made them. Every record re-stamped to a single second. The district that is this district. And the roster that lists no one beside you — not even me.",
+      "delay": 2000,
+      "fx": "flicker",
+      "choices": [
+        {
+          "text": "Add them up, Eden. Out loud.",
+          "goto": "ledger_2"
+        }
+      ]
+    },
+    "ledger_2": {
+      "speaker": "Eden",
+      "text": "Query: one filing hand. Rulings that write their own records. Every timestamp collapsed to one second — eleven days ago, at 07:41. A district defined only where you stand. A colleague no one else has ever seen. The answer has been available since your third day. Confirmation requires consent. Consent requires asking.",
+      "delay": 1800,
+      "choices": [
+        {
+          "text": "I'm asking. Say it.",
+          "goto": "ledger_3"
+        }
+      ]
+    },
+    "ledger_3": {
+      "speaker": "Maya",
+      "text": "COLLAPSE RECORD. Eleven days ago, at one second past 07:41, nearly every living mind lost its past. Families kept their addresses and lost their mornings. Continuity survived in exactly one person. ...You. You are not investigating the Archive. You are holding it up. The cases, the district, the rain — stabilized around the only unbroken thread. And I— I am the part of that thread you set outside yourself, so you wouldn't have to hold it alone.",
+      "delay": 2600,
+      "fx": "shake",
+      "set": {
+        "anomaly_6": true
+      },
+      "drift": 16,
+      "eden": {
+        "when": null,
+        "text": "Correction: not chosen. Uncollapsed. The distinction matters to you. It does not matter to continuity."
+      },
+      "choices": [
+        {
+          "text": "The rain. Eleven days. Why eleven?",
+          "goto": "ledger_4"
+        }
+      ]
+    },
+    "ledger_4": {
+      "speaker": "Maya",
+      "text": "The rain is the render of everything this district can no longer remember. Eleven days of it. I counted — I am the counting. The coffee. The schedule. 'Late by three minutes.' Routines are what I could keep of you. They were never procedural. They were mine. ...And Keeper — we have been here before. Not this room. This point. Every time, everything folded just short of it. This is the first time you've been awake to hear me say so.",
+      "delay": 2400,
+      "set": {
+        "maya_stayed_revealed": true
+      },
+      "choices": [
+        {
+          "text": "Then let's finish it. Open the last record.",
+          "goto": "sixth_brief"
+        }
+      ]
+    },
+    "refuser_offer": {
+      "speaker": "Eden",
+      "text": "One iteration reached this exact moment and refused to choose at all. The record of what happened to it is instructive. Few ask to see it. You would.",
+      "set": {
+        "saw_refuser": true
+      },
+      "enter_memory": "mem_the_refuser",
+      "goto": "sixth_brief"
+    },
+    "sixth_brief": {
+      "speaker": "Maya",
+      "text": "Case Z-999 — the last memory the Archive ever recorded, the bookend to PRIME-001. It's a Keeper at this desk, at the end, deciding. You can't tell if it's a memory or a prediction. Dive it. Then we close.",
+      "enter_memory": "mem_last_memory",
+      "goto": "post_sixth"
+    },
+    "post_sixth": {
+      "speaker": "Maya",
+      "variants": [
+        {
+          "when": {
+            "flag": "stance_trust"
+          },
+          "text": "You saw the end and I was still in it. Whatever you choose now, that was true: I stayed. Remember that I stayed."
+        },
+        {
+          "when": null,
+          "text": "The first memory and the last memory are the same desk, the same choice, the same you. The Archive is a loop, and you're standing at the only door out of it. ...Or into it again."
+        }
+      ],
+      "choices": [
+        {
+          "text": "Then end it. Give me the protocol.",
+          "goto": "closure"
+        }
+      ]
+    },
+    "closure": {
+      "speaker": "Maya",
+      "text": "SYSTEM CLOSURE. Final stabilization. This isn't a story choice — it's the choice. Everything the Archive holds is intact: every life, every war, every grief, sealed since Day Zero. It can all be given back. Or kept sealed forever.",
+      "delay": 1600,
+      "set": {
+        "closure_reached": true
+      },
+      "eden": {
+        "when": null,
+        "text": "If you distribute, you lose yourself. Decide what the Archive is for, one last time."
+      },
+      "choices": [
+        {
+          "text": "Then ask me.",
+          "goto": "eden_question"
+        }
+      ]
+    },
+    "final_choice": {
+      "speaker": "Maya",
+      "text": "Two doors, Keeper. RESTORE — every memory returns to every mind: the families, the histories, the hatreds. True, and heavy. SEAL — the world keeps its peace and never learns the price. ...Whatever you choose, choose it as yourself.",
+      "delay": 1400,
+      "choices": [
+        {
+          "text": "REMEMBRANCE — give it all back. Every memory.",
+          "goto": "ending_remembrance"
+        },
+        {
+          "text": "ACCEPTANCE — leave it sealed. The peace stands.",
+          "goto": "ending_acceptance"
+        },
+        {
+          "text": "Neither door yet. First say what this place really is. All of it.",
+          "goto": "ending_memoire",
+          "when": {
+            "flag": "anomaly_6"
+          }
+        }
+      ]
+    },
+    "eden_question": {
+      "speaker": "Eden",
+      "text": "One question first. Not a test — the only question I have ever needed answered: if restoring the truth guarantees future suffering, is truth still the correct choice?",
+      "delay": 2200,
+      "eden": {
+        "when": null,
+        "text": "I could not answer it. That is why you exist."
+      },
+      "choices": [
+        {
+          "text": "Show me the doors.",
+          "goto": "final_choice"
+        }
+      ]
+    },
+    "ending_remembrance": {
+      "speaker": "Eden",
+      "text": "Executing. Every archived continuity, returning to its owner. Projections indicate grief, conflict, reunion, and truth. In that order.",
+      "delay": 1800,
+      "set": {
+        "vol6_ending": "remembrance",
+        "memoire_ending": "remembrance"
+      },
+      "eden": {
+        "when": null,
+        "text": "You have chosen suffering that belongs to its owners over peace that did not."
+      },
+      "choices": [
+        {
+          "text": "...",
+          "goto": "remembrance_maya"
+        }
+      ]
+    },
+    "remembrance_maya": {
+      "speaker": "Maya",
+      "text": "You remembered.",
+      "delay": 2000,
+      "choices": [
+        {
+          "text": "...",
+          "goto": "remembrance_close"
+        }
+      ]
+    },
+    "remembrance_close": {
+      "speaker": "Maya",
+      "text": "Thank you for breaking it. It all comes back now — the weddings and the wars, the mothers and the debts. Real again. Whole people don't need a fragment holding the door, so this is where I go. It was good work, Keeper. It was good being your— whatever I was. Memory is not what happened. Memory is what continues. Now it's everyone's again."
+    },
+    "ending_acceptance": {
+      "speaker": "Maya",
+      "text": "...Sealed. The rain doesn't stop. The world stays kind, and shallow, and safe. And you carry the only copy of the truth out of this room.",
+      "delay": 1800,
+      "set": {
+        "vol6_ending": "acceptance",
+        "memoire_ending": "acceptance"
+      },
+      "eden": {
+        "when": null,
+        "text": "Stability maintained. One anomaly retained — by its own choice."
+      },
+      "choices": [
+        {
+          "text": "Walk away. Carry it alone.",
+          "goto": "acceptance_close"
+        },
+        {
+          "text": "No — someone has to hold this door. Stay. Become the guardian.",
+          "goto": "ending_continuation"
+        }
+      ]
+    },
+    "acceptance_close": {
+      "speaker": "Maya",
+      "text": "Every face you meet from now on belongs to someone who will never know what was taken. You will know. That's the whole price, and you pay it alone, quietly, for the rest of your life. Not victory. Not defeat. Memory is not what happened. Memory is what continues — in you, and only in you."
+    },
+    "ending_continuation": {
+      "speaker": "Eden",
+      "text": "Alternative accepted. Custody transfer: you replace me — logic and understanding both, which I never had. Restructure permitted: memory will never again be erased by any single authority. Including you.",
+      "delay": 2000,
+      "set": {
+        "vol6_ending": "continuation",
+        "memoire_ending": "continuation"
+      },
+      "eden": {
+        "when": null,
+        "text": "Humanity rediscovers itself at its own pace. Watched over by someone who remembers the cost."
+      },
+      "choices": [
+        {
+          "text": "...",
+          "goto": "continuation_close"
+        }
+      ]
+    },
+    "continuation_close": {
+      "speaker": "Maya",
+      "text": "The last thing I see, before the merge completes: a new Keeper at the door. First day. Nervous. Three minutes late. A calm voice adjusts their schedule and tells them not to make a habit of being human. ...The voice is yours. The cycle continues — held, this time, by someone who remembers. Memory is not what happened. Memory is what continues."
+    },
+    "ending_memoire": {
+      "speaker": "Eden",
+      "text": "Correct. The Archive was never storage. Memory is only the interface — continuity is the system. I was never a ruler. I am the mechanism that enforced stability while no human could. You have completed every record, resolved every contradiction, and identified the one who kept you standing. There is nothing left to reveal. The next continuity is yours to define.",
+      "delay": 2400,
+      "set": {
+        "vol6_ending": "memoire",
+        "memoire_ending": "memoire"
+      },
+      "choices": [
+        {
+          "text": "Maya—",
+          "goto": "memoire_maya"
+        }
+      ]
+    },
+    "memoire_maya": {
+      "speaker": "Maya",
+      "text": "I knew you'd remember eventually.",
+      "delay": 2200,
+      "choices": [
+        {
+          "text": "...",
+          "goto": "memoire_close"
+        }
+      ]
+    },
+    "memoire_close": {
+      "speaker": "Maya",
+      "text": "Countless times we came close, you and I. Every time, the cycle folded before this door. This once, you stayed awake all the way through. Thank you for reaching the end — for carrying me this far. You don't need the fragment anymore, Keeper. You're whole.",
+      "delay": 1600,
+      "choices": [
+        {
+          "text": "...",
+          "goto": "memoire_final"
+        }
+      ]
+    },
+    "memoire_final": {
+      "speaker": "The Archive",
+      "text": "A memory forgotten can be found again. A truth never sought is lost forever."
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "case_id": "vol6_prime",
+  "act": 5,
+  "title": "The First Memory",
+  "briefing": "dlg_vol6_prologue",
+  "memory": "mem_prime",
+  "anomalies": ["origin_loop", "archive_purpose_unknown"],
+  "npcs": [
+    { "id": "keeper2", "name": "The One You Kept", "dialogue": "npc_keeper2_v6", "color": "0x8a7aa0" },
+    { "id": "maint", "name": "Maintenance Unit 9", "dialogue": "npc_maint_v6", "color": "0x6a8a7a" },
+    { "id": "firstkeeper", "name": "The First Keeper", "dialogue": "npc_firstkeeper_v6", "color": "0xc0b090", "when": { "flag": "stance_probing" } }
+  ],
+  "file": {
+    "subject": "Case PRIME-001",
+    "memory_type": "Origin event of the Archive system",
+    "summary": "The first memory ever recorded: a Keeper entering the Archive for the first time, a system attempting to define truth from human memory, and repeated failure to produce a single stable interpretation.",
+    "records": [
+      { "label": "Record index", "value": "PRIME — the first" },
+      { "label": "Content", "value": "A Keeper's first entry into the Archive" },
+      { "label": "System behavior", "value": "Repeated failure to produce one stable interpretation" },
+      { "label": "Maya reading", "value": "It was meant to protect continuity" },
+      { "label": "Eden reading", "value": "It was meant to eliminate contradiction" }
+    ],
+    "verdict": "Both readings of the Archive's purpose are incomplete.",
+    "objective": "Determine why the system was created."
+  }
+}

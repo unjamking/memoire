@@ -1,0 +1,102 @@
+{
+  "asset": {
+    "version": "2.0",
+    "generator": "antigravity-gltf-builder"
+  },
+  "scenes": [
+    {
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "mesh": 0
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "COLOR_0": 2
+          },
+          "indices": 3,
+          "material": 0
+        }
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.8,
+        "metallicFactor": 0.1
+      }
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 1728,
+      "byteStride": 36,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 1728,
+      "byteLength": 144,
+      "target": 34963
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "byteOffset": 0,
+      "componentType": 5126,
+      "count": 48,
+      "type": "VEC3",
+      "max": [
+        0.39,
+        0.011,
+        0.24
+      ],
+      "min": [
+        -0.39,
+        0.0,
+        -0.24
+      ]
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 12,
+      "componentType": 5126,
+      "count": 48,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 24,
+      "componentType": 5126,
+      "count": 48,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 0,
+      "componentType": 5123,
+      "count": 72,
+      "type": "SCALAR"
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 1872,
+      "uri": "data:application/octet-stream;base64,AADAvgAAAABmZmY+AAAAAAAAAAAAAIA/MzOzPgAAgD7sUTg+AADAPgAAAABmZmY+AAAAAAAAAAAAAIA/MzOzPgAAgD7sUTg+AADAPgrXIzxmZmY+AAAAAAAAAAAAAIA/MzOzPgAAgD7sUTg+AADAvgrXIzxmZmY+AAAAAAAAAAAAAIA/MzOzPgAAgD7sUTg+AADAPgAAAABmZma+AAAAAAAAAAAAAIC/MzOzPgAAgD7sUTg+AADAvgAAAABmZma+AAAAAAAAAAAAAIC/MzOzPgAAgD7sUTg+AADAvgrXIzxmZma+AAAAAAAAAAAAAIC/MzOzPgAAgD7sUTg+AADAPgrXIzxmZma+AAAAAAAAAAAAAIC/MzOzPgAAgD7sUTg+AADAvgrXIzxmZmY+AAAAAAAAgD8AAAAAMzOzPgAAgD7sUTg+AADAPgrXIzxmZmY+AAAAAAAAgD8AAAAAMzOzPgAAgD7sUTg+AADAPgrXIzxmZma+AAAAAAAAgD8AAAAAMzOzPgAAgD7sUTg+AADAvgrXIzxmZma+AAAAAAAAgD8AAAAAMzOzPgAAgD7sUTg+AADAvgAAAABmZma+AAAAAAAAgL8AAAAAMzOzPgAAgD7sUTg+AADAPgAAAABmZma+AAAAAAAAgL8AAAAAMzOzPgAAgD7sUTg+AADAPgAAAABmZmY+AAAAAAAAgL8AAAAAMzOzPgAAgD7sUTg+AADAvgAAAABmZmY+AAAAAAAAgL8AAAAAMzOzPgAAgD7sUTg+AADAPgAAAABmZmY+AACAPwAAAAAAAAAAMzOzPgAAgD7sUTg+AADAPgAAAABmZma+AACAPwAAAAAAAAAAMzOzPgAAgD7sUTg+AADAPgrXIzxmZma+AACAPwAAAAAAAAAAMzOzPgAAgD7sUTg+AADAPgrXIzxmZmY+AACAPwAAAAAAAAAAMzOzPgAAgD7sUTg+AADAvgAAAABmZma+AACAvwAAAAAAAAAAMzOzPgAAgD7sUTg+AADAvgAAAABmZmY+AACAvwAAAAAAAAAAMzOzPgAAgD7sUTg+AADAvgrXIzxmZmY+AACAvwAAAAAAAAAAMzOzPgAAgD7sUTg+AADAvgrXIzxmZma+AACAvwAAAAAAAAAAMzOzPgAAgD7sUTg+FK7Hvm8SgzqPwnU+AAAAAAAAAAAAAIA/7FE4PpqZGT6PwvU9FK7HPm8SgzqPwnU+AAAAAAAAAAAAAIA/7FE4PpqZGT6PwvU9FK7HPlg5NDyPwnU+AAAAAAAAAAAAAIA/7FE4PpqZGT6PwvU9FK7Hvlg5NDyPwnU+AAAAAAAAAAAAAIA/7FE4PpqZGT6PwvU9FK7HPm8SgzqPwnW+AAAAAAAAAAAAAIC/7FE4PpqZGT6PwvU9FK7Hvm8SgzqPwnW+AAAAAAAAAAAAAIC/7FE4PpqZGT6PwvU9FK7Hvlg5NDyPwnW+AAAAAAAAAAAAAIC/7FE4PpqZGT6PwvU9FK7HPlg5NDyPwnW+AAAAAAAAAAAAAIC/7FE4PpqZGT6PwvU9FK7Hvlg5NDyPwnU+AAAAAAAAgD8AAAAA7FE4PpqZGT6PwvU9FK7HPlg5NDyPwnU+AAAAAAAAgD8AAAAA7FE4PpqZGT6PwvU9FK7HPlg5NDyPwnW+AAAAAAAAgD8AAAAA7FE4PpqZGT6PwvU9FK7Hvlg5NDyPwnW+AAAAAAAAgD8AAAAA7FE4PpqZGT6PwvU9FK7Hvm8SgzqPwnW+AAAAAAAAgL8AAAAA7FE4PpqZGT6PwvU9FK7HPm8SgzqPwnW+AAAAAAAAgL8AAAAA7FE4PpqZGT6PwvU9FK7HPm8SgzqPwnU+AAAAAAAAgL8AAAAA7FE4PpqZGT6PwvU9FK7Hvm8SgzqPwnU+AAAAAAAAgL8AAAAA7FE4PpqZGT6PwvU9FK7HPm8SgzqPwnU+AACAPwAAAAAAAAAA7FE4PpqZGT6PwvU9FK7HPm8SgzqPwnW+AACAPwAAAAAAAAAA7FE4PpqZGT6PwvU9FK7HPlg5NDyPwnW+AACAPwAAAAAAAAAA7FE4PpqZGT6PwvU9FK7HPlg5NDyPwnU+AACAPwAAAAAAAAAA7FE4PpqZGT6PwvU9FK7Hvm8SgzqPwnW+AACAvwAAAAAAAAAA7FE4PpqZGT6PwvU9FK7Hvm8SgzqPwnU+AACAvwAAAAAAAAAA7FE4PpqZGT6PwvU9FK7Hvlg5NDyPwnU+AACAvwAAAAAAAAAA7FE4PpqZGT6PwvU9FK7Hvlg5NDyPwnW+AACAvwAAAAAAAAAA7FE4PpqZGT6PwvU9AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGAAaABsAHAAdAB4AHAAeAB8AIAAhACIAIAAiACMAJAAlACYAJAAmACcAKAApACoAKAAqACsALAAtAC4ALAAuAC8A"
+    }
+  ]
+}

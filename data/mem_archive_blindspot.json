@@ -1,0 +1,49 @@
+{
+  "memory_id": "mem_archive_blindspot",
+  "stability_score": 55,
+  "emotion_signature": "loss",
+  "behavior": "stable",
+  "contradiction_flags": [
+    "unparsed_region"
+  ],
+  "scene": {
+    "description": "A region neither authority will read. Maya finds no meaning here to protect; Eden finds no structure to enforce. Both look away from it. Which is exactly why it's the most stable place you've stood in.",
+    "fragments": [
+      {
+        "id": "bs_plain",
+        "label": "Just a Room",
+        "text": "An ordinary room. A chair, a cup, a window with rain. Nothing means anything beyond itself. Nothing needs correcting. It is unbearably restful.",
+        "reveals": "unparsed_region",
+        "drift": 4
+      },
+      {
+        "id": "bs_no_maya",
+        "label": "Where Maya Isn't",
+        "text": "Maya cannot render into this space. For the first time since you started, you are genuinely alone — and you realize how rarely that has been true.",
+        "drift": 7
+      },
+      {
+        "id": "bs_note",
+        "label": "A Note Left Behind",
+        "symbol": "Folded on the chair, in handwriting that is finally, plainly yours with no doubt: 'If you found this, you've started to wake up. Stay here as long as you can. They'll come looking.'",
+        "reveals": "blindspot_note",
+        "drift": 9
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "stay",
+      "label": "Resolve to protect this blind spot",
+      "truth": "blindspot_protected",
+      "drift": 8
+    },
+    {
+      "id": "report",
+      "label": "Report it — a gap this stable is a system flaw",
+      "truth": "blindspot_reported",
+      "drift": 6
+    }
+  ],
+  "env": "voidspace"
+}

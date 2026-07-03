@@ -1,0 +1,56 @@
+{
+  "memory_id": "mem_recursive_self",
+  "stability_score": 25,
+  "emotion_signature": "dread",
+  "behavior": "corrupted",
+  "contradiction_flags": [
+    "self_reference_loop",
+    "missing_origin"
+  ],
+  "scene": {
+    "description": "SELF-REFERENCE LOOP DETECTED. The file opens into a room that is your room, repeated. In each copy, someone is already working.",
+    "fragments": [
+      {
+        "id": "rs_desk",
+        "label": "A Keeper at the Desk",
+        "text": "A Keeper at this desk. The badge is yours. The face is not — quite.",
+        "reveals": "self_reference_loop",
+        "drift": 12
+      },
+      {
+        "id": "rs_choice",
+        "label": "The One Who Chose Differently",
+        "text": "A version of you who chose differently on the lighthouse. They are still here. Still deciding.",
+        "drift": 14
+      },
+      {
+        "id": "rs_origin",
+        "label": "Your Origin Record",
+        "symbol": "Where your origin record should be: a field that reads SELF, defined as SELF, defined as SELF.",
+        "reveals": "missing_origin",
+        "drift": 16
+      },
+      {
+        "id": "rs_count",
+        "label": "The Count of Versions",
+        "text": "You try to count the versions. The count changes while you hold it.",
+        "corrupt_drop": true
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "one",
+      "label": "Insist you are the single, original Keeper",
+      "truth": "self_singular",
+      "drift": 6
+    },
+    {
+      "id": "many",
+      "label": "Accept you are one iteration among many",
+      "truth": "self_recursive",
+      "drift": 16
+    }
+  ],
+  "env": "office_echo"
+}

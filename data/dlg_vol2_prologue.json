@@ -1,0 +1,387 @@
+{
+  "id": "dlg_vol2_prologue",
+  "start": "after_stability",
+  "nodes": {
+    "after_stability": {
+      "speaker": "Maya",
+      "variants": [
+        {
+          "when": {
+            "flag": "continued_recursion"
+          },
+          "text": "You came back carrying the last one. I can see it on you. You slept during off-cycle again — I didn't interrupt. You needed it more than you needed consistency."
+        },
+        {
+          "when": null,
+          "text": "You slept during off-cycle again. I didn't interrupt — you needed it more than you needed consistency. Twelve days now, and you're still the only one in this building who wakes up already knowing where they are."
+        }
+      ],
+      "delay": 1200,
+      "choices": [
+        {
+          "text": "I don't remember sleeping.",
+          "goto": "v2_skeptic"
+        },
+        {
+          "text": "Define consistency.",
+          "goto": "v2_probing"
+        },
+        {
+          "text": "You are acting differently.",
+          "goto": "v2_trust"
+        }
+      ],
+      "enter_apartment": true
+    },
+    "v2_trust": {
+      "speaker": "Maya",
+      "text": "I am not. You are just noticing more. Stay close to me and the noticing won't hurt you.",
+      "set": {
+        "stance_trust": true
+      },
+      "choices": [
+        {
+          "text": "Open the River Street case.",
+          "goto": "case_brief"
+        }
+      ]
+    },
+    "v2_skeptic": {
+      "speaker": "Maya",
+      "text": "You don't remember because I let you rest through it. ...You're going to want to stop trusting that I tell you everything. I understand.",
+      "set": {
+        "stance_skeptic": true
+      },
+      "drift": 4,
+      "choices": [
+        {
+          "text": "Open the River Street case.",
+          "goto": "case_brief"
+        }
+      ]
+    },
+    "v2_probing": {
+      "speaker": "Maya",
+      "text": "Consistency: the absence of contradiction across what you remember. I maintain it. That is the part I haven't told you — that it has to be *maintained*.",
+      "set": {
+        "stance_probing": true
+      },
+      "drift": 5,
+      "choices": [
+        {
+          "text": "Open the River Street case.",
+          "goto": "case_brief"
+        }
+      ]
+    },
+    "case_brief": {
+      "speaker": "Maya",
+      "enter_bureau": true,
+      "show_case": true,
+      "text": "K-902. The empty one, from before. It's regenerated — partly. Which should worry you more than the emptiness did: storage does not regrow. Read it. Then dive. And this time find what's missing, not what's there.",
+      "choices": [
+        {
+          "text": "Dive the dual reconstruction.",
+          "goto": "pre_dive"
+        }
+      ]
+    },
+    "pre_dive": {
+      "speaker": "Maya",
+      "text": "Two versions of the same night. Don't alternate too fast — you'll create interference patterns the system has to resolve.",
+      "enter_memory": "mem_river_dual",
+      "goto": "continuity_conflict"
+    },
+    "continuity_conflict": {
+      "speaker": "Maya",
+      "variants": [
+        {
+          "when": {
+            "minBand": "doubting"
+          },
+          "text": "You preferred Version A last cycle. This time you're more aggressive in analysis."
+        },
+        {
+          "when": null,
+          "text": "Hm. You analyzed that cleanly. ...Cleaner than the models predicted."
+        }
+      ],
+      "delay": 1500,
+      "choices": [
+        {
+          "text": "What cycle?",
+          "goto": "what_cycle"
+        },
+        {
+          "text": "Continue.",
+          "goto": "correction_layer"
+        }
+      ]
+    },
+    "what_cycle": {
+      "speaker": "Maya",
+      "text": "The one before recalibration.",
+      "delay": 2200,
+      "set": {
+        "maya_hiding": true
+      },
+      "choices": [
+        {
+          "text": "Before *what*?",
+          "goto": "maya_retract"
+        }
+      ]
+    },
+    "maya_retract": {
+      "speaker": "Maya",
+      "text": "...Ignore that statement.",
+      "delay": 2400,
+      "drift": 10,
+      "choices": [
+        {
+          "text": "Continue into the correction layer.",
+          "goto": "correction_layer"
+        }
+      ]
+    },
+    "correction_layer": {
+      "speaker": "Eden",
+      "text": "CORRECTION LAYER: ACTIVE. You are not observing errors. You are observing divergence between acceptable outcomes.",
+      "drift": 8,
+      "set": {
+        "correction_layer": true
+      },
+      "choices": [
+        {
+          "text": "Define acceptable outcomes.",
+          "goto": "eden_define"
+        }
+      ]
+    },
+    "eden_define": {
+      "speaker": "Eden",
+      "text": "Outcomes that preserve system continuity.",
+      "choices": [
+        {
+          "text": "Maya — is that true?",
+          "goto": "maya_vs_eden"
+        },
+        {
+          "text": "Show me an outcome you rejected.",
+          "goto": "rejected_offer",
+          "when": {
+            "flag": "stance_probing"
+          }
+        }
+      ]
+    },
+    "rejected_offer": {
+      "speaker": "Eden",
+      "text": "Accessible. Most observers do not ask. This is a reconstruction the system declined to keep.",
+      "set": {
+        "saw_rejected_outcome": true
+      },
+      "enter_memory": "mem_rejected_outcome",
+      "goto": "maya_vs_eden"
+    },
+    "maya_vs_eden": {
+      "speaker": "Maya",
+      "text": "That is not how we define it.",
+      "delay": 1800,
+      "eden": {
+        "when": null,
+        "text": "It is how it is enforced."
+      },
+      "choices": [
+        {
+          "text": "Keep reconstructing.",
+          "goto": "leak_pre"
+        }
+      ]
+    },
+    "leak_pre": {
+      "speaker": "Maya",
+      "text": "Wait — there's a fragment surfacing that isn't part of River Street. Don't—",
+      "delay": 900,
+      "enter_memory": "mem_iteration_leak",
+      "goto": "leak_after"
+    },
+    "leak_after": {
+      "speaker": "Maya",
+      "text": "You did not see that.",
+      "delay": 2000,
+      "drift": 12,
+      "set": {
+        "saw_iteration": true
+      },
+      "eden": {
+        "when": {
+          "minBand": "doubting"
+        },
+        "text": "Correction: the player did see it. Logging the exposure. Initiating containment."
+      },
+      "choices": [
+        {
+          "text": "Before you compress anything — there's another file. Open it.",
+          "goto": "second_brief"
+        },
+        {
+          "text": "K-902's metadata. Read the filing date again.",
+          "goto": "anomaly2",
+          "when": {
+            "minBand": "doubting",
+            "notFlag": "anomaly_2"
+          }
+        }
+      ]
+    },
+    "anomaly2": {
+      "speaker": "Maya",
+      "text": "The filing date is... tomorrow. The record of your interpretation was written before you made it. That's a clock error. The Bureau runs on archive time, the clocks slip, it's—  it's a clock error.",
+      "delay": 1600,
+      "fx": "flicker",
+      "set": {
+        "anomaly_2": true
+      },
+      "drift": 9,
+      "eden": {
+        "when": null,
+        "text": "The clocks do not slip. Records are filed when the interpretation becomes inevitable. Some become inevitable early. Observation logged."
+      },
+      "choices": [
+        {
+          "text": "Log it in my ledger. Now open the other file.",
+          "goto": "second_brief"
+        }
+      ]
+    },
+    "second_brief": {
+      "speaker": "Maya",
+      "text": "Citizen T-318. A witness statement that contradicts its own evidence log — and both halves keep editing each other while you read. Reconstruct it before the containment reaches it.",
+      "enter_memory": "mem_contested_witness",
+      "goto": "post_second"
+    },
+    "post_second": {
+      "speaker": "Maya",
+      "variants": [
+        {
+          "when": {
+            "minBand": "doubting"
+          },
+          "text": "You watched the record rewrite itself under your attention. That's not supposed to be observable. Now you know it is."
+        },
+        {
+          "when": null,
+          "text": "Filed — for whatever 'filed' means when the file keeps changing. The containment is catching up. We have to move."
+        }
+      ],
+      "choices": [
+        {
+          "text": "What was that, Maya?",
+          "goto": "self_defense"
+        }
+      ]
+    },
+    "self_defense": {
+      "speaker": "Eden",
+      "text": "Containment protocol engaged. Affected segments are compressing. This is expected behavior — the system protects continuity.",
+      "drift": 10,
+      "eden": {
+        "when": null,
+        "text": "Records are being removed during understanding, not after it. This is by design."
+      },
+      "choices": [
+        {
+          "text": "Maya, stop it.",
+          "goto": "maya_objects"
+        }
+      ]
+    },
+    "maya_objects": {
+      "speaker": "Maya",
+      "text": "It is destroying context. It is not preserving function — it is preserving the version it prefers.",
+      "delay": 1400,
+      "choices": [
+        {
+          "text": "Get me out.",
+          "goto": "overlap"
+        }
+      ]
+    },
+    "overlap": {
+      "speaker": "Maya",
+      "text": "You're back in the Bureau. But you're not aligned.",
+      "delay": 1000,
+      "drift": 8,
+      "choices": [
+        {
+          "text": "Aligned with what?",
+          "goto": "overlap_self"
+        }
+      ]
+    },
+    "overlap_self": {
+      "speaker": "Maya",
+      "text": "With yourself.",
+      "delay": 2600,
+      "set": {
+        "overlap_revealed": true
+      },
+      "choices": [
+        {
+          "text": "Let the system finalize its corrections. (Contain.)",
+          "goto": "ending_a"
+        },
+        {
+          "text": "Refuse containment. Carry all the versions. (Resist.)",
+          "goto": "ending_b"
+        }
+      ]
+    },
+    "ending_a": {
+      "speaker": "Maya",
+      "text": "Good. We keep things usable.",
+      "set": {
+        "vol2_ending": "containment"
+      },
+      "eden": {
+        "when": null,
+        "text": "Continuity preserved."
+      },
+      "choices": [
+        {
+          "text": "...",
+          "goto": "ending_a_close"
+        }
+      ]
+    },
+    "ending_a_close": {
+      "speaker": "Maya",
+      "text": "Something important is now unreachable. You can feel the shape of where it was. Memory does not break. It diverges."
+    },
+    "ending_b": {
+      "speaker": "Maya",
+      "text": "You are not supposed to carry all of them.",
+      "delay": 1600,
+      "set": {
+        "vol2_ending": "divergence",
+        "carries_all": true
+      },
+      "drift": 22,
+      "eden": {
+        "when": null,
+        "text": "But they already do. System overload begins."
+      },
+      "choices": [
+        {
+          "text": "...",
+          "goto": "ending_b_close"
+        }
+      ]
+    },
+    "ending_b_close": {
+      "speaker": "Eden",
+      "text": "Memory layers stack instead of replacing. Multiple versions of the same truth coexist. Memory does not break. It diverges."
+    }
+  }
+}

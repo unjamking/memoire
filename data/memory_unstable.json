@@ -1,0 +1,19 @@
+{
+  "memory_id": "memory_unstable",
+  "stability_score": 45,
+  "emotion_signature": "anxiety",
+  "behavior": "unstable",
+  "contradiction_flags": ["event_reorder"],
+  "scene": {
+    "description": "A stairwell. You're sure you've been climbing. The door is below you now.",
+    "fragments": [
+      { "id": "u_door", "text": "The door, which was ahead, is now behind.", "drift": 8 },
+      { "id": "u_step", "text": "You count nine steps up. Then seven. Then nine.", "reveals": "event_reorder", "drift": 10 },
+      { "id": "u_voice", "text": "A voice finishes a sentence you haven't started.", "drift": 7 }
+    ]
+  },
+  "interpretations": [
+    { "id": "order", "label": "Impose an order on the events", "truth": "forced_sequence", "drift": 6 },
+    { "id": "accept", "label": "Accept it has no fixed order", "truth": "nonlinear_truth", "drift": 12 }
+  ]
+}

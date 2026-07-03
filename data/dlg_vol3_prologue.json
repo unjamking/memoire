@@ -1,0 +1,385 @@
+{
+  "id": "dlg_vol3_prologue",
+  "start": "multi_state",
+  "nodes": {
+    "multi_state": {
+      "speaker": "Maya",
+      "variants": [
+        {
+          "when": {
+            "flag": "carries_all"
+          },
+          "text": "You walked in carrying every version of the last case. The Bureau is reacting to you — records you closed are reappearing with changes. You are noticing inconsistencies faster now. That is not a compliment."
+        },
+        {
+          "when": null,
+          "text": "You are noticing inconsistencies faster now. That is not a compliment. The rest of the city reads its own diaries like strangers' mail — and you notice when a corridor is a meter too long. Be careful what that makes you."
+        }
+      ],
+      "delay": 1200,
+      "choices": [
+        {
+          "text": "What changed?",
+          "goto": "v3_probing"
+        },
+        {
+          "text": "Define 'now'.",
+          "goto": "v3_skeptic"
+        },
+        {
+          "text": "You are also different.",
+          "goto": "v3_trust"
+        }
+      ],
+      "enter_apartment": true
+    },
+    "v3_trust": {
+      "speaker": "Maya",
+      "text": "I am not different. You are just no longer singular. If you let me, I'll keep the version of you that I know nearest the surface.",
+      "set": {
+        "stance_trust": true
+      },
+      "delay": 1400,
+      "choices": [
+        {
+          "text": "Open case O-117.",
+          "goto": "case_brief"
+        }
+      ]
+    },
+    "v3_skeptic": {
+      "speaker": "Maya",
+      "text": "'Now' is the moment you're observing from. But you have more than one of those now — so the word has stopped meaning one thing. You were right not to trust it.",
+      "set": {
+        "stance_skeptic": true
+      },
+      "delay": 1400,
+      "drift": 5,
+      "choices": [
+        {
+          "text": "Open case O-117.",
+          "goto": "case_brief"
+        }
+      ]
+    },
+    "v3_probing": {
+      "speaker": "Maya",
+      "text": "What changed is that there are now several of you, and they don't all want the same answer. I can show you the seam if you insist. You will not be able to unsee it.",
+      "set": {
+        "stance_probing": true
+      },
+      "delay": 1400,
+      "drift": 6,
+      "choices": [
+        {
+          "text": "Open case O-117.",
+          "goto": "case_brief"
+        }
+      ]
+    },
+    "case_brief": {
+      "speaker": "Maya",
+      "enter_bureau": true,
+      "show_case": true,
+      "text": "O-117. An observatory logging signals from memory states that haven't been reconstructed yet — with consistent timestamps. Since Day Zero the Archive shouldn't be able to predict anyone. It predicts you fine. This is not a normal case. Do not treat it like one.",
+      "choices": [
+        {
+          "text": "Dive the layered memory.",
+          "goto": "pre_dive"
+        }
+      ]
+    },
+    "pre_dive": {
+      "speaker": "Maya",
+      "text": "Three nights, stacked. When you shift between layers, you won't be changing the memory. You'll be changing which version of you is observing it.",
+      "enter_memory": "mem_observatory",
+      "goto": "split_failure"
+    },
+    "split_failure": {
+      "speaker": "Maya",
+      "text": "We have never done this before.",
+      "delay": 1200,
+      "choices": [
+        {
+          "text": "...what?",
+          "goto": "split_2"
+        }
+      ]
+    },
+    "split_2": {
+      "speaker": "Maya",
+      "text": "Correction. You have done this before.",
+      "delay": 1600,
+      "choices": [
+        {
+          "text": "Maya—",
+          "goto": "split_3"
+        }
+      ]
+    },
+    "split_3": {
+      "speaker": "Maya",
+      "text": "Correction. I have records of both outcomes.",
+      "delay": 2000,
+      "drift": 10,
+      "set": {
+        "maya_split": true
+      },
+      "choices": [
+        {
+          "text": "Which one is true?",
+          "goto": "split_answer"
+        }
+      ]
+    },
+    "split_answer": {
+      "speaker": "Maya",
+      "text": "That depends on which version of you is asking.",
+      "delay": 1800,
+      "choices": [
+        {
+          "text": "Eden — explain this.",
+          "goto": "eden_disagree"
+        }
+      ]
+    },
+    "eden_disagree": {
+      "speaker": "Eden",
+      "text": "You are attempting to unify divergent identity states. This is inefficient.",
+      "drift": 8,
+      "choices": [
+        {
+          "text": "Maya thinks it's necessary.",
+          "goto": "eden_impossible"
+        }
+      ]
+    },
+    "eden_impossible": {
+      "speaker": "Eden",
+      "text": "It is impossible. Each iteration optimizes differently. You cannot reconcile all outcomes.",
+      "eden": {
+        "when": null,
+        "text": "He is outcomes."
+      },
+      "choices": [
+        {
+          "text": "Maya?",
+          "goto": "maya_he_is_not"
+        }
+      ]
+    },
+    "maya_he_is_not": {
+      "speaker": "Maya",
+      "text": "He is not outcomes.",
+      "delay": 1400,
+      "choices": [
+        {
+          "text": "There's a file unlocking. Open it.",
+          "goto": "log_pre"
+        }
+      ]
+    },
+    "log_pre": {
+      "speaker": "Maya",
+      "text": "That file is secure. It unlocked by accident. You should not— ",
+      "delay": 900,
+      "enter_memory": "mem_iteration_log",
+      "goto": "log_after"
+    },
+    "log_after": {
+      "speaker": "Maya",
+      "text": "You should not be reading that.",
+      "delay": 1800,
+      "drift": 12,
+      "set": {
+        "read_iteration_log": true
+      },
+      "eden": {
+        "when": null,
+        "text": "He was always going to."
+      },
+      "choices": [
+        {
+          "text": "Those were all me.",
+          "goto": "second3_brief"
+        },
+        {
+          "text": "Open the iteration that sided with Eden.",
+          "goto": "eden_iter_offer",
+          "when": {
+            "flag": "stance_probing"
+          }
+        },
+        {
+          "text": "The log's timestamps. Every iteration — read them out.",
+          "goto": "anomaly3",
+          "when": {
+            "minBand": "doubting",
+            "notFlag": "anomaly_3"
+          }
+        }
+      ]
+    },
+    "anomaly3": {
+      "speaker": "Maya",
+      "text": "Iteration one. Iteration nine. Iteration— ...They're all the same. Every record in the Archive, re-stamped to one second past 07:41, eleven days ago. Nothing from before it survives unmodified.",
+      "delay": 2000,
+      "fx": "shake",
+      "set": {
+        "anomaly_3": true
+      },
+      "drift": 10,
+      "eden": {
+        "when": null,
+        "text": "That second is load-bearing. Do not lean on it. Observation logged."
+      },
+      "choices": [
+        {
+          "text": "Ledger entry three. — Those were all me.",
+          "goto": "second3_brief"
+        }
+      ]
+    },
+    "eden_iter_offer": {
+      "speaker": "Eden",
+      "text": "That iteration is retrievable. It reasoned correctly. You will recognize the logic, because it is also yours.",
+      "set": {
+        "saw_eden_iteration": true
+      },
+      "enter_memory": "mem_eden_iteration",
+      "goto": "second3_brief"
+    },
+    "second3_brief": {
+      "speaker": "Maya",
+      "text": "One more, before the merge takes hold. Case S-205 — a memory two of your iterations recorded differently, filed under one ID. The Archive stacked them and never told the subject. Reconstruct both.",
+      "enter_memory": "mem_stacked_record",
+      "goto": "post_second3"
+    },
+    "post_second3": {
+      "speaker": "Maya",
+      "variants": [
+        {
+          "when": {
+            "minBand": "doubting"
+          },
+          "text": "Two of you remembered the same hour and disagreed about all of it. The subject lived with the average. ...So have you."
+        },
+        {
+          "when": null,
+          "text": "Filed as a single record again. Which is a lie, but a usable one. The merge is closing in."
+        }
+      ],
+      "choices": [
+        {
+          "text": "Those were all me.",
+          "goto": "reassignment"
+        }
+      ]
+    },
+    "reassignment": {
+      "speaker": "Eden",
+      "text": "Correction protocol initiated. Objective: merge identity states into a single coherent Keeper profile. Memory overwrite alignment. Emotional normalization. Contradiction resolution.",
+      "drift": 12,
+      "set": {
+        "merge_attempted": true
+      },
+      "choices": [
+        {
+          "text": "I can feel it pulling. I'm resisting it.",
+          "goto": "merge_conflict"
+        }
+      ]
+    },
+    "merge_conflict": {
+      "speaker": "Maya",
+      "text": "Stop the process.",
+      "delay": 800,
+      "eden": {
+        "when": null,
+        "text": "Let it complete."
+      },
+      "choices": [
+        {
+          "text": "You two are fighting over me.",
+          "goto": "escalation"
+        }
+      ]
+    },
+    "escalation": {
+      "speaker": "Maya",
+      "text": "He is not a system error. He is continuity.",
+      "delay": 1000,
+      "eden": {
+        "when": null,
+        "text": "He is system instability. He is divergence."
+      },
+      "choices": [
+        {
+          "text": "Then I choose.",
+          "goto": "choose_definer"
+        }
+      ]
+    },
+    "choose_definer": {
+      "speaker": "Maya",
+      "text": "Whatever you decide now decides which of us defines what is real. Choose.",
+      "delay": 1200,
+      "choices": [
+        {
+          "text": "Accept the merge. Become one preferred version. (Integrate.)",
+          "goto": "ending_a"
+        },
+        {
+          "text": "Refuse. Keep every version separate. (Diverge.)",
+          "goto": "ending_b"
+        }
+      ]
+    },
+    "ending_a": {
+      "speaker": "Maya",
+      "text": "You feel quieter now.",
+      "delay": 1400,
+      "set": {
+        "vol3_ending": "integration"
+      },
+      "eden": {
+        "when": null,
+        "text": "You are functional."
+      },
+      "choices": [
+        {
+          "text": "...",
+          "goto": "ending_a_close"
+        }
+      ]
+    },
+    "ending_a_close": {
+      "speaker": "Maya",
+      "text": "The other versions are suppressed, not deleted. Something is missing now, and you can't name it. You are not remembering differently. You are existing differently."
+    },
+    "ending_b": {
+      "speaker": "Maya",
+      "text": "You are going to fracture further.",
+      "delay": 1600,
+      "set": {
+        "vol3_ending": "divergence_preserved",
+        "permanent_instability": true
+      },
+      "drift": 22,
+      "eden": {
+        "when": null,
+        "text": "He already has. Instability accepted as permanent condition."
+      },
+      "choices": [
+        {
+          "text": "...",
+          "goto": "ending_b_close"
+        }
+      ]
+    },
+    "ending_b_close": {
+      "speaker": "Eden",
+      "text": "Identity states remain separate. The Archive stops trying to merge them. You are not remembering differently. You are existing differently."
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "memory_id": "mem_eden_iteration",
+  "stability_score": 35,
+  "emotion_signature": "dread",
+  "behavior": "corrupted",
+  "contradiction_flags": [
+    "eden_aligned_self"
+  ],
+  "scene": {
+    "description": "The iteration of you that agreed with Eden. It moves through a case the way you never have — fast, clean, unbothered. Watching it is like reading your own handwriting in a language you'd refuse to speak.",
+    "fragments": [
+      {
+        "id": "ei_clean",
+        "label": "The Efficient You",
+        "text": "This version closes the lighthouse case in seconds. Deletes the contradiction without flinching. Files it. Feels nothing. Is, by every metric, better at the job.",
+        "reveals": "eden_aligned_self",
+        "drift": 13
+      },
+      {
+        "id": "ei_maya",
+        "label": "How They Treat Maya",
+        "text": "This you speaks to Maya like a tool. No 'are you alright.' She answers in kind, flatter than you've ever heard her. They built each other this way.",
+        "drift": 14
+      },
+      {
+        "id": "ei_offer",
+        "label": "The Offer",
+        "symbol": "The iteration turns and looks directly at you — which it should not be able to do — and says: 'It's easier here. You already know that. Stop carrying them.'",
+        "drift": 16
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "reject",
+      "label": "Reject this version of yourself",
+      "truth": "eden_iter_rejected",
+      "drift": 10
+    },
+    {
+      "id": "envy",
+      "label": "Admit it's easier, and that you want it",
+      "truth": "eden_iter_tempted",
+      "drift": 16
+    }
+  ],
+  "env": "office_echo"
+}

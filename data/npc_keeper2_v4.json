@@ -1,0 +1,42 @@
+{
+  "id": "npc_keeper2_v4",
+  "start": "hi",
+  "nodes": {
+    "hi": {
+      "speaker": "The Keeper Who Stayed",
+      "variants": [
+        { "when": { "flag": "kept_keeper2" }, "text": "You kept me. Through two recalibrations now. I shouldn't exist this far in — every other instance got reconciled by Vol IV. But you kept remembering me, so I kept being real. Do you understand what you've been doing? You've been keeping someone alive by refusing to forget them." },
+        { "when": null, "text": "I'm still here. Barely. Most of me has been reconciled — folded into you, probably, without either of us noticing. What's left is the part that's stubborn. Like you." }
+      ],
+      "choices": [
+        { "text": "What happens to you when I choose an authority?", "goto": "authority" },
+        { "text": "Are you me?", "goto": "areyou" },
+        { "text": "I won't forget you.", "goto": "wont" }
+      ]
+    },
+    "authority": {
+      "speaker": "The Keeper Who Stayed",
+      "text": "If you pick Maya — emotional continuity — I might survive as a memory you're allowed to keep. If you pick Eden — structure — I'm an inconsistency and I'll be filed away clean. If you pick neither, the divided path, I stay exactly like this: half-here, never resolved, but never gone. I have a preference. I won't tell you it. You should choose for you, not for me. I've watched too many of us choose for someone else and lose themselves doing it.",
+      "drift": 6,
+      "set": { "keeper2_v4_stakes": true },
+      "choices": [ { "text": "...", "goto": "bye" } ]
+    },
+    "areyou": {
+      "speaker": "The Keeper Who Stayed",
+      "text": "I was. Past tense feels right. We branched somewhere — a case we read differently, a choice that went the other way — and the branch never healed. So I'm you, from the road you didn't take, still walking it. When you look at me you're looking at a decision you made, wearing a face.",
+      "drift": 5,
+      "choices": [ { "text": "I won't forget you.", "goto": "wont" } ]
+    },
+    "wont": {
+      "speaker": "The Keeper Who Stayed",
+      "text": "You've said that before. You meant it before, too. The forgetting isn't a betrayal — it's just the recalibration doing its job. But every time you've fought it, I've lasted a little longer. So maybe meaning it is enough. Maybe meaning it is the only thing that's ever worked. Keep meaning it.",
+      "drift": 4,
+      "set": { "promised_keeper2_again": true },
+      "choices": [ { "text": "...", "goto": "bye" } ]
+    },
+    "bye": {
+      "speaker": "The Keeper Who Stayed",
+      "text": "Go decide the world, then. I'll be whatever's left of me when you get back. I usually am."
+    }
+  }
+}

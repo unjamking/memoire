@@ -1,0 +1,67 @@
+{
+  "case_id": "vol1_lighthouse",
+  "act": 1,
+  "title": "The Lantern Memory",
+  "briefing": "dlg_vol1_prologue",
+  "memory": "mem_lighthouse",
+  "anomalies": [
+    "nonexistent_lighthouse",
+    "high_coherence_low_record"
+  ],
+  "npcs": [
+    {
+      "id": "clerk",
+      "name": "Vasic, Records Clerk",
+      "dialogue": "npc_clerk_v1",
+      "color": "0xa08a6a"
+    },
+    {
+      "id": "keeper2",
+      "name": "Another Keeper",
+      "dialogue": "npc_keeper2_v1",
+      "color": "0x8a7aa0"
+    },
+    {
+      "id": "maint",
+      "name": "Maintenance Unit 9",
+      "dialogue": "npc_maint_v1",
+      "color": "0x6a8a7a",
+      "when": {
+        "flag": "stance_probing"
+      }
+    }
+  ],
+  "file": {
+    "subject": "Citizen ID L-1184",
+    "memory_type": "Childhood reconstruction",
+    "summary": "Subject recalls standing near a lighthouse on a coastal shore during early childhood. Subject lost all personal memory on Day Zero; this reconstruction surfaced from her archived intake, fully coherent.",
+    "records": [
+      {
+        "label": "Geographic record",
+        "value": "No lighthouse in region for the stated period."
+      },
+      {
+        "label": "Infrastructure log",
+        "value": "Lighthouse dismantled decades before the memory date."
+      },
+      {
+        "label": "Subject status",
+        "value": "Amnesic since Day Zero. Cannot confirm or deny."
+      },
+      {
+        "label": "Memory coherence",
+        "value": "HIGH"
+      },
+      {
+        "label": "Corruption scan",
+        "value": "None detected"
+      },
+      {
+        "label": "Ledger entry",
+        "value": "Hand-logged. Filing hand unattributed."
+      }
+    ],
+    "verdict": "Contradiction confirmed. System does not flag this as an error.",
+    "objective": "Determine the nature of the contradiction."
+  }
+}

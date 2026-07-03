@@ -1,0 +1,104 @@
+{
+  "id": "npc_keeper2_v1",
+  "start": "hi",
+  "nodes": {
+    "hi": {
+      "speaker": "Keeper",
+      "text": "Oh — hello. Sorry. I didn't hear you. I was reading my own personnel file. I do that on breaks. It's the closest thing I have to a diary. Did you need the desk?",
+      "choices": [
+        {
+          "text": "This is my desk.",
+          "goto": "yourdesk"
+        },
+        {
+          "text": "Who are you?",
+          "goto": "whoami"
+        },
+        {
+          "text": "You alright?",
+          "goto": "alright"
+        }
+      ]
+    },
+    "yourdesk": {
+      "speaker": "Keeper",
+      "text": "Is it? Right. Of course. The roster says mine is by the window, but I keep sitting here. It feels rehearsed. Everything feels rehearsed since Day Zero. ...Did you start at this one too?",
+      "drift": 4,
+      "choices": [
+        {
+          "text": "I think so.",
+          "goto": "thinkso"
+        },
+        {
+          "text": "Yes. Why?",
+          "goto": "why"
+        }
+      ]
+    },
+    "thinkso": {
+      "speaker": "Keeper",
+      "text": "'I think so.' That's the answer everyone gives now, about everything. The records know. We comply with them. I stopped asking. It's easier.",
+      "set": {
+        "met_other_keeper": true
+      },
+      "choices": [
+        {
+          "text": "Comply with them?",
+          "goto": "allofus"
+        }
+      ]
+    },
+    "why": {
+      "speaker": "Keeper",
+      "text": "No reason. No reason. ...You hold your pen like you've held it for years. The rest of us had to relearn. That's all.",
+      "choices": [
+        {
+          "text": "Relearn?",
+          "goto": "allofus"
+        }
+      ]
+    },
+    "whoami": {
+      "speaker": "Keeper",
+      "text": "A Keeper. Like you. Nine years, officially — it's in my file, with a photo of a woman who won a commendation in '31. I know she's me. I don't remember being her. You want the worst part? I know I have a daughter. I know her address.",
+      "set": {
+        "met_other_keeper": true
+      },
+      "choices": [
+        {
+          "text": "...Do you visit her?",
+          "goto": "allofus"
+        }
+      ]
+    },
+    "alright": {
+      "speaker": "Keeper",
+      "variants": [
+        {
+          "when": {
+            "minBand": "doubting"
+          },
+          "text": "No. Not really. Every morning I read who I am before I can be it. And lately the file feels thinner. When that starts — find a quiet record and stay in it. It buys time. ...It isn't starting for you, is it? You always look like you remember."
+        },
+        {
+          "when": null,
+          "text": "I'm fine. Tired. It's a tired kind of job, being told who you are every morning. ...You'll see."
+        }
+      ],
+      "choices": [
+        {
+          "text": "What do you mean, 'remember'?",
+          "goto": "allofus"
+        }
+      ]
+    },
+    "allofus": {
+      "speaker": "Keeper",
+      "text": "Listen. You remember things. Don't say you don't — you walk in here like the building is familiar. If that's true, write everything down somewhere the Archive doesn't index. Paper. And if one morning I don't know you — reintroduce yourself. Please. I liked this conversation.",
+      "drift": 6,
+      "set": {
+        "keeper2_warning": true
+      }
+    }
+  }
+}

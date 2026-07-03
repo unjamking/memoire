@@ -1,0 +1,54 @@
+{
+  "memory_id": "mem_first_case",
+  "stability_score": 60,
+  "emotion_signature": "longing",
+  "behavior": "stable",
+  "contradiction_flags": [
+    "issued_home_memory"
+  ],
+  "scene": {
+    "description": "Case C-001. The first case you ever worked — your home memory, the one that feels like where you began. It is warm and simple and stable. That stability is the first thing that should worry you.",
+    "fragments": [
+      {
+        "id": "fc_desk",
+        "label": "The First Desk",
+        "text": "Your desk, brand new, before the wear on the third drawer. Maya's voice, younger somehow, walking you through your first reconstruction. It felt like being trusted with something.",
+        "drift": 6
+      },
+      {
+        "id": "fc_case",
+        "label": "The Simple Case",
+        "text": "An easy one. A misremembered birthday. You found the truth in minutes and felt, for the only time you can recall, that the job was good. That it helped someone.",
+        "drift": 7
+      },
+      {
+        "id": "fc_same",
+        "label": "The Issued Memory",
+        "symbol": "You examine it closely and the warmth has a serial number. This 'first case' is standard-issue — every Keeper gets the same one, so every iteration has a home to miss. The comfort is manufactured.",
+        "reveals": "issued_home_memory",
+        "drift": 13
+      },
+      {
+        "id": "fc_maya",
+        "label": "Maya, From the Start",
+        "text": "She was here on day one. Every day one. She has done this opening with versions of you more times than the count will hold still for — and she has meant it every time. That is the part that isn't manufactured.",
+        "drift": 11
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "keep",
+      "label": "Keep it as home, manufactured or not",
+      "truth": "first_case_kept",
+      "drift": 8
+    },
+    {
+      "id": "reject",
+      "label": "Reject the issued comfort as a leash",
+      "truth": "first_case_rejected",
+      "drift": 12
+    }
+  ],
+  "env": "office_echo"
+}

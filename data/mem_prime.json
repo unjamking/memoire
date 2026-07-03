@@ -1,0 +1,75 @@
+{
+  "memory_id": "mem_prime",
+  "stability_score": 18,
+  "emotion_signature": "dread",
+  "behavior": "corrupted",
+  "contradiction_flags": [
+    "origin_loop",
+    "no_first_moment"
+  ],
+  "scene": {
+    "description": "The first memory the Archive ever held. You expect a beginning. Instead there are many beginnings, each insisting it is the one true start, each looping back into the others. The system cannot find where it began.",
+    "fragments": [
+      {
+        "id": "pr_enter",
+        "label": "First Moment — The Door",
+        "text": "A Keeper steps into the Archive for the first time. The light comes on. This is clearly the beginning. It is also clearly not the only one.",
+        "reveals": "origin_loop",
+        "drift": 12
+      },
+      {
+        "id": "pr_define",
+        "label": "First Moment — The System Wakes",
+        "text": "A system tries, for the first time, to make one truth out of a human memory. It fails. It tries again. The first attempt and the thousandth look identical.",
+        "drift": 13
+      },
+      {
+        "id": "pr_fail",
+        "label": "First Moment — The First Failure",
+        "text": "The earliest failure to produce a single interpretation. Everything after is a repetition of this. Including, maybe, you.",
+        "reveals": "no_first_moment",
+        "drift": 15
+      },
+      {
+        "id": "pr_loop",
+        "label": "The Loop Itself",
+        "symbol": "You follow the origins back and they hand you to each other in a ring. There is no first. Origin detection has failed permanently. It was always going to.",
+        "drift": 18
+      },
+      {
+        "id": "pr_purpose",
+        "label": "Why It Was Built",
+        "text": "Underneath all the first moments, the reason the Archive was made: a single human memory that someone could not bear to let stay ambiguous. The whole system grew from one person needing one thing to be definitely true.",
+        "reveals": "archive_purpose_unknown",
+        "drift": 14
+      },
+      {
+        "id": "pr_first_keeper",
+        "label": "The First Keeper",
+        "symbol": "At the very bottom of the loop, the first Keeper — the original need that started it. You look for their face and find your own, which means either you were always first, or there never was one. Both are true here.",
+        "drift": 16
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "protect",
+      "label": "The Archive was built to protect continuity",
+      "truth": "archive_protect",
+      "drift": 8
+    },
+    {
+      "id": "eliminate",
+      "label": "The Archive was built to eliminate contradiction",
+      "truth": "archive_eliminate",
+      "drift": 8
+    },
+    {
+      "id": "both",
+      "label": "It was built to do both — and that is why it cannot finish",
+      "truth": "archive_both",
+      "drift": 16
+    }
+  ],
+  "env": "office_echo"
+}

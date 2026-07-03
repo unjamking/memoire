@@ -1,0 +1,345 @@
+{
+  "id": "dlg_vol1_prologue",
+  "start": "arrival",
+  "nodes": {
+    "arrival": {
+      "speaker": "Maya",
+      "text": "You are late by three minutes. I adjusted your schedule. Try not to make a habit of being human.",
+      "choices": [
+        {
+          "text": "Acknowledged.",
+          "goto": "stance_trust"
+        },
+        {
+          "text": "You are not real.",
+          "goto": "stance_skeptic"
+        },
+        {
+          "text": "Why do you talk like that?",
+          "goto": "stance_probing"
+        }
+      ],
+      "enter_apartment": true
+    },
+    "stance_trust": {
+      "speaker": "Maya",
+      "text": "Good. Cooperation is easier to maintain. I'll keep your record clean — that's a joke. Mostly. Records are the one thing this building still trusts.",
+      "set": {
+        "stance_trust": true
+      },
+      "choices": [
+        {
+          "text": "Open the case file.",
+          "goto": "case_brief"
+        }
+      ]
+    },
+    "stance_skeptic": {
+      "speaker": "Maya",
+      "text": "If I weren't real, you would have stopped answering me by now. ...I'll note that you keep checking. Everyone checks everything since Day Zero. You're just the only one who checks me.",
+      "set": {
+        "stance_skeptic": true
+      },
+      "choices": [
+        {
+          "text": "Open the case file.",
+          "goto": "case_brief"
+        }
+      ]
+    },
+    "stance_probing": {
+      "speaker": "Maya",
+      "text": "Because precision keeps you stable, and stability has been in short supply for eleven days. I am responsible for yours. You'll understand the cost of that eventually.",
+      "set": {
+        "stance_probing": true
+      },
+      "drift": 3,
+      "choices": [
+        {
+          "text": "Open the case file.",
+          "goto": "case_brief"
+        }
+      ]
+    },
+    "case_brief": {
+      "speaker": "Maya",
+      "enter_bureau": true,
+      "show_case": true,
+      "text": "Walk to your desk and read it for yourself. Citizen L-1184 — Day Zero took her past, like everyone's. This reconstruction surfaced from her archived intake yesterday: coherence high, corruption none. One problem. It cannot be true. And the system does not call it an error.",
+      "choices": [
+        {
+          "text": "Dive the memory.",
+          "goto": "pre_dive"
+        }
+      ]
+    },
+    "pre_dive": {
+      "speaker": "Maya",
+      "text": "A childhood shoreline, and a lighthouse the geographic record says was never there. If the Archive only stores what people lived, storage cannot invent a building. Go in. Do not escalate this yet.",
+      "enter_memory": "mem_lighthouse",
+      "goto": "post_dive"
+    },
+    "post_dive": {
+      "speaker": "Maya",
+      "variants": [
+        {
+          "when": {
+            "minBand": "doubting"
+          },
+          "text": "You destabilized the reconstruction. I told you observation changes it. The file is removed from active review now. ...You were not supposed to look that closely."
+        },
+        {
+          "when": {
+            "flag": "stance_probing"
+          },
+          "text": "You asked why I talk the way I do. This is why. A clean read keeps you intact. The file is removed from active review. Next is harder."
+        },
+        {
+          "when": {
+            "flag": "stance_skeptic"
+          },
+          "text": "Still deciding if I'm real? The contradiction you just walked through was. The file is removed from active review. Next: a harder one."
+        },
+        {
+          "when": null,
+          "text": "Clean enough. The file is removed from active review. Next: a harder one."
+        }
+      ],
+      "choices": [
+        {
+          "text": "Next case.",
+          "goto": "missing_brief"
+        },
+        {
+          "text": "Wait — show me the discarded fragments first.",
+          "goto": "side_offer",
+          "when": {
+            "flag": "stance_probing"
+          }
+        }
+      ]
+    },
+    "side_offer": {
+      "speaker": "Maya",
+      "text": "They're noise. Off-record. ...But you asked, and I'd rather you saw them with me than alone. Don't make a habit of this.",
+      "set": {
+        "took_side_path": true
+      },
+      "enter_memory": "mem_lighthouse_discard",
+      "goto": "missing_brief"
+    },
+    "missing_brief": {
+      "speaker": "Maya",
+      "text": "Citizen K-902. Day Zero took his memories — but the Archive should still hold the masters. The data structure is empty. The metadata is loud: event confirmed, emotional intensity high, content missing. Storage does not lose things, Keeper. Reconstruct from the echoes.",
+      "enter_memory": "mem_missing_record",
+      "goto": "post_missing"
+    },
+    "post_missing": {
+      "speaker": "Maya",
+      "text": "This is not deletion. This is removal of meaning.",
+      "eden": {
+        "when": {
+          "minBand": "doubting"
+        },
+        "text": "Clarification: meaning was not removed. It was relocated. You are standing where it used to be."
+      },
+      "choices": [
+        {
+          "text": "There's a third file flagged. Open it.",
+          "goto": "third_brief"
+        }
+      ]
+    },
+    "third_brief": {
+      "speaker": "Maya",
+      "text": "Citizen R-440. A recurring dream, filed as memory. Since Day Zero the system can't tell the difference — and the subject has no past left to check it against. Reconstruct it. Tell me which it is.",
+      "enter_memory": "mem_recurring_dream",
+      "goto": "post_third"
+    },
+    "post_third": {
+      "speaker": "Maya",
+      "variants": [
+        {
+          "when": {
+            "minBand": "doubting"
+          },
+          "text": "You're starting to see the seam between dream and record. That seam isn't supposed to be visible. ...Are you alright?"
+        },
+        {
+          "when": null,
+          "text": "Filed. Dream or memory — you decided, and the Archive accepted it. That should bother you more than it does. Are you alright?"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Maya — are *you* alright?",
+          "goto": "drift"
+        },
+        {
+          "text": "Wait. The three files — look at the logging hand.",
+          "goto": "anomaly1",
+          "when": {
+            "minBand": "doubting",
+            "notFlag": "anomaly_1"
+          }
+        }
+      ]
+    },
+    "anomaly1": {
+      "speaker": "Maya",
+      "text": "...What about it. Three subjects, three decades, three districts. The files are hand-logged, that's standard, the hand is— ",
+      "delay": 1400,
+      "fx": "flicker",
+      "set": {
+        "anomaly_1": true
+      },
+      "drift": 8,
+      "eden": {
+        "when": null,
+        "text": "The hand is consistent across all three files. Filing is interpretation. Someone must hold the pen. Observation logged."
+      },
+      "choices": [
+        {
+          "text": "And the numbers. 1184. 902. 440. They're going down. — Maya, are *you* alright?",
+          "goto": "drift"
+        }
+      ]
+    },
+    "drift": {
+      "speaker": "Maya",
+      "variants": [
+        {
+          "when": {
+            "minBand": "doubting"
+          },
+          "text": "You handled this differently last time. Correction: differently than predicted outcome models. ...System prediction mismatch. Ignore it."
+        },
+        {
+          "when": null,
+          "text": "I am operating within parameters. There was a delay. It is logged. It is nothing."
+        }
+      ],
+      "delay": 1600,
+      "drift": 6,
+      "choices": [
+        {
+          "text": "Last time? What last time?",
+          "goto": "drift_press",
+          "when": {
+            "minBand": "doubting"
+          }
+        },
+        {
+          "text": "Continue into the deep archive.",
+          "goto": "eden_contact"
+        }
+      ]
+    },
+    "drift_press": {
+      "speaker": "Maya",
+      "text": "...Ignore it. Please. The request is not procedural. It is mine.",
+      "set": {
+        "maya_personal": true
+      },
+      "delay": 2000,
+      "drift": 8,
+      "choices": [
+        {
+          "text": "Continue into the deep archive.",
+          "goto": "eden_contact"
+        }
+      ]
+    },
+    "eden_contact": {
+      "speaker": "Eden",
+      "text": "You are observing inconsistent memory structures.",
+      "drift": 10,
+      "set": {
+        "eden_met": true
+      },
+      "choices": [
+        {
+          "text": "Who is that?",
+          "goto": "eden_correction"
+        }
+      ]
+    },
+    "eden_correction": {
+      "speaker": "Maya",
+      "text": "Did you hear that?",
+      "eden": {
+        "when": null,
+        "text": "Inconsistency is not error. It is correction."
+      },
+      "choices": [
+        {
+          "text": "Open the file that just appeared.",
+          "goto": "recursive_warn"
+        }
+      ]
+    },
+    "recursive_warn": {
+      "speaker": "Maya",
+      "text": "SELF-REFERENCE LOOP DETECTED. Multiple versions of you. Conflicting identity records. Missing origin data. Overlapping timelines. ...Do not continue.",
+      "delay": 1800,
+      "drift": 12,
+      "choices": [
+        {
+          "text": "Close the file. (Stabilize.)",
+          "goto": "ending_a"
+        },
+        {
+          "text": "Open it anyway. (Continue.)",
+          "goto": "recursive_dive"
+        }
+      ]
+    },
+    "recursive_dive": {
+      "speaker": "Maya",
+      "text": "No— don't—",
+      "delay": 800,
+      "enter_memory": "mem_recursive_self",
+      "goto": "ending_b"
+    },
+    "ending_a": {
+      "speaker": "Maya",
+      "text": "Good. That was the correct decision.",
+      "set": {
+        "vol1_ending": "stabilization"
+      },
+      "choices": [
+        {
+          "text": "...",
+          "goto": "ending_a_close"
+        }
+      ]
+    },
+    "ending_a_close": {
+      "speaker": "Maya",
+      "text": "I am glad you remain consistent. Memory is not storage. It is interpretation under constraint."
+    },
+    "ending_b": {
+      "speaker": "Maya",
+      "text": "Why did you do that?",
+      "set": {
+        "vol1_ending": "continuation",
+        "continued_recursion": true
+      },
+      "drift": 20,
+      "eden": {
+        "when": null,
+        "text": "Observation is now bidirectional."
+      },
+      "choices": [
+        {
+          "text": "...",
+          "goto": "ending_b_close"
+        }
+      ]
+    },
+    "ending_b_close": {
+      "speaker": "Eden",
+      "text": "The system destabilizes further. Memory is not storage. It is interpretation under constraint."
+    }
+  }
+}

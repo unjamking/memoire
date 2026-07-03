@@ -1,0 +1,48 @@
+{
+  "memory_id": "mem_lost_self",
+  "stability_score": 16,
+  "emotion_signature": "loss",
+  "behavior": "corrupted",
+  "contradiction_flags": [
+    "decayed_iteration"
+  ],
+  "scene": {
+    "description": "A version of you that an earlier choice suppressed past recovery. Almost nothing survives — a fragment, decaying as you watch. This is what 'erasing the others' actually looks like from the inside.",
+    "fragments": [
+      {
+        "id": "ls_face",
+        "label": "What's Left of a Face",
+        "symbol": "A face, mostly gone, the way the lighthouse subject's was — except this one was yours. It is being unrendered in real time and there is nothing to examine before it finishes.",
+        "reveals": "decayed_iteration",
+        "drift": 14
+      },
+      {
+        "id": "ls_choice",
+        "label": "The Choice That Did This",
+        "text": "You can feel which selection killed this version. It was a reasonable choice. It was maybe even the right one. It still did this.",
+        "drift": 15
+      },
+      {
+        "id": "ls_last",
+        "label": "The Last Intact Word",
+        "text": "One word survives, the last thing this self managed to think before suppression: not a name, not a plea. Just: 'again.'",
+        "drift": 13
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "mourn",
+      "label": "Mourn this lost self — mark that it existed",
+      "truth": "lost_mourned",
+      "drift": 10
+    },
+    {
+      "id": "release",
+      "label": "Let it finish decaying — it's already gone",
+      "truth": "lost_released",
+      "drift": 8
+    }
+  ],
+  "env": "office_echo"
+}

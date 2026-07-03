@@ -1,0 +1,112 @@
+{
+  "id": "npc_clerk_v1",
+  "start": "hi",
+  "nodes": {
+    "hi": {
+      "speaker": "Vasic",
+      "variants": [
+        {
+          "when": {
+            "minBand": "doubting"
+          },
+          "text": "Keeper. You look like you've been feeling the files again. Read the file, don't feel the file — the file is the only one of you two that's certain. What do you need?"
+        },
+        {
+          "when": null,
+          "text": "Keeper. Records desk. If it's filed, I can find it. If it's not filed — then as far as this world is concerned, it never happened. That stopped being cynicism eleven days ago. It's policy now. What do you need?"
+        }
+      ],
+      "choices": [
+        {
+          "text": "The lighthouse case — L-1184. Anything odd in its history?",
+          "goto": "lighthouse"
+        },
+        {
+          "text": "How long have you worked here?",
+          "goto": "tenure"
+        },
+        {
+          "text": "Nothing. Just looking around.",
+          "goto": "bye"
+        }
+      ]
+    },
+    "lighthouse": {
+      "speaker": "Vasic",
+      "text": "L-1184. Clean file. Came in pre-verified, which — between us — is unusual. Most childhood reconstructions fight you. This one wanted to be filed.",
+      "choices": [
+        {
+          "text": "Pre-verified by whom?",
+          "goto": "bylie"
+        },
+        {
+          "text": "Wanted to be filed?",
+          "goto": "wanted"
+        }
+      ]
+    },
+    "bylie": {
+      "speaker": "Vasic",
+      "variants": [
+        {
+          "when": {
+            "minBand": "doubting"
+          },
+          "text": "...The verifier field is blank. Which can't happen — every file has one. I've been told not to flag it. I'm telling you because you already look like you know. Don't say I said so."
+        },
+        {
+          "when": null,
+          "text": "Standard verification chain. Nothing to worry about. ...Why are you asking like that?"
+        }
+      ],
+      "set": {
+        "clerk_hint": true
+      },
+      "choices": [
+        {
+          "text": "Thanks, Vasic.",
+          "goto": "bye"
+        }
+      ]
+    },
+    "wanted": {
+      "speaker": "Vasic",
+      "text": "Figure of speech. Mostly. Some files settle the second you open them, like they were waiting for the right Keeper. You'll see it if you do this long enough. ...You have done this long enough, haven't you.",
+      "choices": [
+        {
+          "text": "Thanks, Vasic.",
+          "goto": "bye"
+        }
+      ]
+    },
+    "tenure": {
+      "speaker": "Vasic",
+      "text": "The file says twenty-two years. I printed it. I keep it in my jacket. Before Day Zero I could have just *told* you — now I quote myself to myself. ...You, though. Records say you were hired twelve days ago. The day before it happened. Lucky date.",
+      "drift": 4,
+      "choices": [
+        {
+          "text": "Lucky how?",
+          "goto": "byreassign"
+        },
+        {
+          "text": "Right. Thanks.",
+          "goto": "bye"
+        }
+      ]
+    },
+    "byreassign": {
+      "speaker": "Vasic",
+      "text": "Last person hired while hiring still meant something. First person this building has to trust without a past to check. ...Forget I said it. Paperwork talk.",
+      "choices": [
+        {
+          "text": "...Sure.",
+          "goto": "bye"
+        }
+      ]
+    },
+    "bye": {
+      "speaker": "Vasic",
+      "text": "Go read your file, Keeper. It's the only witness that never changes its story."
+    }
+  }
+}

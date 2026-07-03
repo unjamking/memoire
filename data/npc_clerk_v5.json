@@ -1,0 +1,40 @@
+{
+  "id": "npc_clerk_v5",
+  "start": "hi",
+  "nodes": {
+    "hi": {
+      "speaker": "What Remains of Vasic",
+      "variants": [
+        { "when": { "flag": "kept_vasic_phrase" }, "text": "...Read the file. Don't feel the file. I still have it. You gave it back to me, volumes ago, and the correction never managed to take it again because you remember it too. Two of us holding one sentence. That's how a thing survives a system like this. Two people refusing to drop it at the same time." },
+        { "when": null, "text": "I'm mostly records access now. The person's gone. But the records remember things the person would have wanted you to know, so let me be useful one last way." }
+      ],
+      "choices": [
+        { "text": "Tell me the thing the records remember.", "goto": "records" },
+        { "text": "Is there anything left to save of you?", "goto": "save" },
+        { "text": "Thank you for everything, Vasic.", "goto": "thanks" }
+      ]
+    },
+    "records": {
+      "speaker": "What Remains of Vasic",
+      "text": "There's no original Keeper file. I checked, the way the old me would have. A-000 has every origin and no first. But here's what the records DO show, plainly, that no one made me forget: in every origin, the very first record any Keeper ever touches is a small kindness — a misremembered birthday, set right. Someone designed it so you'd start by helping. Whatever else is true, that was deliberate. You were built to want to help. Hold that against the colder answers.",
+      "drift": 5,
+      "set": { "vasic_v5_kindness": true },
+      "choices": [ { "text": "...", "goto": "bye" } ]
+    },
+    "save": {
+      "speaker": "What Remains of Vasic",
+      "text": "No. And that's alright — I'm a clerk, not a Keeper. I was always going to go one way only. But you kept the saying, and the saying was the truest part of me, so the truest part of me is going to outlast the rest. That's more than most clerks get. That's more than most people get. You did that.",
+      "drift": 4,
+      "choices": [ { "text": "...", "goto": "thanks" } ]
+    },
+    "thanks": {
+      "speaker": "What Remains of Vasic",
+      "text": "Go on, Keeper. Read the file. Don't feel it too hard. ...There. I got to say it one more time. That's a good last thing to have said.",
+      "set": { "vasic_farewell": true }
+    },
+    "bye": {
+      "speaker": "What Remains of Vasic",
+      "text": "Read the file. Don't feel the file. Go."
+    }
+  }
+}

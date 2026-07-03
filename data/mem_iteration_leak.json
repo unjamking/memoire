@@ -1,0 +1,50 @@
+{
+  "memory_id": "mem_iteration_leak",
+  "stability_score": 14,
+  "emotion_signature": "dread",
+  "behavior": "corrupted",
+  "contradiction_flags": [
+    "unauthorized_iteration",
+    "first_iteration"
+  ],
+  "scene": {
+    "description": "This is not River Street. A similar Bureau. The same desk layout. The same Maya. But you are speaking differently — like someone who has been here before.",
+    "fragments": [
+      {
+        "id": "il_you",
+        "label": "You, Before",
+        "text": "You, at the desk, saying it flat: 'I already tried this approach.'",
+        "reveals": "first_iteration",
+        "drift": 12
+      },
+      {
+        "id": "il_maya",
+        "label": "Maya, Before",
+        "text": "Maya, answering without hesitation: 'And it failed last time.'",
+        "reveals": "unauthorized_iteration",
+        "drift": 14
+      },
+      {
+        "id": "il_desk",
+        "label": "The Same Desk",
+        "symbol": "The desk layout is identical to yours. Down to the wear on the edge where your hand rests.",
+        "drift": 13
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "deny",
+      "label": "Insist you didn't see it",
+      "truth": "leak_denied",
+      "drift": 8
+    },
+    {
+      "id": "keep",
+      "label": "Hold onto it — you were here before",
+      "truth": "leak_accepted",
+      "drift": 16
+    }
+  ],
+  "env": "office_echo"
+}

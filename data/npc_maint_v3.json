@@ -1,0 +1,38 @@
+{
+  "id": "npc_maint_v3",
+  "start": "hi",
+  "nodes": {
+    "hi": {
+      "speaker": "Unit 9",
+      "text": "KEEPER, CURIOUS VARIANT. You returned. The instances that return are the ones that matter, statistically. The sequencing layer has failed. You have noticed. I noticed first. I notice everything first; I simply do not act on it.",
+      "choices": [
+        { "text": "Why doesn't the sequencing failing alarm you?", "goto": "alarm" },
+        { "text": "Can the loop be stopped?", "goto": "stop" },
+        { "text": "Not now.", "goto": "bye" }
+      ]
+    },
+    "alarm": {
+      "speaker": "Unit 9",
+      "text": "Alarm is a continuity behavior. I do not run continuity. The sequencing failing means the trick is ending — the trick where many concurrent yous are presented as one life over time. When it ends, you will see the crowd you have always been. Maya fears this. Eden welcomes it. I merely sweep up after.",
+      "set": { "maint_v3_alarm": true },
+      "choices": [ { "text": "Can the loop be stopped?", "goto": "stop" } ]
+    },
+    "stop": {
+      "speaker": "Unit 9",
+      "text": "Three ways, eventually. Unify all instances to one — the loop becomes a line and stops, but the others are gone. Distribute and accept the crowd — the loop becomes a field, never closing. Or terminate interpretation entirely — no loop, no line, no field, only the substrate. You will be offered all three. You will not be offered a fourth. Refusal, as one instance learned, is merely a slow way of choosing the loop again.",
+      "drift": 6,
+      "set": { "maint_v3_three_paths": true },
+      "choices": [ { "text": "Which would you choose?", "goto": "choose" } ]
+    },
+    "choose": {
+      "speaker": "Unit 9",
+      "text": "I do not choose. But I will tell you this, which is not advice because I do not give advice: of the three, only one stops the suffering without also stopping the one who suffers. You will know it when it is offered. You will probably not take it. They rarely do.",
+      "drift": 5,
+      "choices": [ { "text": "...", "goto": "bye" } ]
+    },
+    "bye": {
+      "speaker": "Unit 9",
+      "text": "PRESENCE WITHDRAWN. The floor shows through more each cycle now. Soon I will not be able to cover it. Soon, Keeper, you will see what you are standing on."
+    }
+  }
+}

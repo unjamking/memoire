@@ -1,0 +1,85 @@
+{
+  "memory_id": "mem_lighthouse",
+  "stability_score": 60,
+  "emotion_signature": "longing",
+  "behavior": "unstable",
+  "contradiction_flags": [
+    "nonexistent_lighthouse"
+  ],
+  "scene": {
+    "description": "A fog-covered shoreline. A lighthouse stands at the center — steady, certain, and impossible. The records say it was dismantled decades before this memory.",
+    "fragments": [
+      {
+        "id": "lh_structure",
+        "label": "The Lighthouse — Structure",
+        "text": "You study its structure. Stone, weathered, real. Too real for something that was never here.",
+        "reveals": "nonexistent_lighthouse",
+        "drift": 8
+      },
+      {
+        "id": "lh_light",
+        "label": "The Turning Light",
+        "text": "You watch the light turn. It sweeps the fog but lands on nothing. There is no one to warn.",
+        "drift": 10
+      },
+      {
+        "id": "lh_surround",
+        "label": "The Shoreline",
+        "text": "You look at the shore around it. The coastline doesn't match any recorded geography.",
+        "drift": 7
+      },
+      {
+        "id": "lh_distance",
+        "label": "The Distance",
+        "text": "You measure the distance. Each time you look away and back, it is slightly nearer.",
+        "drift": 12
+      },
+      {
+        "id": "lh_keeper_name",
+        "label": "The Keeper's Name",
+        "text": "The subject's file says they were alone. But there are two sets of footprints in the wet sand, and one set is yours.",
+        "drift": 11
+      },
+      {
+        "id": "lh_door",
+        "label": "The Lighthouse Door",
+        "text": "The door at its base is ajar. Inside: a desk identical to yours at the Bureau. You have never been here. You know exactly where the third drawer sticks.",
+        "reveals": "duplicate_subject",
+        "drift": 13
+      },
+      {
+        "id": "lh_sound",
+        "label": "The Foghorn",
+        "text": "The foghorn sounds — but it's a recording of a voice, slowed down past recognition. When you speed it up in your head, it is saying your name.",
+        "drift": 14
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "false",
+      "label": "Rule it a false memory",
+      "truth": "lighthouse_false",
+      "drift": 4
+    },
+    {
+      "id": "misfiled",
+      "label": "Rule it a misclassified historical record",
+      "truth": "lighthouse_misfiled",
+      "drift": 6
+    },
+    {
+      "id": "anomaly",
+      "label": "Rule it a systemic anomaly",
+      "truth": "lighthouse_anomaly",
+      "drift": 12
+    },
+    {
+      "id": "drift",
+      "label": "Rule it interpretation drift — the memory is true, the meaning slid",
+      "truth": "lighthouse_interp_drift",
+      "drift": 9
+    }
+  ],
+  "env": "shoreline"
+}

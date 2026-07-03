@@ -1,0 +1,61 @@
+{
+  "memory_id": "mem_contested_witness",
+  "stability_score": 45,
+  "emotion_signature": "anxiety",
+  "behavior": "unstable",
+  "contradiction_flags": [
+    "self_editing_record"
+  ],
+  "scene": {
+    "description": "Citizen T-318. A witness statement and an evidence log that disagree — and each one rewrites the other while you read. The record is arguing with itself in real time.",
+    "fragments": [
+      {
+        "id": "cw_witness",
+        "label": "The Witness Statement",
+        "text": "'I saw him leave before it happened.' You blink. Now it reads: 'I saw him arrive after.' The words changed while you held them.",
+        "reveals": "self_editing_record",
+        "drift": 10
+      },
+      {
+        "id": "cw_evidence",
+        "label": "The Evidence Log",
+        "text": "The log contradicts the statement, then contradicts itself to match it, then breaks the match again. Neither side will hold still long enough to be wrong.",
+        "drift": 11
+      },
+      {
+        "id": "cw_you",
+        "label": "The Reviewing Keeper",
+        "text": "The review field is filled in. By you. With two opposite verdicts, both timestamped now, both in your hand.",
+        "drift": 12
+      },
+      {
+        "id": "cw_truth",
+        "label": "The Thing Both Agree On",
+        "symbol": "In the flicker between edits, for one frame, both halves say the same sentence — then bury it. You almost caught it. It was a name.",
+        "reveals": "buried_name",
+        "drift": 14
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "freeze_a",
+      "label": "Freeze the record on the witness's version",
+      "truth": "witness_frozen",
+      "drift": 9
+    },
+    {
+      "id": "freeze_b",
+      "label": "Freeze it on the evidence version",
+      "truth": "evidence_frozen",
+      "drift": 9
+    },
+    {
+      "id": "let_run",
+      "label": "Let it keep editing — the truth is the motion, not a frame",
+      "truth": "witness_unfrozen",
+      "drift": 15
+    }
+  ],
+  "env": "street"
+}

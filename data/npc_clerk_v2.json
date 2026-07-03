@@ -1,0 +1,37 @@
+{
+  "id": "npc_clerk_v2",
+  "start": "hi",
+  "nodes": {
+    "hi": {
+      "speaker": "Vasic",
+      "variants": [
+        { "when": { "flag": "clerk_hint" }, "text": "You came back. Most don't, after I tell them about the blank verifier fields. Either you forgot, or you're the stubborn kind. ...I hope you're the stubborn kind." },
+        { "when": null, "text": "Keeper. K-902 reopened, I see. That file was empty for years and now it isn't. Files don't refill themselves. Someone's writing into it." }
+      ],
+      "choices": [
+        { "text": "Who refills an empty file?", "goto": "refill" },
+        { "text": "You seem nervous, Vasic.", "goto": "nervous" },
+        { "text": "Later.", "goto": "bye" }
+      ]
+    },
+    "refill": {
+      "speaker": "Vasic",
+      "text": "Officially? Reconstruction recovers degraded data. Unofficially — I've watched records change while no Keeper was assigned. Eden's correction layer. It writes the version it prefers and calls it recovery. I'd file a complaint, but the complaint form keeps getting corrected too.",
+      "set": { "clerk_v2_refill": true },
+      "choices": [ { "text": "Thanks, Vasic.", "goto": "bye" } ]
+    },
+    "nervous": {
+      "speaker": "Vasic",
+      "variants": [
+        { "when": { "minBand": "doubting" }, "text": "Of course I'm nervous. The containment protocols are running hotter every cycle. Last week a clerk two desks down got 'reconciled.' Now there's no clerk two desks down, and no desk, and I'm the only one who remembers there was. ...You believe me. Good. I needed someone to." },
+        { "when": null, "text": "Just tired. The reopened cases make more work. Forget it." }
+      ],
+      "set": { "clerk_v2_nervous": true },
+      "choices": [ { "text": "I believe you.", "goto": "bye" } ]
+    },
+    "bye": {
+      "speaker": "Vasic",
+      "text": "Watch the files that fill themselves, Keeper. Those are the ones with someone behind them."
+    }
+  }
+}

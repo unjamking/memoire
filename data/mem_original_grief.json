@@ -1,0 +1,61 @@
+{
+  "memory_id": "mem_original_grief",
+  "stability_score": 65,
+  "emotion_signature": "longing",
+  "behavior": "stable",
+  "contradiction_flags": [
+    "the_first_memory"
+  ],
+  "scene": {
+    "description": "The memory the entire Archive was built to protect. It is small. It is ordinary. It is the most stable thing you have ever stood inside, because it is the one thing the whole system was designed never to let change. An afternoon. A kitchen. Someone the First Keeper loved.",
+    "fragments": [
+      {
+        "id": "og_light",
+        "label": "The Afternoon Light",
+        "text": "Ordinary light through an ordinary window. The kind of light no one would think to save. That's what makes it unbearable to lose — it was never special, until it was the last of it.",
+        "drift": 6
+      },
+      {
+        "id": "og_face",
+        "label": "The Face",
+        "text": "A face, turned toward the window, half-smiling at nothing. Unlike every other blurred face in the Archive, this one is perfectly clear. It's the one the whole system kept in focus. It cost everything to keep it this clear.",
+        "reveals": "the_first_memory",
+        "drift": 9
+      },
+      {
+        "id": "og_loss",
+        "label": "The Ordinary Loss",
+        "text": "This person was going to be forgotten the way everyone is — slowly, softly, naturally. The First Keeper refused. The refusal is what you've been living inside. The grief is the engine. It was always just grief, scaled up into a world.",
+        "drift": 10
+      },
+      {
+        "id": "og_choice",
+        "label": "What You're Really Choosing",
+        "symbol": "You understand it completely now. Every ending you'll be offered is a way of answering one question the First Keeper couldn't: is it more loving to hold someone forever, or to let them — and yourself — finally rest?",
+        "reveals": "the_real_question",
+        "drift": 12
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "hold",
+      "label": "Some things are worth holding forever",
+      "truth": "grief_held",
+      "drift": 8
+    },
+    {
+      "id": "release",
+      "label": "Love is also knowing when to let go",
+      "truth": "grief_released",
+      "drift": 8
+    },
+    {
+      "id": "both",
+      "label": "Holding and releasing were never opposites",
+      "truth": "grief_both",
+      "drift": 12
+    }
+  ],
+  "env": "office_echo"
+}

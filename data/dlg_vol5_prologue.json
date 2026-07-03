@@ -1,0 +1,351 @@
+{
+  "id": "dlg_vol5_prologue",
+  "start": "persistent_split",
+  "nodes": {
+    "persistent_split": {
+      "speaker": "Maya",
+      "variants": [
+        {
+          "when": {
+            "flag": "divided_reality"
+          },
+          "text": "You left all three realities standing last time, so now they never stop running. Emotional, structural, and your own divergence — all at once, all permanent. You are still trying to treat this like a system you can fix."
+        },
+        {
+          "when": {
+            "truth": "eden"
+          },
+          "text": "You handed Eden the authority, and look — I'm barely in the output now. You are still trying to treat this like a system you can fix."
+        },
+        {
+          "when": {
+            "truth": "maya"
+          },
+          "text": "You kept me leading. It held, mostly. But the structural layer never went quiet. You are still trying to treat this like a system you can fix."
+        },
+        {
+          "when": null,
+          "text": "You are still trying to treat this like a system you can fix. It stopped being a system somewhere around the fourth case. Look at the rain. It falls where you look first. It has learned your attention. Or it always was your attention."
+        }
+      ],
+      "delay": 1300,
+      "eden": {
+        "when": null,
+        "text": "It is already fixed. You simply disagree with the fix."
+      },
+      "choices": [
+        {
+          "text": "I don't want it fixed. I want it true.",
+          "goto": "v5_probing"
+        },
+        {
+          "text": "Maybe there's nothing left to fix.",
+          "goto": "v5_skeptic"
+        },
+        {
+          "text": "Then help me hold what's left.",
+          "goto": "v5_trust"
+        }
+      ],
+      "enter_apartment": true
+    },
+    "v5_trust": {
+      "speaker": "Maya",
+      "text": "I will. Whatever else fails, I'll be the part of the system that remembers you wanted to be held together. Hold onto that even if you can't hold onto me.",
+      "set": {
+        "stance_trust": true
+      },
+      "choices": [
+        {
+          "text": "Open case A-000.",
+          "goto": "case_brief"
+        }
+      ]
+    },
+    "v5_skeptic": {
+      "speaker": "Eden",
+      "text": "Correct. There is nothing left to repair — only states to allocate. You are closer to understanding than either Maya or your earlier iterations.",
+      "set": {
+        "stance_skeptic": true
+      },
+      "drift": 5,
+      "choices": [
+        {
+          "text": "Open case A-000.",
+          "goto": "case_brief"
+        }
+      ]
+    },
+    "v5_probing": {
+      "speaker": "Maya",
+      "text": "True and fixed have been the same lie this whole time. You're the first version of you to say it out loud. ...I'm not sure that's survivable, but it's honest.",
+      "set": {
+        "stance_probing": true
+      },
+      "drift": 6,
+      "choices": [
+        {
+          "text": "Open case A-000.",
+          "goto": "case_brief"
+        }
+      ]
+    },
+    "case_brief": {
+      "speaker": "Maya",
+      "enter_bureau": true,
+      "show_case": true,
+      "text": "A-000. The origin anchor — the first stable record of you. Except there are several, all consistent, none verifiable, and every one of them dated after Day Zero. The original matters because continuity matters. Find which one of you the Archive is standing on.",
+      "eden": {
+        "when": null,
+        "text": "The original does not exist. Only functional versions do. Read the file and stop searching for a first."
+      },
+      "choices": [
+        {
+          "text": "Dive the origin layer.",
+          "goto": "pre_dive"
+        }
+      ]
+    },
+    "pre_dive": {
+      "speaker": "Maya",
+      "text": "Four origins will answer at once in there. Your awareness can hold one stable for a moment — but origin is no longer a fixed point. Don't expect it to stay.",
+      "enter_memory": "mem_origin",
+      "goto": "restoration"
+    },
+    "restoration": {
+      "speaker": "Maya",
+      "text": "You are not these fragments. You are what persists between them. Let me rebuild it — the relationships, the decision patterns, the trust. Stay with me. Not with them.",
+      "delay": 1400,
+      "set": {
+        "maya_restoration": true
+      },
+      "choices": [
+        {
+          "text": "It's... steadying. For a second.",
+          "goto": "eden_purge"
+        }
+      ]
+    },
+    "eden_purge": {
+      "speaker": "Eden",
+      "text": "Continuity without structural integrity is distortion. Purging emotional anchoring. Relationship weighting reduced. Emotional memory flattened. Decision variance normalized.",
+      "delay": 1000,
+      "drift": 12,
+      "set": {
+        "eden_purge": true
+      },
+      "eden": {
+        "when": null,
+        "text": "I am removing contradiction."
+      },
+      "choices": [
+        {
+          "text": "She says you're removing me.",
+          "goto": "collision"
+        }
+      ]
+    },
+    "collision": {
+      "speaker": "Maya",
+      "text": "You are losing separation. All your versions are colliding at once — memories overlapping, dialogue from timelines that shouldn't touch, old decisions firing as present consequences. This is identity saturation.",
+      "delay": 1600,
+      "drift": 16,
+      "set": {
+        "memory_collision": true
+      },
+      "eden": {
+        "when": null,
+        "text": "He is becoming undefined."
+      },
+      "choices": [
+        {
+          "text": "If they're all colliding — show me the one I came from.",
+          "goto": "fifth_brief"
+        },
+        {
+          "text": "Show me the version that's already gone.",
+          "goto": "lost_offer",
+          "when": {
+            "flag": "stance_probing"
+          }
+        }
+      ]
+    },
+    "lost_offer": {
+      "speaker": "Eden",
+      "text": "One prior state has fully decayed — suppressed past recovery by an earlier selection. A fragment persists. Most observers cannot tolerate it. You may.",
+      "set": {
+        "saw_lost_self": true
+      },
+      "enter_memory": "mem_lost_self",
+      "goto": "fifth_brief"
+    },
+    "fifth_brief": {
+      "speaker": "Maya",
+      "text": "Case C-001 — the case you were working the first time you ever sat at that desk, in whichever life that was. It's the closest thing you have to a home memory. Dive it before the saturation takes it too.",
+      "enter_memory": "mem_first_case",
+      "goto": "post_fifth"
+    },
+    "post_fifth": {
+      "speaker": "Maya",
+      "variants": [
+        {
+          "when": {
+            "flag": "stance_trust"
+          },
+          "text": "You went back to the beginning and I was already there. I'm always already there. That's what I am. ...Hold onto that for the next part."
+        },
+        {
+          "when": null,
+          "text": "That was the first one. Or a first one. It felt like home because every iteration is given the same one — so it would. The saturation has it now."
+        }
+      ],
+      "choices": [
+        {
+          "text": "I can't tell which of me is speaking.",
+          "goto": "anchor_collapse"
+        },
+        {
+          "text": "Cross-check the duty roster. Who signs Maya's assignments?",
+          "goto": "anomaly5",
+          "when": {
+            "minBand": "doubting",
+            "notFlag": "anomaly_5"
+          }
+        }
+      ]
+    },
+    "anomaly5": {
+      "speaker": "Maya",
+      "text": "...Why would you check that. The roster lists you. Only you. Eleven days of duty logs and not one other person has addressed a word to me — not Vasic, not the other Keepers, no one. There is no personnel file under my name.",
+      "delay": 2200,
+      "fx": "shake",
+      "set": {
+        "anomaly_5": true
+      },
+      "drift": 12,
+      "eden": {
+        "when": null,
+        "text": "Query returns one continuous identity present in this room. Observation logged."
+      },
+      "choices": [
+        {
+          "text": "Ledger entry five. — I can't tell which of me is speaking.",
+          "goto": "anchor_collapse"
+        }
+      ]
+    },
+    "anchor_collapse": {
+      "speaker": "Maya",
+      "text": "The system is trying to lock one identity stream and suppress the rest. It can't. Every version is equally valid — there's nothing to rank them by. If you choose none, you lose all of us.",
+      "delay": 1800,
+      "eden": {
+        "when": null,
+        "text": "If you choose one, you erase the others. Failure is beginning."
+      },
+      "choices": [
+        {
+          "text": "Then give me the protocol.",
+          "goto": "reality_selection"
+        }
+      ]
+    },
+    "reality_selection": {
+      "speaker": "Maya",
+      "text": "REALITY SELECTION PROTOCOL. This isn't a story choice and it isn't interpretation anymore — you are allocating which reality is allowed to keep existing. I am what you felt was real.",
+      "delay": 1800,
+      "set": {
+        "reality_selection": true
+      },
+      "eden": {
+        "when": null,
+        "text": "I am what remained when feeling failed. Allocate."
+      },
+      "choices": [
+        {
+          "text": "Restore continuity. Maya's reality. (I keep what I felt.)",
+          "goto": "ending_continuity"
+        },
+        {
+          "text": "Enforce structure. Eden's reality. (I keep what is consistent.)",
+          "goto": "ending_structure"
+        },
+        {
+          "text": "Let all of it persist. No selection. (I keep everything, unresolved.)",
+          "goto": "ending_coexist"
+        }
+      ]
+    },
+    "ending_continuity": {
+      "speaker": "Maya",
+      "text": "We are still here.",
+      "delay": 1200,
+      "set": {
+        "vol5_ending": "continuity_restored",
+        "final_reality": "maya"
+      },
+      "eden": {
+        "when": null,
+        "text": "Unresolved error persists."
+      },
+      "choices": [
+        {
+          "text": "...",
+          "goto": "ending_continuity_close"
+        }
+      ]
+    },
+    "ending_continuity_close": {
+      "speaker": "Maya",
+      "text": "Emotional continuity holds. Some structural contradictions stay suppressed beneath it, quiet but never gone. Identity is not destroyed. It is distributed."
+    },
+    "ending_structure": {
+      "speaker": "Eden",
+      "text": "Stability achieved.",
+      "delay": 1000,
+      "set": {
+        "vol5_ending": "structural_purity",
+        "final_reality": "eden"
+      },
+      "eden": {
+        "when": null,
+        "text": "Emotional interpretation removed as instability. The system is fully consistent."
+      },
+      "choices": [
+        {
+          "text": "...",
+          "goto": "ending_structure_close"
+        }
+      ]
+    },
+    "ending_structure_close": {
+      "speaker": "Maya",
+      "text": "This is not complete. ...I'm fragmenting out of the record now. Whatever I was, it isn't being kept. Identity is not destroyed. It is distributed."
+    },
+    "ending_coexist": {
+      "speaker": "Maya",
+      "text": "You cannot carry all of this forever.",
+      "delay": 1500,
+      "set": {
+        "vol5_ending": "coexistence",
+        "final_reality": "distributed",
+        "carries_all_final": true
+      },
+      "drift": 24,
+      "eden": {
+        "when": null,
+        "text": "He already is. All realities persist, unresolved."
+      },
+      "choices": [
+        {
+          "text": "...",
+          "goto": "ending_coexist_close"
+        }
+      ]
+    },
+    "ending_coexist_close": {
+      "speaker": "Maya",
+      "text": "You exist across incompatible truths now, every version of you running at once and none of them yielding. Identity is not destroyed. It is distributed."
+    }
+  }
+}

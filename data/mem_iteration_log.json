@@ -1,0 +1,56 @@
+{
+  "memory_id": "mem_iteration_log",
+  "stability_score": 20,
+  "emotion_signature": "dread",
+  "behavior": "corrupted",
+  "contradiction_flags": [
+    "active_historical_states",
+    "selection_of_selves"
+  ],
+  "scene": {
+    "description": "KEEPER ITERATION LOG — a secure file, opened by accident. Versions of you, lined up. None of them is marked false. Every one reads: ACTIVE HISTORICAL STATE.",
+    "fragments": [
+      {
+        "id": "kl_decisions",
+        "label": "Iteration: Different Decisions",
+        "text": "A you who archived everything as recorded. Never rewrote a thing. Trusted the system to the end.",
+        "reveals": "active_historical_states",
+        "drift": 12
+      },
+      {
+        "id": "kl_emotion",
+        "label": "Iteration: Different Feeling",
+        "text": "A you who felt none of this. Flat. Efficient. Closed every case without flinching.",
+        "drift": 13
+      },
+      {
+        "id": "kl_alignment",
+        "label": "Iteration: Different Alignment",
+        "text": "A you who sided with Eden. Who thought continuity was worth the deletions.",
+        "drift": 14
+      },
+      {
+        "id": "kl_maya",
+        "label": "Iteration: Different Maya",
+        "symbol": "A you whose Maya speaks warmly, without caution. In that record she is not hiding anything. You don't recognize her.",
+        "reveals": "selection_of_selves",
+        "drift": 16
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "single",
+      "label": "Insist you are one continuous person",
+      "truth": "log_singular",
+      "drift": 8
+    },
+    {
+      "id": "selection",
+      "label": "Accept you are a selection of previous selves",
+      "truth": "log_selection",
+      "drift": 18
+    }
+  ],
+  "env": "office_echo"
+}

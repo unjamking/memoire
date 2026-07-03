@@ -1,0 +1,55 @@
+{
+  "id": "npc_keepers_v3",
+  "start": "hi",
+  "nodes": {
+    "hi": {
+      "speaker": "Three Keepers",
+      "text": "Three of them stand where one stood before — all with your face, slightly out of sync, finishing each other's movements a half-second apart. They speak almost in unison. 'You're here. Good. We've been waiting to agree on something.'",
+      "choices": [
+        { "text": "Agree on what?", "goto": "agree" },
+        { "text": "There were not three of you before.", "goto": "three" },
+        { "text": "This is too much.", "goto": "bye" }
+      ]
+    },
+    "agree": {
+      "speaker": "Three Keepers",
+      "text": "'On what we are. He—' the left one points at the right '—thinks we're one person split apart. She thinks we were always separate and the system pretended otherwise. I think it doesn't matter. You're going to have to pick which of us is right, eventually. We'd like a vote.'",
+      "drift": 7,
+      "set": { "met_three_keepers": true },
+      "choices": [
+        { "text": "You're one person, fractured.", "goto": "fractured" },
+        { "text": "You were always many.", "goto": "many" },
+        { "text": "I won't vote on this.", "goto": "novote" }
+      ]
+    },
+    "fractured": {
+      "speaker": "Three Keepers",
+      "text": "The left one smiles. The other two flicker. 'He'll like that answer — it means there's an original to get back to. Maya's answer. Hold onto it if you can. It's the kindest of the three, and the least true.'",
+      "set": { "keeper_vote_fractured": true },
+      "choices": [ { "text": "...", "goto": "bye" } ]
+    },
+    "many": {
+      "speaker": "Three Keepers",
+      "text": "The right one nods slowly. 'Eden's answer. No original, no home to return to, just functional versions. Colder. Truer. You'll have less to grieve and less to hold. Choose it and you'll stop hurting. You'll also stop being the one who hurts. Decide if that's a loss.'",
+      "set": { "keeper_vote_many": true },
+      "choices": [ { "text": "...", "goto": "bye" } ]
+    },
+    "novote": {
+      "speaker": "Three Keepers",
+      "text": "All three exhale at once. 'That's the third answer. Refuse to rank us. It costs the most — you carry all of us, forever, unreconciled. Most can't. We hoped you might.' They step back into one silhouette, then three, then one.",
+      "drift": 8,
+      "set": { "keeper_vote_none": true },
+      "choices": [ { "text": "...", "goto": "bye" } ]
+    },
+    "three": {
+      "speaker": "Three Keepers",
+      "text": "'There were always three. There were always one. The sequencing is gone, so you're seeing the truth the loop usually hides: we're concurrent. We always were. Maya runs us one-at-a-time so it feels like a life instead of a crowd.'",
+      "drift": 6,
+      "choices": [ { "text": "A crowd.", "goto": "bye" } ]
+    },
+    "bye": {
+      "speaker": "Three Keepers",
+      "text": "'Go and do the case. We'll be here. We're always here. That's rather the problem.'"
+    }
+  }
+}

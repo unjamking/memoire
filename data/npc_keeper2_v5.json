@@ -1,0 +1,42 @@
+{
+  "id": "npc_keeper2_v5",
+  "start": "hi",
+  "nodes": {
+    "hi": {
+      "speaker": "The Last of the Other",
+      "variants": [
+        { "when": { "flag": "promised_keeper2_again" }, "text": "You came back. You always come back, and that's the only reason I'm anything at all now. I'm down to almost nothing — a voice and a shape and the memory of you promising. But that promise has carried me through four reconciliations. Whatever you are, you're someone who keeps people. Hold that. You're going to need to know it about yourself soon." },
+        { "when": null, "text": "Barely here now. You can probably see through me. The origin crisis is pulling everything apart at the root — and I'm rootless to begin with, so I'm going first. It's alright. I've gone before. It never sticks, somehow. You don't let it stick." }
+      ],
+      "choices": [
+        { "text": "Where do you go, when you go?", "goto": "where" },
+        { "text": "What should I choose, at the end?", "goto": "choose" },
+        { "text": "Stay with me a little longer.", "goto": "stay" }
+      ]
+    },
+    "where": {
+      "speaker": "The Last of the Other",
+      "text": "Into you, mostly. Reconciliation doesn't delete — it folds. Every version of you that's 'gone' is a layer in the one that's left. You're not a single person who's survived. You're everyone who didn't, stacked, wearing the newest face. When you grieve us, you're grieving parts of yourself you can still feel the edges of.",
+      "drift": 6,
+      "set": { "keeper2_v5_fold": true },
+      "choices": [ { "text": "...", "goto": "bye" } ]
+    },
+    "choose": {
+      "speaker": "The Last of the Other",
+      "text": "I can't tell you. Not because it's secret — because the moment I say 'choose continuity' or 'choose distribution,' you'll be choosing for me instead of you, and I've watched that ruin too many of us. The kindest thing I can do, the only thing, is refuse to make your choice smaller by having an opinion in it. Choose as the one who has to live in it. That's you. It was always only ever you.",
+      "drift": 5,
+      "choices": [ { "text": "...", "goto": "bye" } ]
+    },
+    "stay": {
+      "speaker": "The Last of the Other",
+      "text": "I will. As long as the render holds. Sit with me. We don't have to talk. Most of the times you've kept me, it was just this — not the words, just the not-being-alone. That's the part the system never understood about why you kept reaching back. It thought it was about memory. It was about company.",
+      "drift": 4,
+      "set": { "sat_with_keeper2": true },
+      "choices": [ { "text": "...", "goto": "bye" } ]
+    },
+    "bye": {
+      "speaker": "The Last of the Other",
+      "text": "Go. And at the very end, in the last volume — when you're offered the choice to stop everything — remember that I was glad to have been here, even like this. Especially like this. It'll matter that you know that."
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "memory_id": "mem_split_render",
+  "stability_score": 40,
+  "emotion_signature": "anxiety",
+  "behavior": "unstable",
+  "contradiction_flags": [
+    "split_render",
+    "living_subject"
+  ],
+  "scene": {
+    "description": "Case D-051. One memory, rendered two completely different ways depending on which authority reads it. The subject is alive and uses this memory daily. Whatever you fix it as, they live inside.",
+    "fragments": [
+      {
+        "id": "sp_maya",
+        "label": "Maya's Render — A Goodbye",
+        "text": "Through Maya: a person leaving, and the ache of it. The memory is grief, and the grief is the point. It means someone was loved.",
+        "reveals": "maya_render",
+        "drift": 9
+      },
+      {
+        "id": "sp_eden",
+        "label": "Eden's Render — A Departure",
+        "text": "Through Eden: a subject exits a doorway at a logged time. No ache, no loss — those were never in the data, only added by interpretation. Clean. Survivable. Empty.",
+        "reveals": "eden_render",
+        "drift": 10
+      },
+      {
+        "id": "sp_subject",
+        "label": "The Living Subject",
+        "text": "The subject visits this memory every day. Under Maya's render it hurts them and they keep coming back. Under Eden's it doesn't hurt — and they stop coming at all.",
+        "drift": 12
+      },
+      {
+        "id": "sp_cost",
+        "label": "The Cost Either Way",
+        "symbol": "You understand the trade with total clarity: keep the pain and keep the love, or remove both. There is no version with one and not the other.",
+        "drift": 14
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "keep_pain",
+      "label": "Fix Maya's render — keep the grief, keep the love",
+      "truth": "split_grief",
+      "drift": 11
+    },
+    {
+      "id": "remove_pain",
+      "label": "Fix Eden's render — spare them the pain",
+      "truth": "split_clean",
+      "drift": 9
+    },
+    {
+      "id": "ask",
+      "label": "Refuse to choose for them — leave it split, unresolved",
+      "truth": "split_unresolved",
+      "drift": 15
+    }
+  ],
+  "env": "office_echo"
+}

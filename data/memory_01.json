@@ -1,0 +1,20 @@
+{
+  "memory_id": "memory_01",
+  "stability_score": 70,
+  "emotion_signature": "grief",
+  "behavior": "stable",
+  "contradiction_flags": ["timestamp_drift"],
+  "scene": {
+    "description": "A kitchen at dusk. Two cups on the table. One is still warm.",
+    "fragments": [
+      { "id": "frag_clock", "text": "The clock reads 4:17. The light says midnight.", "reveals": "timestamp_drift", "drift": 5 },
+      { "id": "frag_cup", "text": "Two cups. The file says she lived alone.", "reveals": "duplicate_subject", "drift": 5 },
+      { "id": "frag_photo", "text": "A photo, face scratched out. You feel you know it.", "drift": 10 }
+    ]
+  },
+  "interpretations": [
+    { "id": "archive", "label": "Archive it as recorded", "truth": "lonely_death", "drift": 0 },
+    { "id": "rewrite", "label": "Rewrite: she was not alone", "truth": "hidden_visitor", "drift": 8 },
+    { "id": "delete", "label": "Delete the contradiction", "truth": "erased", "drift": 15 }
+  ]
+}

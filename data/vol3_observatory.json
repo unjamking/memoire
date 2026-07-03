@@ -1,0 +1,26 @@
+{
+  "case_id": "vol3_observatory",
+  "act": 4,
+  "title": "The Observatory Protocol",
+  "briefing": "dlg_vol3_prologue",
+  "memory": "mem_observatory",
+  "anomalies": ["future_memory_signals", "multi_iteration_bleed"],
+  "npcs": [
+    { "id": "keepers", "name": "Three Keepers", "dialogue": "npc_keepers_v3", "color": "0x8a7aa0" },
+    { "id": "clerk", "name": "Vasic (?), Records Clerk", "dialogue": "npc_clerk_v3", "color": "0xa08a6a" },
+    { "id": "maint", "name": "Maintenance Unit 9", "dialogue": "npc_maint_v3", "color": "0x6a8a7a", "when": { "flag": "stance_probing" } }
+  ],
+  "file": {
+    "subject": "Case O-117",
+    "memory_type": "Structural Observation Failure Event",
+    "summary": "An observatory began receiving signals from 'future memory states.' All timestamps are internally consistent — no time travel occurred. Only interpretation mismatch across states.",
+    "records": [
+      { "label": "Signal source", "value": "Unresolved — future-state memory" },
+      { "label": "Timestamp integrity", "value": "Internally consistent (no temporal anomaly)" },
+      { "label": "Candidate causes", "value": "External interference / internal recursion / multi-iteration bleed" },
+      { "label": "Classification", "value": "NOT A NORMAL CASE" }
+    ],
+    "verdict": "The signal is interpretation mismatch across coexisting states, not a transmission.",
+    "objective": "Determine whether the signal is external interference, internal recursion, or multi-iteration bleed."
+  }
+}

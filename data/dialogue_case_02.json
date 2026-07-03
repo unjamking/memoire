@@ -1,0 +1,29 @@
+{
+  "id": "dialogue_case_02",
+  "start": "open",
+  "nodes": {
+    "open": {
+      "speaker": "Maya",
+      "text": "New case. It... connects to the last one. What you decided then shapes what's here now.",
+      "choices": [ { "text": "Go on.", "goto": "branch" } ]
+    },
+    "branch": {
+      "speaker": "Maya",
+      "variants": [
+        { "when": { "truth": "hidden_visitor" }, "text": "Because you ruled she was not alone, there is now a second subject to find. The visitor has a record. Follow it." },
+        { "when": { "truth": "erased" }, "text": "You deleted the contradiction last time. So there is no visitor to find — only the hole where one used to be. The case is the hole." },
+        { "when": { "truth": "lonely_death" }, "text": "You archived it as recorded: she died alone. The Archive accepts this. There is little left to investigate — which is its own kind of answer." },
+        { "when": null, "text": "We haven't reconstructed the prior afternoon yet. Come back to this once we have." }
+      ],
+      "eden": {
+        "when": { "minBand": "doubting" },
+        "text": "Confirmed: this case state is a direct consequence of decision case_01. The record is negotiated, not fixed. Vol-rule observed."
+      },
+      "choices": [ { "text": "Understood.", "goto": "end" } ]
+    },
+    "end": {
+      "speaker": "Maya",
+      "text": "That's all I can stage for you right now. The next memory isn't reconstructed yet."
+    }
+  }
+}

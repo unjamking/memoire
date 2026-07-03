@@ -1,0 +1,26 @@
+{
+  "id": "cine_2a_archive_response",
+  "title": "The Archive Response",
+  "beats": [
+    { "fade": true }, { "fade": false },
+    { "say": "The return isn't a return. It's recontextualization. No loading, no transition — just silence, then structure, then awareness of space. You're at workstation 7B.", "who": "" },
+    { "say": "But it isn't identical to before. The lighting runs a little warmer. The desk has shifted a few centimeters. A filing terminal that was off is now active. Nothing is labeled as changed. Everything simply is different.", "who": "" },
+    { "sys": "Reintegration Complete\nMemory Instance L-1184: Stored\nInterpretation Layer: Active\nDrift Index: Elevated" },
+    { "say": "You're back sooner than expected. That usually means one of two things.", "who": "MAYA" },
+    { "choices": [
+      { "text": "What happened in there?", "goto": "b_what" },
+      { "text": "Did you see it?", "goto": "b_saw" },
+      { "text": "I think something changed.", "goto": "b_changed" }
+    ] },
+    { "label": "b_what", "say": "You entered a stable contradiction field. And you chose how it resolves. So now it believes you.", "who": "MAYA", "goto": "b_floor" },
+    { "label": "b_saw", "say": "I see all of them, in pieces. What matters is that you resolved it — and a resolved memory doesn't stay where you left it.", "who": "MAYA", "goto": "b_floor" },
+    { "label": "b_changed", "say": "Something did. You did. Don't fight the feeling that the room is reloading instead of remembering — that feeling means it worked.", "who": "MAYA", "goto": "b_floor" },
+    { "label": "b_floor", "say": "A Keeper passes the desk, glances at you. 'You touched a lantern instance?' Not an accusation — a classification. He keeps walking before you can answer.", "who": "" },
+    { "say": "That's going to spread faster than expected.", "who": "MAYA" },
+    { "sys": "LANTERN INSTANCE CLASSIFIED\nCONTINUITY INTEGRATION COMPLETE\nSECONDARY VARIANTS GENERATED: 3" },
+    { "say": "Across the floor, two clerks argue quietly. 'That corridor didn't exist yesterday.' 'It always did.' Neither wins. They keep working.", "who": "" },
+    { "stability": "Archive Drift: 0.12 → 0.19" },
+    { "say": "She pushes the file toward you — not to read. To acknowledge. 'You understand now it wasn't just a case.' A pause. 'It was a template.'", "who": "MAYA" },
+    { "memory": "mem_lantern_echo" }
+  ]
+}

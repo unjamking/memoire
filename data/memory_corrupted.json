@@ -1,0 +1,20 @@
+{
+  "memory_id": "memory_corrupted",
+  "stability_score": 30,
+  "emotion_signature": "loss",
+  "behavior": "corrupted",
+  "contradiction_flags": ["missing_segment"],
+  "scene": {
+    "description": "A room. Most of it isn't here. What remains is too sharp.",
+    "fragments": [
+      { "id": "c_face", "symbol": "Where a face should be: a smooth grey oval.", "reveals": "missing_segment", "drift": 10 },
+      { "id": "c_gone", "text": "This whole conversation.", "corrupt_drop": true },
+      { "id": "c_hand", "text": "A hand on a table. The rest of the person is not rendered.", "drift": 8 },
+      { "id": "c_word", "symbol": "A word you can't read, repeated on every surface.", "drift": 9 }
+    ]
+  },
+  "interpretations": [
+    { "id": "fill", "label": "Fill the gaps with what feels true", "truth": "confabulated", "drift": 14 },
+    { "id": "leave", "label": "Leave the gaps as gaps", "truth": "honest_absence", "drift": 4 }
+  ]
+}

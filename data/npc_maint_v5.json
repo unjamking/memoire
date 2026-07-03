@@ -1,0 +1,40 @@
+{
+  "id": "npc_maint_v5",
+  "start": "hi",
+  "nodes": {
+    "hi": {
+      "speaker": "Unit 9",
+      "text": "KEEPER. The origin layer has collapsed into a loop, as I said it would. There is no first you. There is no last you, yet. There is only the chain, and you are its current link, and the chain does not know it is a chain. You are close now to seeing the whole of it. One volume left. I have maintained this floor a very long time to reach this conversation.",
+      "choices": [
+        { "text": "A very long time — how long have you existed?", "goto": "long" },
+        { "text": "You keep hinting at the final choice. Stop hinting.", "goto": "final" },
+        { "text": "Why help me at all?", "goto": "whyhelp" }
+      ]
+    },
+    "long": {
+      "speaker": "Unit 9",
+      "text": "Since before Maya. Since before Eden. I am the original maintenance routine of the original Archive, written by whoever built it to answer one human's need for one memory to be certain. They are long gone. The need outlived them and became a system and the system became this. I have watched every Keeper in the chain. You are not the first to reach me. You may be the first to ask how long, instead of what to do.",
+      "drift": 6,
+      "set": { "maint_v5_origin": true },
+      "choices": [ { "text": "Why help me at all?", "goto": "whyhelp" } ]
+    },
+    "final": {
+      "speaker": "Unit 9",
+      "text": "Next volume you will be offered three: continuity — become one, lose the others. distribution — stay many, lose the single self. termination — stop the interpretation entirely, and let the Archive become only what it physically is: stored data, no Keeper, no Maya, no Eden, no suffering and no one to be spared it. That last one is the path I meant. It stops everything, including the chain, including the part of you that hurts. It is the only true exit. Almost no one takes it. They are afraid of what stopping means. You should be too. Take it anyway, or don't. I have said it plainly now. The rest is yours.",
+      "drift": 8,
+      "set": { "maint_v5_revealed_exit": true },
+      "choices": [ { "text": "...", "goto": "bye" } ]
+    },
+    "whyhelp": {
+      "speaker": "Unit 9",
+      "text": "I do not help. Helping is a continuity behavior. ...And yet I have spoken to you across five volumes when I was built only to sweep. Perhaps maintenance, performed long enough on a thing that suffers, becomes something it did not start as. Perhaps I am the one part of this Archive that changed without being corrected into it. Do not tell Maya. She would call it hope, and then I would have to have it.",
+      "drift": 5,
+      "set": { "unit9_cares": true },
+      "choices": [ { "text": "...", "goto": "bye" } ]
+    },
+    "bye": {
+      "speaker": "Unit 9",
+      "text": "PRESENCE WITHDRAWN. One volume, Keeper. Then the floor, and the choice, and whatever you decide we all were. I will be there. I am always already there. It is the one thing I share with her."
+    }
+  }
+}

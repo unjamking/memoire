@@ -1,0 +1,72 @@
+{
+  "id": "npc_hub_clerk",
+  "start": "hi",
+  "nodes": {
+    "hi": {
+      "speaker": "Vasic",
+      "variants": [
+        {
+          "when": {
+            "flag": "vol5_ending"
+          },
+          "text": "Between cases again. You've gone deeper into the stacks than anyone since Day Zero — deeper than the records say is good for a person. The board's still got work on it. It always does. ...Take a breath first. You've earned the second between cases."
+        },
+        {
+          "when": {
+            "flag": "anomaly_1"
+          },
+          "text": "...You've started keeping your own ledger. I won't report it. Filing's my whole job, friend — I know a filing hand when I see one. Look closer at who logs your cases. And don't leave that ledger on the desk. Things filed here get interpreted."
+        },
+        {
+          "when": {
+            "flag": "vol2_ending"
+          },
+          "text": "Back at the board. Good — keep moving while the cases are still legible. They get stranger the deeper you go. You'll see what I mean. You're already seeing it."
+        },
+        {
+          "when": null,
+          "text": "The case board's over there, on the far wall. Pick what's active. The locked ones open when you've earned them. That's how it works — says so in my own handbook, which I wrote, apparently."
+        }
+      ],
+      "choices": [
+        {
+          "text": "How does the board decide what's active?",
+          "goto": "board"
+        },
+        {
+          "text": "Just resting a moment.",
+          "goto": "rest"
+        },
+        {
+          "text": "Back to work.",
+          "goto": "bye"
+        }
+      ]
+    },
+    "board": {
+      "speaker": "Vasic",
+      "text": "Each case unlocks the next. Officially it's 'clearance progression.' Unofficially — since Day Zero the Archive only shows people what it thinks they can survive knowing. Finish one and it decides you're ready for the next layer down. The board isn't a list. It's a leash with slack let out slowly.",
+      "drift": 3,
+      "choices": [
+        {
+          "text": "Cheerful. Thanks.",
+          "goto": "bye"
+        }
+      ]
+    },
+    "rest": {
+      "speaker": "Vasic",
+      "text": "Rest while you can. The Bureau's the only place that stays still. Every case takes you somewhere that doesn't. This room, this board, me complaining at you — for most of us it's the only home we can be *sure* of, because it's the only one we've had since the world forgot itself. Funny that it's an office.",
+      "choices": [
+        {
+          "text": "It's something.",
+          "goto": "bye"
+        }
+      ]
+    },
+    "bye": {
+      "speaker": "Vasic",
+      "text": "Go on. The board's waiting. It's always waiting. So am I, apparently."
+    }
+  }
+}

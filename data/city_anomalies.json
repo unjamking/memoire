@@ -1,0 +1,43 @@
+{
+  "missions": [
+    {
+      "id": "city_anomaly_1",
+      "label": "The Repeating Man",
+      "x": 18, "z": -6,
+      "drift": 4,
+      "scene": [
+        { "who": null, "text": "A man in a grey coat walks the same forty meters of pavement, turns, and walks it back. His shoes have worn a pale stripe into the stone." },
+        { "who": "Maya", "text": "Citizen T-77. Since Day Zero he re-walks his old commute, every hour, on the hour. The route was discontinued years ago. His file doesn't know where he's going. Neither does he." },
+        { "who": "Maya", "text": "He's not malfunctioning, Keeper. He's remembering with his legs. It's the only organ Day Zero couldn't reach." }
+      ],
+      "choice": "Log the anomaly.",
+      "outcome": { "who": "Maya", "text": "Logged. ...Watch him one more second. See how he checks his wrist at the turn? He isn't wearing a watch. He never noticed. Come on — the Bureau's waiting." }
+    },
+    {
+      "id": "city_anomaly_2",
+      "label": "The Unlisted Door",
+      "x": -20, "z": 6,
+      "drift": 5,
+      "scene": [
+        { "who": null, "text": "A door in a brick wall. No handle, no number, no hinges on this side. It is not on the district plan. The brick around it is cold. The door is warm." },
+        { "who": "Maya", "text": "It's not on any plan because plans are records and records are checked. Doors like this only exist where nobody has interpreted the wall recently." },
+        { "who": "Maya", "text": "...R-440 dreams a corridor of doors exactly this warm. You'll meet it later. Try to act surprised." }
+      ],
+      "choice": "Log the anomaly.",
+      "outcome": { "who": "Maya", "text": "Logged. Don't knock. I mean it. Things that are warm are running, and things that are running can be woken. Bureau. Now. Please." }
+    },
+    {
+      "id": "city_anomaly_3",
+      "label": "The Crowd That Runs",
+      "x": 8, "z": 20,
+      "drift": 5,
+      "scene": [
+        { "who": null, "text": "A plaza. Ordinary foot traffic — until, all at once, two dozen strangers break into a run toward the fountain. Three steps. Four. Then they stop, look at each other, and walk on, embarrassed." },
+        { "who": "Maya", "text": "Every day at 3:14. Different people every time — commuters, kids, a records officer once. They run toward the same spot, and none of them can say why." },
+        { "who": "Maya", "text": "Something happened here, Keeper. Something big enough that the forgetting couldn't take the running, only the reason. The body keeps a copy the Archive can't audit." }
+      ],
+      "choice": "Log the anomaly.",
+      "outcome": { "who": "Maya", "text": "Logged. K-902's file has a street full of people running toward a thing instead of away. When you dive it — remember this plaza. Come on." }
+    }
+  ]
+}

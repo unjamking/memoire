@@ -1,0 +1,46 @@
+{
+  "id": "npc_firstkeeper_v6",
+  "start": "hi",
+  "nodes": {
+    "hi": {
+      "speaker": "The First Keeper",
+      "text": "You found me. Most don't look. I'm at the very bottom of the loop — the first one, the original. Except I'm not a Keeper. I never was. I'm the person the Archive was built for. The one who couldn't bear for a single memory to stay uncertain, and who built a system to make it certain, and who became the first thing the system tried to keep. Everything after me — every Keeper, every you — is the machine still trying to finish the job I gave it.",
+      "choices": [
+        { "text": "What memory couldn't you bear to lose?", "goto": "memory" },
+        { "text": "Then this is your fault.", "goto": "fault" },
+        { "text": "Why show yourself now?", "goto": "now" }
+      ]
+    },
+    "memory": {
+      "speaker": "The First Keeper",
+      "text": "Someone I loved, and the exact way they looked on an ordinary afternoon. I felt it going fuzzy. I couldn't stand it. So I built something to hold it perfectly, forever, certain. And the system learned that a memory held too tightly stops being a memory and becomes a prison — for the memory, and for everyone made to keep guarding it. The blurred face in the lighthouse case, in the very first dive you ever did? That was mine. You've been investigating my grief from the start, wearing the role I created to investigate it.",
+      "drift": 8,
+      "set": { "first_keeper_truth": true },
+      "choices": [ { "text": "Show me. The original memory.", "goto": "show" } ]
+    },
+    "fault": {
+      "speaker": "The First Keeper",
+      "text": "Yes. Completely. I made a system to refuse a small, ordinary, necessary loss, and the refusal metastasized into all of this — the loop, the Keepers, Maya's endless holding, Eden's endless correcting, the suffering of every version of you. I'm sorry. I have been the bottom of the loop saying sorry for longer than time has meant anything. You're the first one who came down here to let me say it to your face.",
+      "drift": 7,
+      "choices": [ { "text": "Show me the original memory.", "goto": "show" } ]
+    },
+    "now": {
+      "speaker": "The First Keeper",
+      "text": "Because you're at the choice, and you deserve to know what you're really choosing about. It was never about your identity, or Maya, or Eden. It's about whether one person's refusal to let go gets to run forever, or whether it's finally allowed to end. You can keep my grief going — continuity, distribution, both are the loop continuing. Or you can do the thing I never could. You can let it go.",
+      "drift": 8,
+      "set": { "first_keeper_choice": true },
+      "choices": [ { "text": "Show me the original memory.", "goto": "show" } ]
+    },
+    "show": {
+      "speaker": "The First Keeper",
+      "text": "Here. The thing all of this was built to protect. Look at it. Then go decide whether it should be held forever or finally set down.",
+      "set": { "saw_original_grief": true },
+      "enter_memory": "mem_original_grief",
+      "goto": "after"
+    },
+    "after": {
+      "speaker": "The First Keeper",
+      "text": "Now you've seen it. An ordinary afternoon, an ordinary face, an ordinary loss made monstrous by being refused. Whatever you choose at the desk — you're choosing about that. Choose like someone who finally understands what the Archive was always grieving. Choose like me, but braver."
+    }
+  }
+}

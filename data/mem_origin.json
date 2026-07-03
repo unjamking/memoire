@@ -1,0 +1,74 @@
+{
+  "memory_id": "mem_origin",
+  "stability_score": 30,
+  "emotion_signature": "dread",
+  "behavior": "corrupted",
+  "contradiction_flags": [
+    "multiple_origins",
+    "no_fixed_reference"
+  ],
+  "scene": {
+    "description": "The origin layer. You try to remember becoming a Keeper and four memories answer at once, each whole, each true. The system won't let any one of them be the first.",
+    "fragments": [
+      {
+        "id": "or_willing",
+        "label": "Origin — You Chose This",
+        "text": "You became a Keeper willingly. You remember the decision, the weight of it, wanting it. It feels like the real one. They all do.",
+        "reveals": "multiple_origins",
+        "drift": 11
+      },
+      {
+        "id": "or_assigned",
+        "label": "Origin — You Were Assigned",
+        "text": "You were assigned. No choice, just a posting and a badge. This memory is just as detailed as the one where you chose.",
+        "drift": 12
+      },
+      {
+        "id": "or_replaced",
+        "label": "Origin — You Replaced Someone",
+        "text": "There was a Keeper before you at this desk. You took their place. You can't tell if you remember them or remember being them.",
+        "drift": 13
+      },
+      {
+        "id": "or_none",
+        "label": "Origin — There Is None",
+        "symbol": "A fourth memory of having no origin at all. You were simply always here, with no before. It contradicts the other three and is no less convincing.",
+        "reveals": "no_fixed_reference",
+        "drift": 16
+      },
+      {
+        "id": "or_maya_present",
+        "label": "Maya Was In All of Them",
+        "text": "Whichever origin you reach for, Maya is already in it — greeting you, assigning you, replacing the one before. She is the only constant across every beginning. She is more your origin than any of these are.",
+        "drift": 13
+      },
+      {
+        "id": "or_witness",
+        "label": "The One Who Watches You Choose",
+        "symbol": "At the edge of all four origins stands a fifth figure, not choosing, only watching which origin you'll pick. It has your posture. It is the version of you that comes after this one.",
+        "drift": 15
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "pick_willing",
+      "label": "Choose the willing origin as real",
+      "truth": "origin_willing",
+      "drift": 10
+    },
+    {
+      "id": "pick_assigned",
+      "label": "Choose the assigned origin as real",
+      "truth": "origin_assigned",
+      "drift": 10
+    },
+    {
+      "id": "refuse_origin",
+      "label": "Accept there is no original — only versions",
+      "truth": "origin_none",
+      "drift": 18
+    }
+  ],
+  "env": "office_echo"
+}

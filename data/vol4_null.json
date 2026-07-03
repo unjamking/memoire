@@ -1,0 +1,28 @@
+{
+  "case_id": "vol4_null",
+  "act": 4,
+  "title": "The Null District Event",
+  "briefing": "dlg_vol4_prologue",
+  "memory": "mem_null_district",
+  "anomalies": ["null_state", "no_interpretation_state"],
+  "npcs": [
+    { "id": "clerk", "name": "Vasic, Double-Rendered", "dialogue": "npc_clerk_v4", "color": "0xa08a6a" },
+    { "id": "keeper2", "name": "The Keeper Who Stayed", "dialogue": "npc_keeper2_v4", "color": "0x8a7aa0" },
+    { "id": "maint", "name": "Maintenance Unit 9", "dialogue": "npc_maint_v4", "color": "0x6a8a7a", "when": { "flag": "stance_probing" } }
+  ],
+  "file": {
+    "subject": "Case N-000",
+    "memory_type": "Entire district memory collapse",
+    "summary": "A full district is recorded as NULL STATE. Not destroyed, not erased, not corrupted — it has no definable interpretation state.",
+    "records": [
+      { "label": "Destruction", "value": "None" },
+      { "label": "Erasure", "value": "None" },
+      { "label": "Corruption", "value": "None" },
+      { "label": "Interpretation state", "value": "UNDEFINABLE — NULL" },
+      { "label": "Maya reading", "value": "Meaning removed faster than structure" },
+      { "label": "Eden reading", "value": "Structure rejected inconsistent meaning" }
+    ],
+    "verdict": "Two conflicting explanations, both stable within system logic. The Archive cannot pick one.",
+    "objective": "Determine what 'NULL' represents."
+  }
+}

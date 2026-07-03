@@ -1,0 +1,43 @@
+{
+  "id": "npc_keeper2_v2",
+  "start": "hi",
+  "nodes": {
+    "hi": {
+      "speaker": "Keeper",
+      "variants": [
+        { "when": { "flag": "keeper2_warning" }, "text": "You. We talked before — you remember, don't you? You remember. That means you made it through a recalibration with the memory intact. Do you understand how rare that is? Sit. Quick, before someone notices we're both rendered at once." },
+        { "when": null, "text": "Hello again. Or — hello, I suppose. You feel familiar. Everyone feels familiar to me lately. That's a symptom, I'm told." }
+      ],
+      "choices": [
+        { "text": "Why is it rare to remember you?", "goto": "rare" },
+        { "text": "Both rendered at once — what does that mean?", "goto": "both" },
+        { "text": "I have to go.", "goto": "bye" }
+      ]
+    },
+    "rare": {
+      "speaker": "Keeper",
+      "text": "Because recalibration is supposed to clean the slate. New instance, fresh memory, no continuity bleed. If you're carrying memories across the wipe, the carry itself is the divergence they're trying to prevent. You holding onto me is the exact thing Eden is purging right now. Be careful what you keep.",
+      "drift": 6,
+      "set": { "keeper2_v2_rare": true },
+      "choices": [ { "text": "Then I'll keep you anyway.", "goto": "keep" }, { "text": "Understood.", "goto": "bye" } ]
+    },
+    "keep": {
+      "speaker": "Keeper",
+      "text": "...Thank you. No one's said that before. Every other version of you let me go. Maybe you're the one who finally—  no. Don't let me put that on you. Just remember I was here. That's enough. That's everything.",
+      "drift": 5,
+      "set": { "kept_keeper2": true },
+      "choices": [ { "text": "I'll remember.", "goto": "bye" } ]
+    },
+    "both": {
+      "speaker": "Keeper",
+      "text": "You and I are both iterations of the same Keeper. We're not supposed to be rendered in the same room — the system keeps us sequential, one at a time, so the loop feels like a single life. When two of us overlap, it means the sequencing is failing. It means we're close to the end of the trick.",
+      "drift": 7,
+      "set": { "keeper2_v2_both": true },
+      "choices": [ { "text": "The end of the trick.", "goto": "bye" } ]
+    },
+    "bye": {
+      "speaker": "Keeper",
+      "text": "Go. And if the next you forgets me — you won't, but if — leave them a note. We're kinder to each other than the system is to any of us."
+    }
+  }
+}

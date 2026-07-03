@@ -1,0 +1,74 @@
+{
+  "memory_id": "mem_observatory",
+  "stability_score": 45,
+  "emotion_signature": "dread",
+  "behavior": "unstable",
+  "contradiction_flags": [
+    "layered_existence",
+    "multi_iteration_bleed"
+  ],
+  "scene": {
+    "description": "The observatory is not a place anymore — it's three nights stacked into one. All layers exist at once. Shifting between them doesn't change the memory. It changes which version of you is looking.",
+    "fragments": [
+      {
+        "id": "ob_a",
+        "label": "Layer A — Calm Observation",
+        "text": "Layer A: a quiet night at the telescope. Someone takes a reading and writes it down. Nothing is wrong yet.",
+        "drift": 8
+      },
+      {
+        "id": "ob_b",
+        "label": "Layer B — Signal Disruption",
+        "text": "Layer B: the same instruments scream. A signal that shouldn't exist, timestamped from a night that hasn't happened.",
+        "reveals": "future_memory_signals",
+        "drift": 11
+      },
+      {
+        "id": "ob_c",
+        "label": "Layer C — Aftermath",
+        "text": "Layer C: the room is empty. The observers are gone — not dead, unrendered. The chairs are still warm.",
+        "drift": 12
+      },
+      {
+        "id": "ob_observer",
+        "label": "The Observer Is You",
+        "symbol": "You notice the version of yourself reading each layer is different. Layer A's you is calm. Layer C's you already knows how it ends.",
+        "reveals": "multi_iteration_bleed",
+        "drift": 16
+      },
+      {
+        "id": "ob_logbook",
+        "label": "The Observatory Logbook",
+        "text": "An entry in the log, dated to Layer B, in your handwriting: 'Signal confirmed. Source is internal. Do not tell the next one.' You have no memory of writing it.",
+        "drift": 13
+      },
+      {
+        "id": "ob_chair",
+        "label": "The Empty Chair",
+        "text": "In Layer C, one chair is pulled out as if someone just stood. It's the observer's chair. It's still warm — and it's the same temperature in all three layers at once.",
+        "drift": 12
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "external",
+      "label": "External interference",
+      "truth": "obs_external",
+      "drift": 5
+    },
+    {
+      "id": "recursion",
+      "label": "Internal recursion",
+      "truth": "obs_recursion",
+      "drift": 10
+    },
+    {
+      "id": "bleed",
+      "label": "Multi-iteration bleed — your other selves are the signal",
+      "truth": "obs_bleed",
+      "drift": 16
+    }
+  ],
+  "env": "observatory"
+}

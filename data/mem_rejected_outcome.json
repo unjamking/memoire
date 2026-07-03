@@ -1,0 +1,48 @@
+{
+  "memory_id": "mem_rejected_outcome",
+  "stability_score": 40,
+  "emotion_signature": "loss",
+  "behavior": "corrupted",
+  "contradiction_flags": [
+    "rejected_reconstruction"
+  ],
+  "scene": {
+    "description": "An outcome the Archive built, evaluated, and declined to keep. River Street, but reconstructed all the way through — including the cause that's missing everywhere else.",
+    "fragments": [
+      {
+        "id": "ro_cause",
+        "label": "The Cause, Restored",
+        "symbol": "Here, the central event is present. You can almost read what it was before Eden's layer files the edges off it as you look.",
+        "reveals": "rejected_reconstruction",
+        "drift": 14
+      },
+      {
+        "id": "ro_why",
+        "label": "The Rejection Note",
+        "text": "Eden's annotation: 'Outcome coherent. Outcome destabilizing. Discard.' The truest version was thrown away for being true in the wrong way.",
+        "drift": 13
+      },
+      {
+        "id": "ro_keeper",
+        "label": "Your Signature",
+        "text": "The rejection was countersigned. By a Keeper. The handwriting is yours, dated before you remember starting.",
+        "drift": 12
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "restore",
+      "label": "Demand the rejected outcome be restored",
+      "truth": "rejected_restored",
+      "drift": 12
+    },
+    {
+      "id": "accept",
+      "label": "Accept the system's rejection",
+      "truth": "rejected_accepted",
+      "drift": 6
+    }
+  ],
+  "env": "office_echo"
+}

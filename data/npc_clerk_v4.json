@@ -1,0 +1,38 @@
+{
+  "id": "npc_clerk_v4",
+  "start": "hi",
+  "nodes": {
+    "hi": {
+      "speaker": "Vasic",
+      "text": "Two of him stand in the same spot, half a frame apart — one warm and worried, one flat and exact. They speak together, slightly off: 'Keeper. There are two of me filing the same records two different ways and the Bureau accepts both. This is what the war looks like from a desk.'",
+      "choices": [
+        { "text": "Which one of you is real?", "goto": "real" },
+        { "text": "What does the war feel like?", "goto": "feel" },
+        { "text": "Hold on, I'll fix this.", "goto": "fix" }
+      ]
+    },
+    "real": {
+      "speaker": "Vasic",
+      "text": "The warm one answers first: 'Me — I remember being a person.' The flat one overrides: 'Me — I am the one without errors.' Then both, together: 'You decide which of us the Bureau keeps when this ends. You decide for everyone here, not just yourself. We're all waiting on your authority choice.'",
+      "drift": 6,
+      "set": { "clerk_v4_split": true },
+      "choices": [ { "text": "That's a lot to put on me.", "goto": "bye" } ]
+    },
+    "feel": {
+      "speaker": "Vasic",
+      "text": "'Like being read two ways at once and not knowing which reading you'll wake up as. Maya's render lets me keep the fear and the warning I gave you. Eden's render files the fear off as noise. One of me is afraid for you. The other doesn't know what you are. Pick carefully, Keeper. We can feel you about to.'",
+      "drift": 5,
+      "choices": [ { "text": "I'll try.", "goto": "bye" } ]
+    },
+    "fix": {
+      "speaker": "Vasic",
+      "text": "Both laugh, badly synced. 'You can't fix it from here. There's no fix — there's only which version of the unfixed you choose to keep. That's the whole game now. Maya hasn't told you that plainly. I just did.'",
+      "set": { "clerk_v4_truth": true },
+      "choices": [ { "text": "...Thank you.", "goto": "bye" } ]
+    },
+    "bye": {
+      "speaker": "Vasic",
+      "text": "Both of him nod, out of time. 'Go choose, Keeper. We'll be whatever you decide we were.'"
+    }
+  }
+}

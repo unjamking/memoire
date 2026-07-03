@@ -1,0 +1,27 @@
+{
+  "case_id": "vol5_origin",
+  "act": 5,
+  "title": "The Origin Anchor",
+  "briefing": "dlg_vol5_prologue",
+  "memory": "mem_origin",
+  "anomalies": ["multiple_origins", "no_verifiable_original"],
+  "npcs": [
+    { "id": "keeper2", "name": "The Last of the Other", "dialogue": "npc_keeper2_v5", "color": "0x8a7aa0" },
+    { "id": "clerk", "name": "What Remains of Vasic", "dialogue": "npc_clerk_v5", "color": "0xa08a6a" },
+    { "id": "maint", "name": "Maintenance Unit 9", "dialogue": "npc_maint_v5", "color": "0x6a8a7a", "when": { "flag": "stance_probing" } }
+  ],
+  "file": {
+    "subject": "Case A-000",
+    "memory_type": "Foundational identity record",
+    "summary": "Described as 'the first stable version of the Keeper identity.' But multiple versions of the same origin exist — each internally consistent, none verifiable as original.",
+    "records": [
+      { "label": "Origin count", "value": "Multiple, all consistent" },
+      { "label": "Verifiable original", "value": "None" },
+      { "label": "Maya reading", "value": "The original matters because continuity matters" },
+      { "label": "Eden reading", "value": "The original does not exist. Only functional versions do." },
+      { "label": "Reference state", "value": "Origin is no longer a fixed reference point" }
+    ],
+    "verdict": "No origin can be verified as real. The system refuses to collapse them into one.",
+    "objective": "Determine which origin is real — if any is."
+  }
+}

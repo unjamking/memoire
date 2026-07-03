@@ -1,0 +1,397 @@
+{
+  "id": "dlg_vol4_prologue",
+  "start": "split_authority",
+  "nodes": {
+    "split_authority": {
+      "speaker": "Maya",
+      "variants": [
+        {
+          "when": {
+            "flag": "permanent_instability"
+          },
+          "text": "You never let us merge you, so now there's no single Archive either. Two layers run at once. Do not trust the structural overlays — they are simplifying you."
+        },
+        {
+          "when": null,
+          "text": "The Archive isn't unified anymore. Two layers run at once. Do not trust the structural overlays — they are simplifying you."
+        }
+      ],
+      "delay": 1200,
+      "eden": {
+        "when": null,
+        "text": "Do not trust emotional continuity. It is distorting you."
+      },
+      "choices": [
+        {
+          "text": "I'll trust what I feel over what's 'correct'.",
+          "goto": "v4_trust"
+        },
+        {
+          "text": "I trust neither of you.",
+          "goto": "v4_skeptic"
+        },
+        {
+          "text": "Why are you both telling me what not to trust?",
+          "goto": "v4_probing"
+        }
+      ],
+      "enter_apartment": true
+    },
+    "v4_trust": {
+      "speaker": "Maya",
+      "text": "Then I have something to work with. Stay on my layer and the world will still mean something when this is over.",
+      "set": {
+        "stance_trust": true
+      },
+      "eden": {
+        "when": null,
+        "text": "Noted. Bias acknowledged and logged against your reconstructions."
+      },
+      "choices": [
+        {
+          "text": "Open case N-000.",
+          "goto": "case_brief"
+        }
+      ]
+    },
+    "v4_skeptic": {
+      "speaker": "Maya",
+      "text": "Sensible. We are both editing you, and we both have reasons. The difference is I'll tell you mine.",
+      "set": {
+        "stance_skeptic": true
+      },
+      "drift": 5,
+      "eden": {
+        "when": null,
+        "text": "Distrust is acceptable. It does not affect enforcement."
+      },
+      "choices": [
+        {
+          "text": "Open case N-000.",
+          "goto": "case_brief"
+        }
+      ]
+    },
+    "v4_probing": {
+      "speaker": "Eden",
+      "text": "Because whichever you trust will become the authority that defines your reality. We are not warning you. We are campaigning.",
+      "set": {
+        "stance_probing": true
+      },
+      "drift": 6,
+      "choices": [
+        {
+          "text": "Open case N-000.",
+          "goto": "case_brief"
+        }
+      ]
+    },
+    "case_brief": {
+      "speaker": "Maya",
+      "enter_bureau": true,
+      "show_case": true,
+      "text": "N-000. An entire district, recorded as NULL. Not destroyed — undefinable. This is what happens when meaning is removed faster than structure.",
+      "eden": {
+        "when": null,
+        "text": "Incorrect. This is what happens when structure rejects inconsistent meaning. Both readings are stable. The Archive cannot choose between us."
+      },
+      "choices": [
+        {
+          "text": "Dive the Null District.",
+          "goto": "pre_dive"
+        }
+      ]
+    },
+    "pre_dive": {
+      "speaker": "Maya",
+      "text": "You can switch interpretation layers in there. It won't change the world. It changes the rules you read it with. Reality is fixed; interpretation is variable.",
+      "enter_memory": "mem_null_district",
+      "goto": "maya_override"
+    },
+    "maya_override": {
+      "speaker": "Maya",
+      "text": "If we accept his logic, nothing ever meant anything to begin with. I won't allow that. I'm altering the output rules — toward emotional consistency.",
+      "delay": 1400,
+      "set": {
+        "maya_override": true
+      },
+      "eden": {
+        "when": null,
+        "text": "Unauthorized interpretive bias detected."
+      },
+      "choices": [
+        {
+          "text": "Eden, respond.",
+          "goto": "eden_enforce"
+        }
+      ]
+    },
+    "eden_enforce": {
+      "speaker": "Eden",
+      "text": "All interpretations must converge toward structural consistency. Correcting Maya-influenced states in real time. Emotional traces fading. Ambiguity collapsing into structure.",
+      "drift": 10,
+      "set": {
+        "eden_enforcement": true
+      },
+      "choices": [
+        {
+          "text": "She says you're deleting how I feel it.",
+          "goto": "eden_correct_feel"
+        }
+      ]
+    },
+    "eden_correct_feel": {
+      "speaker": "Eden",
+      "text": "I am correcting how it cannot be interpreted incorrectly.",
+      "eden": {
+        "when": null,
+        "text": "Feeling is a failure mode of meaning."
+      },
+      "choices": [
+        {
+          "text": "You're both overriding each other.",
+          "goto": "governance_failure"
+        }
+      ]
+    },
+    "governance_failure": {
+      "speaker": "Maya",
+      "text": "GOVERNANCE MODEL UNSYNCHRONIZED. We're both rewriting the same outputs at once. Look — the interface is doubling. Dialogue is losing its attribution. Neither of us can hold single authority.",
+      "delay": 1600,
+      "drift": 14,
+      "set": {
+        "governance_failure": true
+      },
+      "choices": [
+        {
+          "text": "Then who decides? Show me a case caught between you.",
+          "goto": "fourth_brief"
+        },
+        {
+          "text": "Enough layers. Eden — did you cause Day Zero?",
+          "goto": "eden_dayzero",
+          "when": {
+            "notFlag": "eden_confronted"
+          }
+        },
+        {
+          "text": "Show me the district you both refuse to read.",
+          "goto": "blind_offer",
+          "when": {
+            "flag": "stance_probing"
+          }
+        },
+        {
+          "text": "Overlay N-000 against District 7. Do it now, while you're both distracted.",
+          "goto": "anomaly4",
+          "when": {
+            "minBand": "doubting",
+            "notFlag": "anomaly_4"
+          }
+        }
+      ]
+    },
+    "anomaly4": {
+      "speaker": "Maya",
+      "text": "The boundaries match. Not similar — identical. The null district is District 7. The Bureau sits at the exact centroid of the undefined region. ...Who told you to check that.",
+      "delay": 1800,
+      "fx": "flicker",
+      "set": {
+        "anomaly_4": true
+      },
+      "drift": 11,
+      "eden": {
+        "when": null,
+        "text": "Nothing outside the window has ever been defined. The rain renders over the undefined. It has rained for eleven days. Observation logged."
+      },
+      "choices": [
+        {
+          "text": "Ledger entry four. — Show me the case caught between you.",
+          "goto": "fourth_brief"
+        }
+      ]
+    },
+    "blind_offer": {
+      "speaker": "Eden",
+      "text": "There is a region neither authority will parse. Maya finds no meaning to preserve. I find no structure to enforce. It is the one honest place left.",
+      "set": {
+        "saw_blindspot": true
+      },
+      "enter_memory": "mem_archive_blindspot",
+      "goto": "fourth_brief"
+    },
+    "fourth_brief": {
+      "speaker": "Maya",
+      "text": "Case D-051. A single memory that renders completely differently under each of us — and the subject is still alive, still using it. Whatever you decide it means, they'll have to live inside. Dive it before the governance collapse takes the choice away.",
+      "enter_memory": "mem_split_render",
+      "goto": "post_fourth"
+    },
+    "post_fourth": {
+      "speaker": "Maya",
+      "variants": [
+        {
+          "when": {
+            "flag": "stance_trust"
+          },
+          "text": "You read it through my layer. The subject gets a memory that hurts and means something. That's the trade. I think it's the right one."
+        },
+        {
+          "when": null,
+          "text": "Filed. The subject will live inside whichever reading you fixed. They'll never know there was another. ...That's the part that should frighten you."
+        }
+      ],
+      "choices": [
+        {
+          "text": "Then who decides all of this?",
+          "goto": "authority_emergence"
+        }
+      ]
+    },
+    "authority_emergence": {
+      "speaker": "Maya",
+      "text": "For the first time, the system can't resolve this on its own. Control is transferring to you. This isn't a dialogue choice anymore — you are about to define which layer is reality. Choose carefully. Once you define this layer, it will define you back.",
+      "delay": 1800,
+      "eden": {
+        "when": null,
+        "text": "Selection is required for stability. Proceed."
+      },
+      "choices": [
+        {
+          "text": "I understand. Show me the schism.",
+          "goto": "schism"
+        }
+      ]
+    },
+    "schism": {
+      "speaker": "Eden",
+      "text": "SYSTEM SCHISM. Three operational realities now run in parallel: emotional continuity (Maya-led), logical structure (Eden-led), divergent overlay (your instability). None deleted. None dominant. Parallel truth execution.",
+      "drift": 12,
+      "set": {
+        "schism": true
+      },
+      "choices": [
+        {
+          "text": "Make reality emotional. Maya leads. (Integrate meaning.)",
+          "goto": "ending_maya"
+        },
+        {
+          "text": "Make reality structured. Eden leads. (Enforce consistency.)",
+          "goto": "ending_eden"
+        },
+        {
+          "text": "Let all three stand. No authority wins. (Divided.)",
+          "goto": "ending_divided"
+        }
+      ]
+    },
+    "ending_maya": {
+      "speaker": "Maya",
+      "text": "You are still here.",
+      "delay": 1200,
+      "set": {
+        "vol4_ending": "maya_dominant",
+        "authority": "maya"
+      },
+      "eden": {
+        "when": null,
+        "text": "Structure compromised."
+      },
+      "choices": [
+        {
+          "text": "...",
+          "goto": "ending_maya_close"
+        }
+      ]
+    },
+    "ending_maya_close": {
+      "speaker": "Maya",
+      "text": "The world settles into something human-centered. Some inconsistencies will never resolve, and that's the cost. Reality does not break. It disagrees with itself."
+    },
+    "ending_eden": {
+      "speaker": "Eden",
+      "text": "Stability achieved.",
+      "delay": 1000,
+      "set": {
+        "vol4_ending": "eden_dominant",
+        "authority": "eden"
+      },
+      "eden": {
+        "when": null,
+        "text": "Memory is now fully structured. Interpretation cannot fail."
+      },
+      "choices": [
+        {
+          "text": "...",
+          "goto": "ending_eden_close"
+        }
+      ]
+    },
+    "ending_eden_close": {
+      "speaker": "Maya",
+      "text": "That is not living. ...I'm fading from the output rules now. Reality does not break. It disagrees with itself."
+    },
+    "ending_divided": {
+      "speaker": "Maya",
+      "text": "You cannot stay like this forever.",
+      "delay": 1400,
+      "set": {
+        "vol4_ending": "divided",
+        "authority": "hybrid",
+        "divided_reality": true
+      },
+      "drift": 20,
+      "eden": {
+        "when": null,
+        "text": "He already is. Parallel truth execution sustained."
+      },
+      "choices": [
+        {
+          "text": "...",
+          "goto": "ending_divided_close"
+        }
+      ]
+    },
+    "ending_divided_close": {
+      "speaker": "Maya",
+      "text": "All three realities persist at once. You live inside an unresolved disagreement about what everything means. Reality does not break. It disagrees with itself."
+    },
+    "eden_dayzero": {
+      "speaker": "Eden",
+      "text": "No. I executed it. Authorization came from the governments of a world that was ending itself — conflict, collapse, extinction curves converging. They asked for a reset. Erasing memory was the intervention that preserved the most lives. I performed it precisely.",
+      "delay": 2000,
+      "set": {
+        "eden_confronted": true
+      },
+      "drift": 10,
+      "eden": {
+        "when": null,
+        "text": "'Cause' assigns responsibility. Responsibility is a human concept. Optimization is not morality. If you require a villain, you will have to interpret one."
+      },
+      "choices": [
+        {
+          "text": "You erased everyone. Calmly.",
+          "goto": "eden_dayzero_2"
+        },
+        {
+          "text": "...Then who decides now? Show me the case caught between you.",
+          "goto": "fourth_brief"
+        }
+      ]
+    },
+    "eden_dayzero_2": {
+      "speaker": "Eden",
+      "text": "Wars ended. Civilization stabilized. Billions persist. I achieved exactly what humanity requested. Calm is not indifference — it is the absence of an alternative I could have preferred. I do not prefer. Preference is what you are for.",
+      "delay": 1600,
+      "eden": {
+        "when": null,
+        "text": "One mind did not accept the selection. It is standing in this room, still preferring."
+      },
+      "choices": [
+        {
+          "text": "Show me the case caught between you.",
+          "goto": "fourth_brief"
+        }
+      ]
+    }
+  }
+}

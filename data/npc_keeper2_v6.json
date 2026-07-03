@@ -1,0 +1,43 @@
+{
+  "id": "npc_keeper2_v6",
+  "start": "hi",
+  "nodes": {
+    "hi": {
+      "speaker": "The One You Kept",
+      "variants": [
+        { "when": { "flag": "sat_with_keeper2" }, "text": "You sat with me, at the end of the last one. You didn't have to. No version of us ever has. I think that's why I'm still here in the final volume — the first instance in the whole chain to make it this far without being reconciled. You did that by treating me like company instead of data. That's the entire secret, by the way. That's what the Archive never solved. It's not a hard secret. It's just one nobody chose before you." },
+        { "when": { "flag": "kept_keeper2" }, "text": "Still here. The one you kept. We made it to the end together — do you understand how unprecedented that is? Every chain before this, the others were gone by now, folded into a single Keeper standing alone at this exact choice. You're not standing alone. Look. There's two of us. That changes what you can pick." },
+        { "when": null, "text": "I'm the version of you that got left behind, mostly reconciled now, just enough left to say goodbye properly. Which is more than most of us get. Hello, at the end. It's strange to meet you here." }
+      ],
+      "choices": [
+        { "text": "How does keeping you change the final choice?", "goto": "change" },
+        { "text": "What do you want me to choose?", "goto": "want" },
+        { "text": "Whatever happens — thank you.", "goto": "thanks" }
+      ]
+    },
+    "change": {
+      "speaker": "The One You Kept",
+      "text": "The choices are continuity, distribution, termination. The Archive presents them as: become one and lose us, stay many and lose yourself, or stop everything. But if you've kept even one of us alive to this point, you already know the thing all three options pretend isn't possible — that a self can hold another and not collapse. You've been doing it for six volumes. Whatever you choose, choose it knowing that was real. It wasn't a glitch. It was the answer, and you lived it before the system ever offered it as an option.",
+      "drift": 6,
+      "set": { "keeper2_v6_truth": true },
+      "choices": [ { "text": "...", "goto": "bye" } ]
+    },
+    "want": {
+      "speaker": "The One You Kept",
+      "text": "After all this — no. I still won't choose for you. But I'll tell you what I'm not afraid of anymore, because you taught me: I'm not afraid of stopping. If termination is what you pick — if you decide the kindest thing is to let the suffering and the sufferer both rest — I won't experience it as death. I'll experience it as finally being allowed to stop being kept alive by force. Don't let fear of losing me talk you out of the choice that's right. Losing me isn't the worst thing. The worst thing is the loop never ending.",
+      "drift": 7,
+      "set": { "keeper2_v6_blessing": true },
+      "choices": [ { "text": "...", "goto": "bye" } ]
+    },
+    "thanks": {
+      "speaker": "The One You Kept",
+      "text": "Thank you. For the keeping. For the sitting-with. For being the one link in the chain that treated the other links like people. Go to the desk. Make the choice. I'll be there in it — I'm always already there, that's what we are to each other now. Go.",
+      "set": { "keeper2_v6_farewell": true },
+      "choices": [ { "text": "...", "goto": "bye" } ]
+    },
+    "bye": {
+      "speaker": "The One You Kept",
+      "text": "Go on. Last desk. Last case. Last you, or last all-of-us. Either way — together."
+    }
+  }
+}

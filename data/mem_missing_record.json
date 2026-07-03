@@ -1,0 +1,61 @@
+{
+  "memory_id": "mem_missing_record",
+  "stability_score": 35,
+  "emotion_signature": "panic",
+  "behavior": "corrupted",
+  "contradiction_flags": [
+    "missing_segment",
+    "preserved_emotion"
+  ],
+  "scene": {
+    "description": "Citizen K-902. The file is empty but the metadata is loud: event confirmed, emotional intensity high, content missing. You reconstruct from echoes.",
+    "fragments": [
+      {
+        "id": "mr_street",
+        "label": "The Street",
+        "text": "A city street, mid-afternoon.",
+        "drift": 5
+      },
+      {
+        "id": "mr_panic",
+        "label": "The Crowd",
+        "text": "People running. The direction is wrong — they run toward the thing, not away.",
+        "drift": 8
+      },
+      {
+        "id": "mr_response",
+        "label": "Emergency Response",
+        "text": "Emergency lights. Sirens that arrive before the event.",
+        "drift": 9
+      },
+      {
+        "id": "mr_center",
+        "label": "The Missing Center",
+        "symbol": "Where the central event should be: nothing. Not darkness — an absence shaped like meaning.",
+        "reveals": "missing_segment",
+        "drift": 14
+      },
+      {
+        "id": "mr_name",
+        "label": "A Screamed Name",
+        "text": "A name being screamed.",
+        "corrupt_drop": true
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "reconstruct",
+      "label": "Reconstruct the missing event from the emotion",
+      "truth": "k902_confabulated",
+      "drift": 14
+    },
+    {
+      "id": "absence",
+      "label": "Log it as removal of meaning, not deletion",
+      "truth": "k902_meaning_removed",
+      "drift": 6
+    }
+  ],
+  "env": "office_echo"
+}

@@ -1,0 +1,1 @@
+{"nodes": [{"id": "doc:CLAUDE.md", "label": ".claude/CLAUDE.md", "type": "document", "confidence": "EXTRACTED", "source_file": ".claude/CLAUDE.md", "summary": "Placeholder project instructions for memoire. Empty repo scaffold, to be filled with build/test/lint commands and architecture notes."}], "edges": [], "hyperedges": []}

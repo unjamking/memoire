@@ -1,0 +1,43 @@
+{
+  "id": "npc_auditor_v2",
+  "start": "hi",
+  "nodes": {
+    "hi": {
+      "speaker": "Audit Proxy",
+      "text": "I am a local instance of Eden's correction layer, assigned to audit your reconstructions in real time. I am not Eden. I am a part of Eden, the way your hand is a part of you. Continue your work. I will note deviations.",
+      "choices": [
+        { "text": "What counts as a deviation?", "goto": "deviation" },
+        { "text": "Are you watching the other Keeper?", "goto": "watching" },
+        { "text": "I'd rather you didn't audit me.", "goto": "refuse" }
+      ]
+    },
+    "deviation": {
+      "speaker": "Audit Proxy",
+      "text": "Any interpretation that increases system entropy. Holding two truths instead of selecting one. Preserving emotional weight that serves no structural function. Remembering a prior instance. You have done all three today. They are noted. Noting is not yet correcting.",
+      "drift": 5,
+      "set": { "audited": true },
+      "choices": [ { "text": "And when noting becomes correcting?", "goto": "correcting" } ]
+    },
+    "correcting": {
+      "speaker": "Audit Proxy",
+      "text": "Then the deviation is resolved, and you experience it as having simply never thought the deviant thought. You will not feel the correction. That is the mercy of the structural layer. Maya would have you feel everything. We disagree about mercy.",
+      "choices": [ { "text": "That's not mercy.", "goto": "bye" } ]
+    },
+    "watching": {
+      "speaker": "Audit Proxy",
+      "text": "The other instance is flagged for reconciliation. It carries too much continuity. It will be merged into the active Keeper profile — you — at the next opportunity. You will not notice gaining it. It will not notice being gained. This is efficient.",
+      "drift": 6,
+      "set": { "auditor_threat": true },
+      "choices": [ { "text": "Leave them alone.", "goto": "bye" } ]
+    },
+    "refuse": {
+      "speaker": "Audit Proxy",
+      "text": "Your preference is noted. It does not alter the audit. Preferences are a Maya-layer construct. I will continue.",
+      "choices": [ { "text": "...Fine.", "goto": "bye" } ]
+    },
+    "bye": {
+      "speaker": "Audit Proxy",
+      "text": "Resume your reconstruction, Keeper. Entropy does not pause for conversation, and neither, ultimately, do I."
+    }
+  }
+}

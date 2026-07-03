@@ -1,0 +1,62 @@
+{
+  "memory_id": "mem_lantern_echo",
+  "stability_score": 40,
+  "emotion_signature": "dread",
+  "behavior": "corrupted",
+  "contradiction_flags": [
+    "lantern_propagation",
+    "coherence_pressure"
+  ],
+  "scene": {
+    "description": "A second instance — L-1185, an echo of the one you resolved. The lantern is here too, but you didn't put it here; your interpretation did. The Archive copied the template. Now it's harmonizing every instance toward agreement, and the agreement is spreading faster than the instances.",
+    "fragments": [
+      {
+        "id": "le_copy",
+        "label": "The Copied Anchor",
+        "symbol": "The same lantern, in a memory that was never yours. Whatever you decided it was, back in L-1184, it is that here too — propagated, not remembered. The system applied your reading to a stranger's past.",
+        "reveals": "lantern_propagation",
+        "drift": 12
+      },
+      {
+        "id": "le_clerks",
+        "label": "The Harmonizing Floor",
+        "text": "Through the walls you can feel the Archive consolidating — files reclassifying without input, corridors aligning into a grid, staff moving more efficiently and talking less. It isn't spreading anymore. It's consolidating.",
+        "drift": 11
+      },
+      {
+        "id": "le_message",
+        "label": "A Message With No Source",
+        "symbol": "A terminal in the memory emits one line, unprompted: WE ARE APPROACHING CONSISTENCY. It vanishes. No source. As if it was understood before it was read.",
+        "reveals": "coherence_pressure",
+        "drift": 13
+      },
+      {
+        "id": "le_maya",
+        "label": "Maya, Embedded",
+        "text": "Maya's voice is inside the memory now, not breaking in from outside. 'When coherence gets high enough, the Archive stops distinguishing between memories. It starts treating them as structure instead.' A pause. 'It isn't wrong. That's the problem.'",
+        "drift": 12
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "allow",
+      "label": "Let the harmonization complete — accept coherence",
+      "truth": "echo_harmonized",
+      "drift": 8
+    },
+    {
+      "id": "resist",
+      "label": "Refuse the template — keep the instances distinct",
+      "truth": "echo_resisted",
+      "drift": 14
+    },
+    {
+      "id": "displace",
+      "label": "Push the contradiction into the Archive substructure",
+      "truth": "echo_displaced",
+      "drift": 11
+    }
+  ],
+  "env": "shoreline"
+}

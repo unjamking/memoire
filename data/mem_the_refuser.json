@@ -1,0 +1,48 @@
+{
+  "memory_id": "mem_the_refuser",
+  "stability_score": 22,
+  "emotion_signature": "dread",
+  "behavior": "corrupted",
+  "contradiction_flags": [
+    "refused_to_choose"
+  ],
+  "scene": {
+    "description": "An iteration that reached this final choice and refused to make it at all. Not continuity, not distribution, not termination — simply no. The Archive's record of what that did to them.",
+    "fragments": [
+      {
+        "id": "rf_pause",
+        "label": "The Refusal",
+        "text": "They stood at the protocol and said nothing. Chose nothing. Held the no like it was a fourth option. For a moment it almost was.",
+        "reveals": "refused_to_choose",
+        "drift": 12
+      },
+      {
+        "id": "rf_loop",
+        "label": "What Refusal Did",
+        "text": "With no allocation made, the system defaulted: it ran the choice again with a fresh iteration. The refuser didn't escape the loop. They became the reason there was a next loop.",
+        "drift": 14
+      },
+      {
+        "id": "rf_you",
+        "label": "Recognition",
+        "symbol": "The refuser looks exactly like the version of you reading this. Refusing was not a way out. It was how the chain got one more link. It was how you got here.",
+        "drift": 16
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "warned",
+      "label": "Take the warning — refusal only feeds the loop",
+      "truth": "refuser_understood",
+      "drift": 8
+    },
+    {
+      "id": "honor",
+      "label": "Honor the refusal anyway — some things shouldn't be chosen",
+      "truth": "refuser_honored",
+      "drift": 14
+    }
+  ],
+  "env": "office_echo"
+}

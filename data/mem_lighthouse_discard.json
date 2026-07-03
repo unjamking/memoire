@@ -1,0 +1,48 @@
+{
+  "memory_id": "mem_lighthouse_discard",
+  "stability_score": 50,
+  "emotion_signature": "longing",
+  "behavior": "corrupted",
+  "contradiction_flags": [
+    "discarded_fragments"
+  ],
+  "scene": {
+    "description": "The off-record layer — the pieces the Archive discarded before filing. Maya stands closer here than usual. These were never meant to be reviewed.",
+    "fragments": [
+      {
+        "id": "dc_keeper",
+        "label": "A Note in Your Hand",
+        "symbol": "A note in your own handwriting that you don't remember writing: 'the lighthouse is a test — don't tell her you know.'",
+        "reveals": "discarded_fragments",
+        "drift": 14
+      },
+      {
+        "id": "dc_maya",
+        "label": "Maya, Watching",
+        "text": "Maya is rendered into this memory too, standing on the shore. She isn't supposed to be inside a subject's reconstruction. She doesn't acknowledge it.",
+        "drift": 12
+      },
+      {
+        "id": "dc_dupe",
+        "label": "A Second You",
+        "text": "Faint, at the cliff edge: another Keeper, looking out at the same impossible light. They were here before you. The Archive cut them from the record.",
+        "drift": 13
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "report",
+      "label": "Report the discarded note to Maya",
+      "truth": "discard_reported",
+      "drift": 6
+    },
+    {
+      "id": "hide",
+      "label": "Say nothing — keep what you saw",
+      "truth": "discard_hidden",
+      "drift": 12
+    }
+  ],
+  "env": "shoreline"
+}

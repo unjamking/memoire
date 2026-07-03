@@ -1,0 +1,61 @@
+{
+  "memory_id": "mem_recurring_dream",
+  "stability_score": 55,
+  "emotion_signature": "anxiety",
+  "behavior": "unstable",
+  "contradiction_flags": [
+    "dream_or_memory"
+  ],
+  "scene": {
+    "description": "Citizen R-440's recurring dream, filed as memory. A corridor in the Bureau that doesn't exist on any floor plan. The subject walks it every night. So, apparently, do you.",
+    "fragments": [
+      {
+        "id": "rd_corridor",
+        "label": "The Corridor",
+        "text": "A hallway longer than the building that contains it. Doors on both sides, all unnumbered, all warm to the touch.",
+        "drift": 8
+      },
+      {
+        "id": "rd_repeat",
+        "label": "The Repetition",
+        "text": "The subject has had this dream 1,114 times. The count matches a case number you handled. You don't remember handling it.",
+        "reveals": "dream_or_memory",
+        "drift": 11
+      },
+      {
+        "id": "rd_door",
+        "label": "The One Open Door",
+        "text": "One door stands open. Inside is the dive you just left — the missing-record street, frozen mid-panic. The dream contains your last case.",
+        "drift": 12
+      },
+      {
+        "id": "rd_mirror",
+        "label": "The End of the Hall",
+        "symbol": "At the corridor's end, where a window should be: a reflective surface showing the room you're physically sitting in right now, examining this memory.",
+        "reveals": "observer_in_memory",
+        "drift": 14
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "as_dream",
+      "label": "File it as a dream — it isn't real",
+      "truth": "r440_dream",
+      "drift": 6
+    },
+    {
+      "id": "as_memory",
+      "label": "File it as memory — it happened",
+      "truth": "r440_memory",
+      "drift": 10
+    },
+    {
+      "id": "as_both",
+      "label": "Refuse the distinction — dream and record are the same data",
+      "truth": "r440_both",
+      "drift": 14
+    }
+  ],
+  "env": "observatory"
+}

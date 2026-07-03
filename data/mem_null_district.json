@@ -1,0 +1,75 @@
+{
+  "memory_id": "mem_null_district",
+  "stability_score": 40,
+  "emotion_signature": "loss",
+  "behavior": "unstable",
+  "contradiction_flags": [
+    "null_state",
+    "interpretation_authority_split"
+  ],
+  "scene": {
+    "description": "The Null District. Read it one way and it's an abandoned city full of emotional traces. Read it the other and it's empty geometry with a corrected absence. The place doesn't change — only the rules you use to read it do.",
+    "fragments": [
+      {
+        "id": "nd_maya_city",
+        "label": "Maya Reading — Traces",
+        "text": "Through Maya's layer: homes mid-life. A kettle. A door left open. Every object still means something to someone.",
+        "reveals": "maya_layer",
+        "drift": 9
+      },
+      {
+        "id": "nd_eden_geo",
+        "label": "Eden Reading — Structure",
+        "text": "Through Eden's layer: clean geometry, the absence neatly corrected. No meaning to misread because no meaning is rendered.",
+        "reveals": "eden_layer",
+        "drift": 10
+      },
+      {
+        "id": "nd_overlay",
+        "label": "Both At Once",
+        "text": "Hold both layers together and they fight — emotional traces flickering over corrected geometry. The reconstruction can't decide which rules to obey.",
+        "drift": 14
+      },
+      {
+        "id": "nd_null",
+        "label": "The Null Core",
+        "symbol": "At the district's center: NULL. Not empty — undefinable. A place that has no interpretation state at all, waiting for one to be assigned.",
+        "reveals": "null_state",
+        "drift": 16
+      },
+      {
+        "id": "nd_resident",
+        "label": "The Last Resident",
+        "text": "One figure stands in the null, unbothered by being undefinable. They turn to you: 'It's quieter when nothing has to mean anything. You'll see.' You don't recognize them. You almost do.",
+        "drift": 13
+      },
+      {
+        "id": "nd_sign",
+        "label": "The District Sign",
+        "text": "A street sign at the edge, half-corrected by Eden, half-mourned by Maya. The district's name flickers between a word and a coordinate. It was someone's home and it was a data address. It was both.",
+        "drift": 11
+      }
+    ]
+  },
+  "interpretations": [
+    {
+      "id": "as_meaning",
+      "label": "NULL is meaning removed faster than structure (Maya)",
+      "truth": "null_meaning_lost",
+      "drift": 8
+    },
+    {
+      "id": "as_structure",
+      "label": "NULL is structure rejecting bad meaning (Eden)",
+      "truth": "null_structure_purge",
+      "drift": 8
+    },
+    {
+      "id": "as_undefined",
+      "label": "NULL is reality awaiting an authority to define it",
+      "truth": "null_undefined",
+      "drift": 16
+    }
+  ],
+  "env": "voidspace"
+}

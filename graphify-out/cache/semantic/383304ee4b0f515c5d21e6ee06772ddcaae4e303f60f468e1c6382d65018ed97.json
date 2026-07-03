@@ -1,0 +1,1 @@
+{"nodes": [{"id": "doc:game-developer.md", "label": "game-developer agent", "type": "document", "confidence": "EXTRACTED", "source_file": ".claude/agents/game-developer.md", "summary": "Claude Code subagent spec: senior game developer for engine architecture, graphics, gameplay systems, multiplayer networking, cross-platform optimization."}], "edges": [], "hyperedges": []}

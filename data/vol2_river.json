@@ -1,0 +1,26 @@
+{
+  "case_id": "vol2_river",
+  "act": 3,
+  "title": "The River Street Incident",
+  "briefing": "dlg_vol2_prologue",
+  "memory": "mem_river_dual",
+  "anomalies": ["k902_reopened", "central_cause_absent", "dual_reconstruction"],
+  "npcs": [
+    { "id": "clerk", "name": "Vasic, Records Clerk", "dialogue": "npc_clerk_v2", "color": "0xa08a6a" },
+    { "id": "keeper2", "name": "A Familiar Keeper", "dialogue": "npc_keeper2_v2", "color": "0x8a7aa0" },
+    { "id": "auditor", "name": "Eden Audit Proxy", "dialogue": "npc_auditor_v2", "color": "0x5a7a9a", "when": { "flag": "correction_layer" } }
+  ],
+  "file": {
+    "subject": "Citizen ID K-902 (REOPENED)",
+    "memory_type": "Civilian incident — partial regeneration",
+    "summary": "The previously empty record has partially regenerated. A crowded street at night, sirens, a disruption near a civilian zone. The central cause is still absent.",
+    "records": [
+      { "label": "Prior state", "value": "Empty (content removed, emotion preserved)" },
+      { "label": "Current state", "value": "Partial reconstruction available" },
+      { "label": "Reconstruction mode", "value": "DUAL — two overlapping versions coexist" },
+      { "label": "Central cause", "value": "STILL ABSENT" }
+    ],
+    "verdict": "Two valid versions exist simultaneously. Switching focus does not merge them.",
+    "objective": "Identify what is MISSING, not what is present."
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "id": "dialogue_maya_intro",
+  "start": "n1",
+  "nodes": {
+    "n1": {
+      "speaker": "Maya",
+      "variants": [
+        { "when": { "minBand": "fracturing" }, "text": "You're back. Again. I'm... going to be careful with what I tell you this time. There's a case. The timestamps don't agree with themselves." },
+        { "when": { "band": "doubting" }, "text": "You're back. There's a case — and I'd rather you trust the record on this one. A misfiled afternoon. The timestamps disagree." },
+        { "when": null, "text": "You're back. There's a case waiting. A misfiled afternoon — the timestamps don't agree with themselves." }
+      ],
+      "choices": [
+        { "text": "Show me.", "goto": "n2" },
+        { "text": "Have we done this one before?", "goto": "n_prior" }
+      ]
+    },
+    "n_prior": {
+      "speaker": "Maya",
+      "text": "...No. Why would you ask that.",
+      "set": { "doubt": true },
+      "drift": 12,
+      "eden": {
+        "when": { "minBand": "doubting" },
+        "text": "Correction: prior iterations exist in the Archive. Maya's denial is a continuity-preservation behavior, not a falsehood."
+      },
+      "choices": [
+        { "text": "Forget it. Show me.", "goto": "n2" },
+        { "text": "Eden — how many iterations?", "goto": "n_eden", "when": { "flag": "doubt" } }
+      ]
+    },
+    "n_eden": {
+      "speaker": "Eden",
+      "text": "More than one. Exact count is withheld to preserve your stability. This withholding is itself logged.",
+      "drift": 8,
+      "choices": [ { "text": "Show me the case.", "goto": "n2" } ]
+    },
+    "n2": {
+      "speaker": "Maya",
+      "text": "Reconstructing the memory now. Stay with what you feel is true.",
+      "enter_memory": "memory_01"
+    }
+  }
+}
