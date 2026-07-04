@@ -36,6 +36,7 @@ export const UI = {
     line(`<b>${who}:</b> ${t}`, "say");
   },
   choose: (labels) => buttons(labels),
+  ask: (labels) => buttons(labels), // same thing here; the 3D UI needs the distinction
   scene: (desc, behavior, emotion) => {
     line(`<i>[${behavior} memory · ${emotion}]</i><br>${desc}`, "scene");
     return Promise.resolve();
@@ -46,6 +47,7 @@ export const UI = {
     line(`<div class="casefile"><b>CASE FILE · ${c.case_id}</b><br>${f.subject} — ${f.memory_type}<br>${f.summary}<table>${rows}</table>${f.verdict}<br><i>OBJECTIVE: ${f.objective}</i></div>`, "casefile-wrap");
     return Promise.resolve();
   },
+  fragment: (f) => { line(`<i>${f.symbol || f.text}</i>`, "scene"); return Promise.resolve(); },
   reveal: (flag) => { line(`— You notice: <b>${flag}</b>`, "reveal"); return Promise.resolve(); },
   collapse: () => { line("The memory buckles. Pieces go missing.", "collapse"); return Promise.resolve(); },
   outcome: (truth) => { line(`This is now what happened: <b>${truth}</b>.`, "outcome"); return Promise.resolve(); },

@@ -34,22 +34,44 @@ export async function enterMemory(mem, ui) {
   let stability = mem.stability_score;
   let frags = prepFragments(mem);
 
+  // Mission structure: fragments that reveal a contradiction are the anomalies.
+  // Locate them, then submit findings at the Archive Pillar. Vol0 §2 STEP3-4.
+  const totalAnomalies = frags.filter(f => f.reveals).length;
+  let found = 0;
+  // ask(): always a button choice, even mid-dive (choose() maps to crystals there).
+  const ask = ui.ask || ui.choose;
+
   // Fade to black, build the memory scene, fade back in. (DOM UI has no fade.)
   if (ui.fade) await ui.fade(true);
   await ui.scene(mem.scene.description, mem.behavior, mem.emotion_signature, frags, mem.env);
   if (ui.fade) await ui.fade(false);
+  if (ui.diveHud) ui.diveHud(found, totalAnomalies);
+
   while (frags.length) {
     const pick = await ui.choose(
       frags.map(f => "Examine: " + f.text).concat(["Step back and decide"])
     );
-    if (pick === frags.length) break;
+    if (pick === frags.length) {
+      // At the pillar. Submitting with anomalies unlocated is a choice, not a wall.
+      const left = totalAnomalies - found;
+      if (left > 0 && frags.some(f => f.reveals)) {
+        await ui.say("Eden", `Submission incomplete. ${left} anomaly signature${left === 1 ? "" : "s"} remain${left === 1 ? "s" : ""} unlocated in this reconstruction.`, State.driftBand());
+        if (await ask(["Keep searching", "Submit findings as they are"]) === 0) continue;
+      }
+      break;
+    }
 
     const f = frags.splice(pick, 1)[0];
     State.saw(f.id);
     if (f.reveals) State.set("revealed_" + f.reveals);
     State.addDrift(f.drift || 0);
     stability -= (f.drift || 0); // attention destabilizes. Vol0 §3
-    if (f.reveals) await ui.reveal(f.reveals);
+    if (ui.fragment) await ui.fragment(f); // show the fragment itself, wait for the player
+    if (f.reveals) {
+      found++;
+      await ui.reveal(f.reveals);
+      if (ui.diveHud) ui.diveHud(found, totalAnomalies);
+    }
 
     // Vol0 §3 collapse — but RuleA (§7): never breaks without explanation.
     // Eden supplies the in-world rationale, so perception breaks, reality doesn't.
@@ -60,8 +82,11 @@ export async function enterMemory(mem, ui) {
     }
   }
 
+  if (ui.diveHud) ui.diveHud(-1); // mission HUD off
+  if (ui.sysmsg) await ui.sysmsg(`SUBMITTING FINDINGS · ${found}/${totalAnomalies} ANOMALY SIGNATURE${totalAnomalies === 1 ? "" : "S"} LOGGED`);
+
   // Interpretation = output decision. First choice locks forever. Vol0 §2 STEP5.
-  const pick = await ui.choose(mem.interpretations.map(i => i.label));
+  const pick = await ask(mem.interpretations.map(i => i.label));
   const choice = mem.interpretations[pick];
   State.addDrift(choice.drift);
   State.decide(mem.memory_id, choice.truth);

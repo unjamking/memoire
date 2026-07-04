@@ -55,6 +55,15 @@
   .who-tag { display:block; color:#e8d3a8; font-size:14px; letter-spacing:.22em;
     text-transform:uppercase; margin-bottom:7px;
     text-shadow:0 2px 8px rgba(0,0,0,.95); animation:fadeIn .5s var(--ease-soft); }
+  /* speaker portrait — Higgsfield keyart above the name tag */
+  .who-port { width:88px; height:88px; border-radius:50%; object-fit:cover; margin:0 auto 10px;
+    display:block; border:1px solid rgba(232,211,168,.55);
+    box-shadow:0 4px 24px rgba(0,0,0,.8), 0 0 18px rgba(232,211,168,.12);
+    animation:fadeIn .5s var(--ease-soft); }
+  .who-port.degraded { filter:grayscale(.9) contrast(1.15) brightness(.8); }
+  /* case-file keyart header — full-bleed at the top of the modal */
+  #center-modal .cf-art { width:calc(100% + 52px); margin:-22px -26px 14px; display:block;
+    border-bottom:1px solid #2a3a4a; }
   #overlay-log p { animation:riseIn .5s var(--ease-out) both; }
   .say { color:#f4f5f8; font-size:23px; line-height:1.5; font-weight:400; }
   .banner { color:#bfd4e4; font-size:18px; letter-spacing:.06em; }
@@ -141,9 +150,10 @@
   #esc-hint { position:fixed; top:8px; right:8px; z-index:10; font-size:11px; letter-spacing:.1em;
     color:#667; background:#10141caa; border:1px solid #2a3340; padding:4px 9px; pointer-events:none; }
 
-  /* title / volume-select screen — frosted glass over the live 3D Bureau */
+  /* title / volume-select screen — Higgsfield archive keyart under the vignette */
   #title { position:fixed; inset:0; z-index:30;
-    background:radial-gradient(ellipse at center, rgba(8,10,16,.45) 0%, rgba(6,7,11,.88) 100%);
+    background:radial-gradient(ellipse at center, rgba(8,10,16,.45) 0%, rgba(6,7,11,.88) 100%),
+      url("assets/higgsfield/archive.png") center/cover no-repeat #0b0b0f;
     backdrop-filter:blur(3px) saturate(.8);
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; padding:30px; }
   #title h1 { font-weight:400; letter-spacing:.42em; font-size:clamp(34px,8vw,72px);

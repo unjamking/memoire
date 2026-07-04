@@ -91,10 +91,26 @@ const $ = (id) => document.getElementById(id);
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
 // ---------- centered dialogue panel ----------
+// Higgsfield keyart portraits, matched on the speaker tag. Degraded variants
+// (late-game Vasic echoes) render washed out. Maya's slot fills when her
+// portrait is generated.
+const PORTRAITS = [
+  [/what remains of vasic|vasic \(\?\)/i, "assets/higgsfield/vasic.png", true],
+  [/vasic/i, "assets/higgsfield/vasic.png", false],
+  [/eden|the archive/i, "assets/higgsfield/eden.png", false],
+];
+function portraitFor(who) {
+  if (!who) return "";
+  for (const [re, src, degraded] of PORTRAITS)
+    if (re.test(who)) return `<img class="who-port${degraded ? " degraded" : ""}" src="${src}" alt="">`;
+  return "";
+}
+
 // One message at a time — replace, don't pile up. `who` renders as a name tag.
 function overlayShow(html, cls = "", who = null) {
   const log = $("overlay-log");
   log.innerHTML =
+    portraitFor(who) +
     (who ? `<span class="who-tag">${who}</span>` : "") +
     `<p class="${cls}">${html}</p>`;
   $("overlay").style.display = "flex";
@@ -108,10 +124,10 @@ function overlayLine(html, cls = "") { overlayShow(html, cls, null); }
 //     scaled to its length, or immediately on click / Enter / Space / E.
 // No more [ Continue ] button on every line — pacing over ceremony.
 let menuPaused = false; // Esc menu open: freeze typing + auto-advance
-function typeLine(text, cls, who, wait = true, extraHold = 0) {
+function typeLine(text, cls, who, wait = true, extraHold = 0, manual = false) {
   const log = $("overlay-log");
   $("overlay").style.display = "flex";
-  log.innerHTML = (who ? `<span class="who-tag">${who}</span>` : "") + `<p class="${cls}"></p>`;
+  log.innerHTML = portraitFor(who) + (who ? `<span class="who-tag">${who}</span>` : "") + `<p class="${cls}"></p>`;
   const p = log.querySelector("p");
   const box = $("overlay-choices");
   box.innerHTML = "";
@@ -149,6 +165,9 @@ function typeLine(text, cls, who, wait = true, extraHold = 0) {
       addEventListener("keydown", keyAdvance, true);
       addEventListener("pointerdown", clickAdvance, true);
 
+      // Manual lines never auto-advance — the player dismisses them (examined
+      // fragments: "I need to be able to see it").
+      if (manual) return;
       // Reading pause: ~26ms/char, clamped. Banners get extraHold.
       const delay = Math.min(2800, 600 + text.length * 26) + extraHold;
       const tryGo = () => { if (menuPaused) { autoTimer = setTimeout(tryGo, 250); return; } go(); };
@@ -300,22 +319,15 @@ function boardTex() {
     }
   }, 512, 320);
 }
-function rainTex() {
-  return tex((g, w, h) => {
-    const grad = g.createLinearGradient(0, 0, 0, h);
-    grad.addColorStop(0, "#2a3a50"); grad.addColorStop(1, "#141c2a");
-    g.fillStyle = grad; g.fillRect(0, 0, w, h);
-    g.strokeStyle = "rgba(180,200,230,.35)";
-    for (let i = 0; i < 90; i++) {                     // rain streaks
-      const x = Math.random() * w, y = Math.random() * h, l = 10 + Math.random() * 26;
-      g.beginPath(); g.moveTo(x, y); g.lineTo(x - 3, y + l); g.stroke();
-    }
-    // far city lights
-    for (let i = 0; i < 40; i++) {
-      g.fillStyle = `rgba(${200 + Math.random() * 55 | 0},${180 + Math.random() * 40 | 0},120,${.2 + Math.random() * .5})`;
-      g.fillRect(Math.random() * w, h * .45 + Math.random() * h * .4, 2, 2);
-    }
-  }, 256, 256);
+// What windows look onto: a slice of the painted night-sky keyart, framed on
+// the amber skyline band. Each window gets its own texture instance (offsets
+// differ); the image itself comes from browser cache after the first load.
+function windowViewTex(ox = 0.35) {
+  const t = new THREE.TextureLoader().load("assets/higgsfield/night_sky.png");
+  t.colorSpace = THREE.SRGBColorSpace;
+  t.repeat.set(0.3, 0.42);
+  t.offset.set(ox, 0.02); // bottom band of the panorama — skyline + lit clouds
+  return t;
 }
 
 // ---------- 3D engine (shared by bureau + memory rooms) ----------
@@ -731,10 +743,11 @@ function loop() {
     const ph = $("ph");
     if (o) {
       // Name shown BEFORE interacting so you know what it is. Below it: the action.
-      const act = o.userData.kind === "npc" ? "[E] Talk"
+      const act = o.userData.kind === "npc" || o.userData.kind === "worker" ? "[E] Talk"
                 : o.userData.kind === "exit_door" ? "[E] Leave for the Bureau"
                 : o.userData.kind === "bureau_door" ? "[E] Enter the Bureau"
                 : o.userData.kind === "mission" ? "[E] Investigate"
+                : o.userData.kind === "exit" ? "[E] Submit findings"
                 : "[E] Examine";
       ph.innerHTML = `<span class="ph-name">${o.userData.name || "Object"}</span><span class="ph-act">${act}</span>`;
       ph.style.opacity = 1;
@@ -761,7 +774,7 @@ function loop() {
   // Room life: NPC breathing, fragment crystals float+spin, dust rises, bad lamps flicker.
   for (const m of targets) {
     const u = m.userData;
-    if (u.kind === "npc") {
+    if (u.kind === "npc" || u.kind === "worker") {
       const phase = m.position.x + m.position.z;
       m.position.y = (u.baseY ?? 0) + Math.sin(t * 1.4 + phase) * 0.03; // breathe
       m.rotation.y = (u.baseRy ?? 0) + Math.sin(t * 0.5 + phase) * 0.08; // slight sway
@@ -801,13 +814,14 @@ function loop() {
   if (roomFx.peds) {
     for (const p of roomFx.peds) {
       const v = p.speed * dt * p.dir;
+      const range = p.range ?? 40; // city sidewalks by default; office lanes pass their own
       if (p.alongX) {
         p.o.position.x += v;
-        if (Math.abs(p.o.position.x) > 40) p.dir *= -1;
+        if (Math.abs(p.o.position.x) > range) p.dir *= -1;
         p.o.rotation.y = (p.dir > 0 ? Math.PI / 2 : -Math.PI / 2) + p.off;
       } else {
         p.o.position.z += v;
-        if (Math.abs(p.o.position.z) > 40) p.dir *= -1;
+        if (Math.abs(p.o.position.z) > range) p.dir *= -1;
         p.o.rotation.y = (p.dir > 0 ? 0 : Math.PI) + p.off;
       }
       p.o.position.y = Math.sin(t * 2.2 + p.o.position.x + p.o.position.z) * 0.02;
@@ -824,11 +838,11 @@ function loop() {
       r.o.rotation.y = r.dir > 0 ? 0 : Math.PI;
     }
   }
-  // Maya keeps heel position: behind-left of the player, never in the lens
+  // Maya walks ahead-right of the player — in frame, where you can see her.
   if (roomFx.maya) {
     const m = roomFx.maya;
-    const tx = camera.position.x + Math.sin(yaw) * 3.0 - Math.cos(yaw) * 1.4;
-    const tz = camera.position.z + Math.cos(yaw) * 3.0 + Math.sin(yaw) * 1.4;
+    const tx = camera.position.x - Math.sin(yaw) * 2.4 + Math.cos(yaw) * 1.5;
+    const tz = camera.position.z - Math.cos(yaw) * 2.4 - Math.sin(yaw) * 1.5;
     const dx = tx - m.position.x, dz = tz - m.position.z;
     const d = Math.hypot(dx, dz);
     if (d > 20) { m.position.set(tx, 0, tz); }               // catch up after sprints
@@ -1046,7 +1060,7 @@ function buildApartment() {
   // window with the same rain
   const winG = new THREE.Group();
   const pane = new THREE.Mesh(new THREE.PlaneGeometry(1.7, 1.2),
-    new THREE.MeshBasicMaterial({ map: rainTex() }));
+    new THREE.MeshBasicMaterial({ map: windowViewTex(0.55) }));
   const wf = wood(0x3c3428);
   const wfh = new THREE.Mesh(new THREE.BoxGeometry(1.84, 0.08, 0.08), wf);
   wfh.position.y = 0.63; const wfh2 = wfh.clone(); wfh2.position.y = -0.63;
@@ -1122,7 +1136,7 @@ function makeBeacon(done) {
 
 function buildCity(missions) {
   buildOpen({ bg: 0x0a0d13, fogNear: 10, fogFar: 52, ground: 0x14161d,
-              groundRough: 0.3, groundMetal: 0.35, amb: 0x6d7d9d, ambI: 0.95 }, 100);
+              groundRough: 0.3, groundMetal: 0.35, amb: 0x6d7d9d, ambI: 0.95, sky: true }, 100);
 
   roomFx.colliders = [];
   // road grid — wet asphalt strips
@@ -1379,7 +1393,14 @@ async function cityWalk() {
 function buildBureau(npcs = []) {
   buildRoom({ bg: 0x1a2230, fogColor: 0x1a2230, fogNear: 12, fogFar: 34,
               floor: 0x4a5566, ceil: 0x36404e, wall: 0x556070,
-              amb: 0xb0c0e0, ambI: 1.5, lamp: 0xfff0d0 });
+              amb: 0xb0c0e0, ambI: 1.5, lamp: 0xfff0d0 }, 13);
+
+  // Two warm fills over the worker pool — one center lamp can't light 13 meters.
+  for (const [lx, lz] of [[-3, 2.4], [3, 2.4]]) {
+    const l = new THREE.PointLight(0xffe8c8, 14, 12);
+    l.position.set(lx, 3.0, lz);
+    scene.add(l);
+  }
 
   // rug under the desk area
   const rug = new THREE.Mesh(new THREE.CircleGeometry(2.1, 28),
@@ -1405,24 +1426,24 @@ function buildBureau(npcs = []) {
 
   // ---- flavor props: the office has a life the case files don't mention ----
   const shelfL = makeBookshelf();
-  shelfL.position.set(-4.78, 0, -2.2); shelfL.rotation.y = Math.PI / 2;
+  shelfL.position.set(-6.28, 0, -2.2); shelfL.rotation.y = Math.PI / 2;
   registerTarget(shelfL, { id: "shelf1", name: "Case Archives", kind: "flavor",
     t: "Bound case archives, years of them. Some spines are blank — not unlabeled. Blank, like something was removed." });
 
   const shelfR = makeBookshelf();
-  shelfR.position.set(-4.78, 0, 1.6); shelfR.rotation.y = Math.PI / 2;
+  shelfR.position.set(-6.28, 0, 1.6); shelfR.rotation.y = Math.PI / 2;
   registerTarget(shelfR, { id: "shelf2", name: "Reference Shelf", kind: "flavor",
     t: "Interpretation manuals. Volume 4 is checked out — the card says YOUR name, in handwriting you don't recognize." });
 
   const cab = makeCabinet();
-  cab.position.set(4.5, 0, -3.6); cab.rotation.y = -Math.PI / 2;
+  cab.position.set(6.05, 0, -3.6); cab.rotation.y = -Math.PI / 2;
   registerTarget(cab, { id: "cabinet", name: "Filing Cabinet", kind: "flavor",
     t: "Drawer C is labeled RESOLVED. It's empty. It has always been empty." });
 
   // window with rain, right wall
   const winG = new THREE.Group();
   const pane = new THREE.Mesh(new THREE.PlaneGeometry(2.1, 1.35),
-    new THREE.MeshBasicMaterial({ map: rainTex() }));
+    new THREE.MeshBasicMaterial({ map: windowViewTex(0.18) }));
   const frameMat = wood(0x3c3428);
   const fh = new THREE.Mesh(new THREE.BoxGeometry(2.26, 0.08, 0.08), frameMat);
   const fv = new THREE.Mesh(new THREE.BoxGeometry(0.08, 1.5, 0.08), frameMat);
@@ -1430,11 +1451,11 @@ function buildBureau(npcs = []) {
   fh.position.y = 0.71; const fh2 = fh.clone(); fh2.position.y = -0.71;
   fv.position.x = 1.09; const fv2 = fv.clone(); fv2.position.x = -1.09;
   winG.add(pane, fh, fh2, fv, fv2, mid);
-  winG.position.set(4.93, 1.9, 1.4); winG.rotation.y = -Math.PI / 2;
+  winG.position.set(6.43, 1.9, 1.4); winG.rotation.y = -Math.PI / 2;
   registerTarget(winG, { id: "window", name: "Window", kind: "flavor",
     t: "Rain over District 7. It has rained every day you can remember. You can remember eleven days." });
   const winLight = new THREE.PointLight(0x8fb0d0, 3, 9); // cool spill from the window
-  winLight.position.set(4.1, 2.1, 1.4);
+  winLight.position.set(5.6, 2.1, 1.4);
   scene.add(winLight);
 
   // the ledger — appears once the player has logged their first anomaly
@@ -1458,7 +1479,7 @@ function buildBureau(npcs = []) {
 
   // NPCs — simple people placed around the room. E starts their dialogue.
   // Default positions fan out along the side walls if x/z not given.
-  const spots = [[-3.6, -1], [3.6, -1], [-3.4, 2.5], [3.6, 2.5], [0, 3.5]];
+  const spots = [[-3.6, -1], [3.6, -1], [-5.1, 0.3], [5.1, 0.3], [0, 4.6]]; // clear of the worker desks
   const CHAR_KEYS = ["charA", "charB", "charC", "charD", "charE", "charF"];
   // stable character per NPC id, so Vasic looks like Vasic in every volume
   const charFor = (id) => {
@@ -1480,6 +1501,69 @@ function buildBureau(npcs = []) {
       t: npc.line || "They look up as you approach.",
     });
   });
+
+  // ---- the office actually works: a keeper pool, not an empty floor ----
+  // Standing workers are examinable ("worker" kind) and cycle short lines.
+  const addWorker = (key, x, z, faceX, faceZ, name, lines) => {
+    const person = spawn(key) || makeHuman(0x7a8298);
+    person.position.set(x, 0, z);
+    const ry = Math.atan2(faceX - x, faceZ - z) + (modelCache[key] ? MODEL_YAW : 0);
+    person.rotation.y = ry;
+    registerTarget(person, { id: "worker_" + name, name, kind: "worker",
+      baseY: 0, baseRy: ry, li: 0, lines, t: lines[0] });
+  };
+
+  // three worker desks across the front half, each manned
+  const pool = [
+    [-3.6, 2.3, "charB", "Keeper Ilsa", [
+      "Filing. Don't ask which day it is. It's the same day.",
+      "If a record contradicts itself, we file both versions. That's the job.",
+      "The terminal hums a half-step lower today. You hear it too, don't you."]],
+    [0.2, 2.7, "charD", "Keeper Brandt", [
+      "Three rulings before lunch. The Archive doesn't wait.",
+      "You look like you slept. Lucky.",
+      "Drawer C came up empty again. I've stopped asking why."]],
+    [3.8, 2.3, "charF", "Keeper Osei", [
+      "Citizen intake was full this morning. Same complaint, every one: a memory too coherent.",
+      "Coherent is worse than corrupted. Corrupted admits something's wrong.",
+      "Sign nothing you haven't read twice, Keeper."]],
+  ];
+  for (const [wx, wz, key, name, lines] of pool) {
+    const d = makeDesk(); d.position.set(wx, 0, wz); d.rotation.y = Math.PI; scene.add(d);
+    const ch = makeChair(); ch.position.set(wx, 0, wz - 0.95); scene.add(ch);
+    const t = makeTerminal(); t.position.set(wx, 0.76, wz + 0.2); t.scale.setScalar(0.8);
+    t.rotation.y = Math.PI; scene.add(t);
+    addWorker(key, wx + 0.75, wz - 0.7, wx, wz + 0.2, name, lines);
+  }
+  // an archivist at the cabinet wall
+  addWorker("charE", 5.3, -3.4, 6.05, -3.6, "Archivist Wren", [
+    "Careful around Vasic. He counts everything, including questions.",
+    "Some spines go blank overnight. We're told not to mind.",
+    "Eleven days of rain. It helps the filing, somehow."]);
+  // two clerks pacing the aisles — the room moves
+  const walkers = [];
+  for (const [key, lane, alongX] of [["charA", 0.4, true], ["charC", -4.6, false]]) {
+    const p = spawn(key) || makeHuman(0x6a7180);
+    if (alongX) p.position.set(-2, 0, lane); else p.position.set(lane, 0, 0);
+    walkers.push({ o: p, alongX, dir: 1, speed: 0.8 + Math.random() * 0.4,
+      off: modelCache[key] ? MODEL_YAW : 0, range: 4.6 });
+    scene.add(p);
+  }
+  roomFx.peds = walkers;
+
+  // Maya — present, visible, by your desk. She was here before you arrived.
+  const maya = makeMaya();
+  maya.position.set(2.2, 0, -1.3);
+  const mry = Math.atan2(0 - 2.2, -2.2 - -1.3);
+  maya.rotation.y = mry;
+  registerTarget(maya, { id: "npc_maya", name: "Maya", kind: "worker",
+    baseY: 0, baseRy: mry, li: 0, lines: [
+      "Morning, Keeper. You're on time. You're always exactly on time.",
+      "The case can wait sixty seconds. Nothing else in this building can, but the case can.",
+      "I checked the board before you came in. I always do.",
+      "When you're in the memory, find what doesn't belong. Log all of it before you touch the pillar."],
+    t: "Maya. She was here before you arrived. She is always here before you arrive." });
+
   setAmb({ rain: 0.45, hum: 1 });
 }
 
@@ -1541,6 +1625,27 @@ export const UI = {
   },
   choose: (labels) => activeMemory ? pickGlyph(labels) : overlayButtons(labels),
 
+  // A real button choice even mid-dive (choose() maps to crystals there).
+  // Frees the cursor for the click, restores roaming after.
+  ask: async (labels) => {
+    uiBusy = true;
+    if (document.pointerLockElement) document.exitPointerLock();
+    const i = await overlayButtons(labels);
+    uiBusy = false;
+    return i;
+  },
+
+  // Mission HUD for a dive: anomaly counter in the objective card. -1 hides it.
+  diveHud: (found, total) => {
+    const o = $("objective");
+    if (found < 0) { o.style.display = "none"; return; }
+    o.style.display = "block";
+    o.querySelector(".obj-t").textContent = "Locate the anomalies in this memory";
+    o.querySelector(".obj-s").textContent = total
+      ? `⬥ ${found}/${total} anomaly signatures found · submit at the Archive Pillar`
+      : "No anomaly signatures on scan · examine freely, submit at the Archive Pillar";
+  },
+
   // An ordinary morning. Roam the apartment, examine the routine, leave by the
   // front door. Resolves after the fade into the Bureau, so the next dialogue
   // line (Maya, at the office) plays over the right room.
@@ -1591,6 +1696,8 @@ export const UI = {
           await talkTo(data.npc.dialogue);
           spoken.add(data.npc.id);
           uiBusy = false; busy = false; // click to re-lock and resume roaming
+        } else if (data.kind === "worker") {
+          overlayShow(data.lines[data.li++ % data.lines.length], "say", data.name);
         } else {
           overlayLine(`<i>${data.t}</i>`, "scene");
         }
@@ -1607,7 +1714,7 @@ export const UI = {
     buildBureau(npcs);
     // The case board — pinned cards and red string, far wall.
     const board = makeCaseBoard();
-    board.position.set(0, 1.85, -4.9);
+    board.position.set(0, 1.85, -6.42);
     registerTarget(board, { id: "board", name: "Case Board", kind: "board",
       t: "The case board. Active and archived cases, listed." });
     $("fade").style.transition = ""; $("fade").classList.remove("on");
@@ -1630,6 +1737,8 @@ export const UI = {
           if (document.pointerLockElement) document.exitPointerLock();
           await talkTo(data.npc.dialogue);
           uiBusy = false; busy = false;
+        } else if (data.kind === "worker") {
+          overlayShow(data.lines[data.li++ % data.lines.length], "say", data.name);
         } else {
           overlayLine(`<i>${data.t}</i>`, "scene");
         }
@@ -1649,13 +1758,15 @@ export const UI = {
     // replace each other and the description would never be read.
     overlayLine(
       `<i>[${beh} memory · ${emotion}]</i> ${desc}<br>` +
-      `<span class="hint">Click to look · WASD move · E on a crystal to examine · green beam = step back and decide.</span>`,
+      `<span class="hint">Click to look · WASD move · E on a crystal to examine · amber crystals carry anomaly signatures · the green pillar submits your findings.</span>`,
       "scene");
     enterRoom(memoryExamine);
     activeMemory = true;
   },
 
-  reveal: (flag) => { overlayLine(`— You notice: <b>${flag}</b>`, "reveal"); return Promise.resolve(); },
+  // Examined fragment: the memory itself, held on screen until the player dismisses it.
+  fragment: (f) => typeLine(f.symbol || f.text, "scene", null, true, 0, true),
+  reveal: (flag) => typeLine(`— ANOMALY LOGGED: ${String(flag).replace(/_/g, " ")}`, "reveal"),
   collapse: () => { overlayLine("The memory buckles. Pieces go missing.", "collapse"); return Promise.resolve(); },
   outcome: async (truth) => {
     activeMemory = false;
@@ -1664,11 +1775,18 @@ export const UI = {
   },
 };
 
+// Case keyart — Higgsfield art at the top of the file. Add entries as art lands.
+const CASE_ART = {
+  vol1_lighthouse: "assets/higgsfield/lighthouse.png",
+  vol4_null: "assets/higgsfield/null_district.png",
+};
 function showCaseFile(c) {
   if (!c?.file) return Promise.resolve();
   const f = c.file;
   const rows = f.records.map(r => `<tr><td>${r.label}</td><td>${r.value}</td></tr>`).join("");
+  const art = CASE_ART[c.case_id] ? `<img class="cf-art" src="${CASE_ART[c.case_id]}" alt="">` : "";
   return centerModal(
+    art +
     `<div class="cf-head">ARCHIVE BUREAU · CASE FILE · ${c.case_id.toUpperCase()}</div>
      <div class="cf-title">${c.title ? c.title + " · " : ""}${f.subject} — ${f.memory_type}</div>
      <p>${f.summary}</p>
@@ -1700,6 +1818,16 @@ function windowsTex() {
   }, 256, 512, [1, 1]);
 }
 
+// Higgsfield keyart sky — one painted panorama shared by the open night scenes.
+let _skyTex = null;
+function skyTexture() {
+  if (!_skyTex) {
+    _skyTex = new THREE.TextureLoader().load("assets/higgsfield/night_sky.png");
+    _skyTex.colorSpace = THREE.SRGBColorSpace;
+  }
+  return _skyTex;
+}
+
 // Open outdoor space: big ground, fog, moonlight. No walls — bounds clamp instead.
 function buildOpen(palette, groundSize = 60) {
   scene = new THREE.Scene();
@@ -1721,6 +1849,17 @@ function buildOpen(palette, groundSize = 60) {
   const ground = new THREE.Mesh(new THREE.PlaneGeometry(groundSize, groundSize),
     new THREE.MeshStandardMaterial({ color: palette.ground ?? 0x3a3a40, roughness: palette.groundRough ?? 0.95, metalness: palette.groundMetal ?? 0 }));
   ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground);
+
+  // Painted sky dome — the image's skyline band lands just above the horizon.
+  // Unfogged: fog eats the set, not the sky. That's how rain nights read.
+  if (palette.sky) {
+    const dome = new THREE.Mesh(
+      new THREE.SphereGeometry(palette.skyR ?? 90, 32, 16, 0, Math.PI * 2, 0, Math.PI * 0.58),
+      new THREE.MeshBasicMaterial({ map: skyTexture(), side: THREE.BackSide, fog: false, depthWrite: false }));
+    dome.renderOrder = -1;
+    dome.raycast = () => {};
+    scene.add(dome);
+  }
 
   camera = new THREE.PerspectiveCamera(72, innerWidth / innerHeight, 0.1, 120);
   camera.position.set(0, 1.6, 5);
@@ -1773,7 +1912,7 @@ const MEM_ENVS = {
 
   // rain-slick night street between lit facades
   street() {
-    buildOpen({ bg: 0x0b0d13, fogNear: 6, fogFar: 30, ground: 0x14161d, groundRough: 0.12, groundMetal: 0.7, amb: 0x6d7d9d });
+    buildOpen({ bg: 0x0b0d13, fogNear: 6, fogFar: 30, ground: 0x14161d, groundRough: 0.12, groundMetal: 0.7, amb: 0x6d7d9d, sky: true, skyR: 60 });
     const kits = ["buildingA", "buildingB", "buildingC", "buildingD", "buildingE"];
     let ki = 0;
     for (const side of [-1, 1]) {                      // facades
@@ -1928,8 +2067,9 @@ function buildMemoryRoom(beh, emotion, frags, env) {
     const a = (i / frags.length) * Math.PI * 2;
     const r = 3;
     const corrupt = !!fr.symbol;
-    const col = corrupt ? 0xc06a72 : 0x6a9ad0;
-    const emis = corrupt ? 0xa02830 : 0x2860c0;
+    const anomaly = !!fr.reveals; // an anomaly signature — reads amber on the scan
+    const col = anomaly ? 0xe0b060 : corrupt ? 0xc06a72 : 0x6a9ad0;
+    const emis = anomaly ? 0xc07820 : corrupt ? 0xa02830 : 0x2860c0;
     const g = new THREE.Group();
     const crystal = new THREE.Mesh(
       new THREE.IcosahedronGeometry(0.32, 0),
@@ -1956,11 +2096,11 @@ function buildMemoryRoom(beh, emotion, frags, env) {
     });
   });
 
-  // Exit — a soft green beam of light, center. Walk in, press E to decide.
+  // The Archive Pillar — center. Walk in, press E to submit your findings.
   const exit = new THREE.Group();
   const beam = new THREE.Mesh(
     new THREE.CylinderGeometry(0.42, 0.42, 3.3, 18, 1, true),
-    new THREE.MeshBasicMaterial({ color: 0x66cc88, transparent: true, opacity: 0.13,
+    new THREE.MeshBasicMaterial({ color: 0x66cc88, transparent: true, opacity: 0.18,
       side: THREE.DoubleSide, depthWrite: false }));
   beam.position.y = 0.55;
   const core = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.14, 1.7, 10),
@@ -1973,7 +2113,7 @@ function buildMemoryRoom(beh, emotion, frags, env) {
   exit.add(beam, core, ring, glow);
   exit.position.set(0, 1.05, 0);
   registerTarget(exit, { id: "__exit", kind: "exit", index: frags.length,
-    name: "Step Back & Decide", t: "Step back and decide." });
+    name: "Archive Pillar", t: "Submit your findings to the Archive." });
 }
 
 // memory.js splices its frag array each turn, so indices shift. We resolve by
