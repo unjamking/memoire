@@ -6,6 +6,10 @@
 // raw yaw/pitch is enough). Procedural geometry only, Three.js from CDN.
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { State } from "./state.js";
 import * as SFX from "./audio.js";
 
@@ -330,8 +334,54 @@ function windowViewTex(ox = 0.35) {
   return t;
 }
 
+// ---------- procedural noir towers ----------
+// Replaces the deleted GLB building kit. Facade and lit-window emissive are
+// twin canvases sharing one grid, so bloom catches only the windows — that
+// glow against dark concrete is what sells the rain-night city.
+const _bldgMats = [];
+function buildingMat(seed) {
+  const i = seed % 3;
+  if (_bldgMats[i]) return _bldgMats[i];
+  const w = 256, h = 512;
+  const face = document.createElement("canvas"); face.width = w; face.height = h;
+  const glow = document.createElement("canvas"); glow.width = w; glow.height = h;
+  const f = face.getContext("2d"), e = glow.getContext("2d");
+  f.fillStyle = ["#3d3a38", "#33383e", "#403c34"][i]; f.fillRect(0, 0, w, h);
+  e.fillStyle = "#000"; e.fillRect(0, 0, w, h);
+  for (let x = 0; x < w; x += 4) {                    // rain-grime streaks
+    f.fillStyle = `rgba(0,0,0,${Math.random() * 0.14})`;
+    f.fillRect(x, 0, 4, h);
+  }
+  for (let y = 18; y < h - 30; y += 34)               // window grid, ~38% lit
+    for (let x = 14; x < w - 20; x += 30) {
+      f.fillStyle = "#16181d"; f.fillRect(x, y, 18, 24);
+      if (Math.random() < 0.38) {
+        e.fillStyle = Math.random() < 0.75 ? "#ffb45e" : "#9fc4ff";
+        e.fillRect(x + 1, y + 1, 16, 22);
+      }
+    }
+  const mk = (c) => { const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; };
+  return _bldgMats[i] = new THREE.MeshStandardMaterial({
+    map: mk(face), emissiveMap: mk(glow), emissive: 0xffffff, emissiveIntensity: 1.35, roughness: 0.92,
+  });
+}
+function makeBuilding(hgt, seed) {
+  const g = new THREE.Group();
+  const wd = 6 + (seed % 3) * 1.5, dp = 6 + ((seed + 1) % 3) * 1.5;
+  const body = new THREE.Mesh(new THREE.BoxGeometry(wd, hgt, dp), buildingMat(seed));
+  body.position.y = hgt / 2; body.castShadow = body.receiveShadow = true;
+  g.add(body);
+  const cap = new THREE.Mesh(new THREE.BoxGeometry(wd + 0.3, 0.35, dp + 0.3),
+    new THREE.MeshStandardMaterial({ color: 0x232528, roughness: 1 }));
+  cap.position.y = hgt + 0.17; g.add(cap);
+  const ac = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.8, 1.1),
+    new THREE.MeshStandardMaterial({ color: 0x3a3f45, roughness: 0.6, metalness: 0.4 }));
+  ac.position.set(wd * 0.2, hgt + 0.75, -dp * 0.15); g.add(ac);
+  return g;
+}
+
 // ---------- 3D engine (shared by bureau + memory rooms) ----------
-let renderer, scene, camera, raycaster, clock;
+let renderer, scene, camera, raycaster, clock, composer, renderPass;
 let targets = [];            // examinable objects (meshes or groups)
 let yaw = 0, pitch = 0, locked = false, active = false;
 let uiBusy = false;          // true while a modal/dialogue owns input — suspends examine/look/relock
@@ -352,6 +402,15 @@ function initRenderer() {
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.1;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
+  // Cinematic pass chain: bloom makes lamps/neon glow like a rain-night city.
+  // MSAA + HalfFloat target keeps edges clean and HDR headroom for ACES.
+  composer = new EffectComposer(renderer, new THREE.WebGLRenderTarget(
+    innerWidth, innerHeight, { samples: 4, type: THREE.HalfFloatType }));
+  renderPass = new RenderPass(new THREE.Scene(), new THREE.PerspectiveCamera());
+  composer.addPass(renderPass);
+  // threshold 0.8: only genuinely bright things bloom, rooms stay noir not hazy
+  composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.45, 0.4, 0.8));
+  composer.addPass(new OutputPass());
   raycaster = new THREE.Raycaster();
   clock = new THREE.Clock();
 
@@ -364,6 +423,7 @@ function initRenderer() {
     camera.aspect = innerWidth / innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(innerWidth, innerHeight);
+    composer.setSize(innerWidth, innerHeight);
   });
   // E examines on the initial press only — ignore auto-repeat so one press = one examine.
   addEventListener("keydown", (e) => { keys[e.code] = true; if (e.code === "KeyE" && !e.repeat) doExamine(); });
@@ -865,7 +925,9 @@ function loop() {
       f.position.y += Math.sin(t * 0.3 + f.position.x) * dt * 0.1;
     }
   }
-  renderer.render(scene, camera);
+  renderPass.scene = scene;
+  renderPass.camera = camera;
+  composer.render();
 }
 
 // Enter a room: show crosshair + prompt, capture pointer, wait until `done()` called.
@@ -1154,8 +1216,9 @@ function buildCity(missions) {
   for (const bx of [-33, -11, 11, 33]) {
     for (const bz of [-33, -11, 11, 33]) {
       if (bz === -33 && Math.abs(bx) <= 11) continue; // bureau plaza
-      const b = spawn(kits[ki++ % kits.length]);
-      if (!b) continue;
+      // GLB kit if a Higgsfield mesh has landed at the path; noir tower otherwise
+      const b = spawn(kits[ki % kits.length]) ?? makeBuilding(9 + (ki * 7) % 5, ki);
+      ki++;
       b.position.set(bx + (Math.random() - .5) * 3, 0, bz + (Math.random() - .5) * 3);
       b.rotation.y = (Math.PI / 2) * (ki % 4);
       scene.add(b);
